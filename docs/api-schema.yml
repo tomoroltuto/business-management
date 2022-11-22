@@ -1,0 +1,706 @@
+openapi: "3.0.0"
+info:
+  title: Business management API Document
+  version: "0.0.1"
+  description: Business management API　のドキュメントです
+
+paths:
+  /users:
+    get:
+      summary: "ユーザ一覧取得"
+      description: "ユーザ一の一覧を取得できます"
+      operationId: "UserList"
+      tags:
+        - users
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserListDTO"
+    post:
+      summary: "ユーザ一作成"
+      description: "ユーザを新規作成します"
+      operationId: "createUser"
+      tags:
+        - users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserForm"
+      responses:
+        '201':
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseMessage"
+        '400':
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatRequestError"
+  /users/{user_Id}:
+    get:
+      summary: "ユーザー取得"
+      description: "指定されたIDのユーザを１件取得"
+      operationId: "showUser"
+      tags:
+        - users
+      parameters:
+        - name: user_Id
+          in: path
+          required: true
+          description: "取得するユーザーのID"
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+    patch:
+      summary: "ユーザー更新"
+      description: "指定されたユーザーを更新します"
+      operationId: "updateUser"
+      tags:
+        - users
+      parameters:
+        - name: user_Id
+          in: path
+          required: true
+          description: "更新するユーザ一のID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserForm"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseMessage"
+        '400':
+          description: "Bat Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatRequestError"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+    delete:
+      summary: "ユーザ一削除"
+      description: "指定されたユーザを削除します"
+      operationId: "deleteUser"
+      tags:
+        - users
+      parameters:
+        - name: user_Id
+          in: path
+          required: true
+          description: "削除するユーザーID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '204':
+          description: "No Content"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponseMessage"
+        '404':
+          description: "No Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+  /schedules:
+    get:
+      summary: "全作業予定一覧取得"
+      description: "全作業予定の一覧を取得できます"
+      operationId: "WorkScheduleList"
+      tags:
+        - Schedules
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkScheduleListDTO"
+    post:
+      summary: "作業予定作成"
+      description: "作業予定を新規作成します"
+      operationId: "createWorkSchedule"
+      tags:
+        - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkScheduleForm"
+      responses:
+        '201':
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 1
+                  company name:
+                    type: string
+                    example: ○○○株式会社
+                  message:
+                    type: string
+                    example: 作業予定を登録しました
+        '400':
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatRequestError"
+  /schedules/{schedules_id}:
+    get:
+      summary: "作業予定取得"
+      description: "指定されたIDの作業予定を１件取得"
+      tags:
+        - Schedules
+      operationId: "showWorkSchedule"
+      parameters:
+        - name: WorkScheduleId
+          in: path
+          required: true
+          description: "取得する作業予定のID"
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: "0K"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkScheduleDTO"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+    patch:
+      summary: "作業予定更新"
+      description: "指定された作業予定の内容を更新します"
+      operationId: "updateWorkSchedule"
+      tags:
+        - Schedules
+      parameters:
+        - name: WorkScheduleId
+          in: path
+          required: true
+          description: "更新する作業予定のID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkScheduleForm"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 1
+                  company name:
+                    type: string
+                    example: ○○○株式会社
+                  message:
+                    type: string
+                    example: 作業予定を更新しました
+        '400':
+          description: "Bat Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatRequestError"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+    delete:
+      summary: "作業予定削除"
+      description: "指定された作業内容を削除します"
+      operationId: "deleteWorkSchedule"
+      tags:
+        - Schedules
+      parameters:
+        - name: WorkScheduleId
+          in: path
+          required: true
+          description: "削除する作業予定のID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '204':
+          description: "No Content"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 1
+                  company name:
+                    type: string
+                    example: ○○○株式会社
+                  message:
+                    type: string
+                    example: 作業予定を削除しました
+        '404':
+          description: "No Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+  /performances:
+    get:
+      summary: "全作業実績一覧取得"
+      description: "全作業実績の一覧を取得できます"
+      operationId: "WorkPerformanceList"
+      tags:
+        - Performances
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkPerformanceListDTO"
+    post:
+      summary: "作業実績作成"
+      description: "作業実績を新規作成します"
+      operationId: "createWorkPerformance"
+      tags:
+        - Performances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkPerformanceForm"
+      responses:
+        '201':
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 1
+                  company name:
+                    type: string
+                    example: ○○○株式会社
+                  message:
+                    type: string
+                    example: 作業実績を登録しました
+        '400':
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatRequestError"
+  /performances/{performance_id}:
+    get:
+      summary: "作業実績取得"
+      description: "指定されたIDの作業実績を１件取得"
+      tags:
+        - Performances
+      operationId: "showWorkPerformance"
+      parameters:
+        - name: WorkPerformanceId
+          in: path
+          required: true
+          description: "取得する作業実績のID"
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: "0K"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkPerformanceDTO"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+    patch:
+      summary: "作業実績更新"
+      description: "指定された作業実績の内容を更新します"
+      operationId: "updateWorkPerformance"
+      tags:
+        - Performances
+      parameters:
+        - name: WorkPerformanceId
+          in: path
+          required: true
+          description: "更新する作業実績のID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkPerformanceForm"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 1
+                  company name:
+                    type: string
+                    example: ○○○株式会社
+                  message:
+                    type: string
+                    example: 作業実績を更新しました
+        '400':
+          description: "Bat Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatRequestError"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+    delete:
+      summary: "作業実績削除"
+      description: "指定された作業実績を削除します"
+      operationId: "deleteWorkPerformance"
+      tags:
+        - Performances
+      parameters:
+        - name: WorkPerformanceId
+          in: path
+          required: true
+          description: "削除する作業実績のID"
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '204':
+          description: "No Content"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 1
+                  company name:
+                    type: string
+                    example: ○○○株式会社
+                  message:
+                    type: string
+                    example: 作業実績を削除しました
+        '404':
+          description: "No Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceNotFoundError"
+components:
+  schemas:
+    UserForm:
+      type: object
+      properties:
+        company name:
+          type: string
+          description: "作成される会社名"
+          maxLength: 256
+          minLength: 1
+        user name:
+          type: string
+          description: "作成される氏名"
+          maxLength: 256
+          minLength: 1
+      required:
+        - company name
+        - user name
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: "ユーザーID"
+        company name:
+          type: string
+          description: "会社名"
+        user name:
+          type: string
+          description: "氏名"
+      required:
+        - id
+        - company name
+        - user name
+    UserListDTO:
+      description: "ユーザーリスト"
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserDTO"
+      required:
+        - results
+    WorkScheduleForm:
+      type: object
+      properties:
+        working date:
+          type: string
+          format: date
+          description: "作成される日付"
+          pattern: ^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$
+        place:
+          type: string
+          description: "作成される作業場所"
+          maxLength: 256
+          minLength: 1
+        number of people:
+          type: integer
+          format: int32
+          description: "作成される人数"
+        work content:
+          type: string
+          description: "作成される作業内容"
+          maxLength: 256
+          minLength: 1
+      required:
+        - working date
+        - place
+        - number of people
+        - work content
+    WorkScheduleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: "作業予定ID"
+        working date:
+          type: string
+          format: date
+          description: "日付"
+        place:
+          type: string
+          description: "作業場所"
+        number of people:
+          type: integer
+          format: int32
+          description: "人数"
+        work content:
+          type: string
+          description: "作業内容"
+      required:
+        - working date
+        - place
+        - number of people
+        - work content
+    WorkScheduleListDTO:
+      description: "業務予定のリスト"
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkScheduleDTO"
+      required:
+        - results
+    WorkPerformanceForm:
+      type: object
+      properties:
+        working date:
+          type: string
+          format: date
+          description: "作成される日付"
+          pattern: ^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$
+        place:
+          type: string
+          description: "作成される作業場所"
+          maxLength: 256
+          minLength: 1
+        number of people:
+          type: integer
+          format: int32
+          description: "作成される人数"
+        work content:
+          type: string
+          description: "作成される作業内容"
+          maxLength: 256
+          minLength: 1
+      required:
+        - working date
+        - place
+        - number of people
+        - work content
+    WorkPerformanceDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: "作業実績ID"
+        working date:
+          type: string
+          format: date
+          description: "日付"
+        place:
+          type: string
+          description: "作業場所"
+        number of people:
+          type: integer
+          format: int32
+          description: "人数"
+        work content:
+          type: string
+          description: "作業内容"
+      required:
+        - working date
+        - place
+        - number of people
+        - work content
+    WorkPerformanceListDTO:
+      description: "業務実績のリスト"
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkPerformanceDTO"
+      required:
+        - results
+    ResourceNotFoundError:
+      description: "指定したリソースが存在しない"
+      type: object
+      properties:
+        title:
+          type: string
+          description: "エラーのタイトル"
+          default: "Resource Not Found"
+        detail:
+          type: string
+          description: "エラーの詳細"
+      required:
+        - title
+        - detail
+    BatRequestError:
+      description: "リクエストが不正"
+      type: object
+      properties:
+        title:
+          type: string
+          description: "エラーのタイトル"
+          default: "Bad Request"
+        detail:
+          type: string
+          description: "エラーの詳細"
+          default: "リクエストが不正です。正しいリクエストでリトライしてください"
+        invalid-params:
+          type: array
+          items:
+            $ref: "#/components/schemas/InvalidParam"
+      required:
+        - title
+        - detail
+        - invalid-params
+    InvalidParam:
+      description: "不正なリクエストについての詳細"
+      type: object
+      properties:
+        name:
+          type: string
+          description: "エラーが発生したフィールド名"
+        reason:
+          type: string
+          description: "エラーの理由"
+      required:
+        - name
+        - reason
+    UserResponseMessage:
+      description: "ユーザー用レスポンスメッセージ"
+      type: object
+      properties:
+        message:
+          type: string
+          description: "メッセージ"
+          example: "ユーザーを登録・更新・削除しました"
+      required:
+        - message
