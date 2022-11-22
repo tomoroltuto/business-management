@@ -1,5 +1,6 @@
 package com.example.businessmanagement2.restcontroller.user;
 
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
@@ -13,10 +14,10 @@ public class UserForm {
 
 
     @NotBlank
-    @Length(min=1,max=256)
+    @Size(min = 1, max = 256)
     String companyname;
 
     @NotBlank
-    @Length(min=1,max=256)
+    @Size(min = 1, max = 256)
     String username;
 }
