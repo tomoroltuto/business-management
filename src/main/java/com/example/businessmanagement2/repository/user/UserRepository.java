@@ -17,7 +17,7 @@ public interface UserRepository {
     Optional<UserEntity> findById(long userId);
 
     @Select("SELECT * from users")
-    List<UserEntity> findAll();
+    List<UserEntity> findUserList();
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("INSERT INTO users (company_name, user_name) values (#{companyname}, #{username})")

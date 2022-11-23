@@ -7,7 +7,7 @@ public interface UserService {
 
   UserEntity findById(Long userId);
 
-  List<UserEntity> findAll();
+  List<UserEntity> findUserList();
 
   void create(String companyname, String username);
 

@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    private ResponseEntity<UserListDTO> findAll(){
-        var entityList = userService.findAll();
+    private ResponseEntity<UserListDTO> findUserList(){
+        var entityList = userService.findUserList();
         var dtoList = entityList
                         .stream()
                         .map(UserController::toUserDTO)
