@@ -6,7 +6,6 @@ import lombok.Data;
 
 
 @Data
-@AllArgsConstructor
 public class UserResponseMessage {
 
   private String message;

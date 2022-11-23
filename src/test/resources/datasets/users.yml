@@ -1,0 +1,7 @@
+uses:
+  - id: 1
+    companyname: "○○○会社"
+    username: "瀬川"
+  - id: 2
+    companyname: "△△△会社"
+    username: "瀬川2"
