@@ -21,7 +21,7 @@ public interface UserRepository {
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("INSERT INTO users (company_name, user_name) values (#{companyname}, #{username})")
-    void insert(UserEntity entity);
+    void create(UserEntity entity);
 
     @Update("UPDATE users SET company_name = #{companyname}, user_name = #{username} WHERE id = #{id}")
     void update(UserEntity entity);

@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
     }
     public void create(String companyname, String username) {
         var entity = new UserEntity(null, companyname, username);
-        userRepository.insert(entity);
+        userRepository.create(entity);
     }
 
     @Override
