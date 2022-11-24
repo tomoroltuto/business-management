@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
-import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
 
 import static org.assertj.core.api.Assertions.*;
@@ -101,7 +100,4 @@ public class UserServiceTest {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);
   }
-
-
-
 }
