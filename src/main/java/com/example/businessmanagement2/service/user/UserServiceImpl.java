@@ -44,5 +44,4 @@ public class UserServiceImpl implements UserService{
             .orElseThrow(() -> new UserEntityNotFoundException(userId));
         userRepository.delete(userId);
     }
-
 }

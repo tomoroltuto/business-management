@@ -8,12 +8,13 @@ import com.example.businessmanagement2.service.user.UserServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
+import org.junit.runner.RunWith;
+import static org.mockito.BDDMockito.given;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -38,36 +39,68 @@ public class UserServiceTest {
     List<UserEntity> actual = userServiceImpl.findUserList();
     assertThat(actual).hasSize(2);
   }
+
   @Test
-  public void 存在するユーザのIDを指定したとき正常にユーザーが返されること(){
-    doReturn(Optional.of(new UserEntity(1L, "○○○会社", "瀬川"))).when(userRepository).findById(1);
+  public void 存在するユーザのIDを指定したとき正常にユーザーが返されること() {
+    doReturn(Optional.of(new UserEntity(1L, "○○○会社", "瀬川")))
+        .when(userRepository).findById(1);
     UserEntity actual = userServiceImpl.findById(1L);
-    assertThat(actual).isEqualTo(new UserEntity(1L,"○○○会社","瀬川"));
+    assertThat(actual).isEqualTo(new UserEntity(1L, "○○○会社", "瀬川"));
   }
 
 
   @Test
-  public void 検索時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること(){
+  public void 検索時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
     doReturn(Optional.empty()).when(userRepository).findById(3);
     assertThatThrownBy(() -> {
       userServiceImpl.findById(3L);
     }).isInstanceOf(UserEntityNotFoundException.class);
   }
+
   @Test
-  public void データーを新規登録できること() {
-    UserEntity newUe = new UserEntity (null,"xxx会社","瀬川3");
+  public void ユーザーを新規登録できること() {
+    UserEntity newUe = new UserEntity(null, "xxx会社", "瀬川3");
     userServiceImpl.create(newUe.getCompanyname(), newUe.getUsername());
     verify(userRepository).create(newUe);
   }
 
   @Test
-  void 指定したIDのデーターを更新できること() {
-
-    userServiceImpl.update(1L, "xxx会社", "瀬川2");
-
-    verify(userRepository).update(new UserEntity(1L, "xx会社", "瀬川2"));
+  public void 指定したIDのユーザーを更新できること(){
+    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
+    UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
+    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
+    userServiceImpl.update(Ue.getId(),newUe.getCompanyname(), newUe.getUsername());
+    verify(userRepository).update(newUe);
   }
 
+  @Test
+  public void 更新時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
+    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
+    UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
+    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
+    userServiceImpl.update(Ue.getId(),newUe.getCompanyname(), newUe.getUsername());
+    assertThatThrownBy(() -> {
+      userServiceImpl.findById(99L);
+    }).isInstanceOf(UserEntityNotFoundException.class);
+  }
+
+  @Test
+  public void 指定したデーターを1件削除できること() {
+    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
+    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
+    userServiceImpl.delete(Ue.getId());
+    verify(userRepository).delete(Ue.getId());
+  }
+
+  @Test
+  public void 削除時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
+    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
+    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
+    userServiceImpl.delete(Ue.getId());
+    assertThatThrownBy(() -> {
+      userServiceImpl.findById(99L);
+    }).isInstanceOf(UserEntityNotFoundException.class);
+  }
 
 
 

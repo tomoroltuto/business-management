@@ -54,7 +54,4 @@ public class UserRestApiIntegration {
         + "}", response, JSONCompareMode.STRICT);
 
   }
-
-
-
 }
