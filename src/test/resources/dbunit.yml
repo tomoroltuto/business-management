@@ -1,10 +1,10 @@
 cacheConnection: false
 cacheTableNames: false
 properties:
-  schema: users
+  schema: user_list
   caseSensitiveTableNames: false
 caseInsensitiveStrategy: LOWERCASE
 connectionConfig:
-  url: "jdbc:mysql://localhost:3307/date_calculation"
-  user: "tomo"
-  password: "0000"
+  url: "jdbc:mysql://localhost:3307/user_list"
+  user: "user"
+  password: "password"

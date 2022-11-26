@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @DBRider
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -25,13 +26,13 @@ public class UserRepositoryTest {
   @Test
   @DataSet(value = "datasets/users.yml")
   @Transactional
-  void すべてのユーザーが取得できること() {
-    List<UserEntity> userEntityList = userRepository.findUserList();
-    assertThat(userEntityList)
+  void すべてのユーザーが取得できること(){
+    List<UserEntity> users = userRepository.findUserList();
+    assertThat(users)
         .hasSize(2)
         .contains(
             new UserEntity(1L,"○○○会社", "瀬川"),
-            new UserEntity(2L, "△△△会社", "瀬川2")
+            new UserEntity(2L,"△△△会社", "瀬川2")
         );
   }
 
