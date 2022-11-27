@@ -1,7 +1,7 @@
 users:
   - id: 1
-    companyname: "○○○会社"
-    username: "瀬川"
+    company_name: "○○○会社"
+    user_name: "瀬川"
   - id: 2
-    companyname: "△△△会社"
-    username: "瀬川2"
+    company_name: "△△△会社"
+    user_name: "瀬川2"
