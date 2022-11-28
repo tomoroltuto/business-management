@@ -3,7 +3,6 @@ package com.example.businessmanagement2.restcontroller.user;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 

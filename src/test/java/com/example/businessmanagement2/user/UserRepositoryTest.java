@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @DBRider
 @MybatisTest
+@DataSet(value = "datasets/users.yml")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
 
@@ -26,7 +27,6 @@ public class UserRepositoryTest {
   UserRepository userRepository;
 
   @Test
-  @DataSet(value = "datasets/users.yml")
   @Transactional
   void すべてのユーザーが取得できること(){
     List<UserEntity> users = userRepository.findUserList();
@@ -47,7 +47,6 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @DataSet(value = "datasets/users.yml")
   @Transactional
   void 存在するユーザのIDを指定してユーザーが取得できること(){
     UserEntity user = userRepository.findById(1).orElseThrow();
@@ -55,7 +54,6 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @DataSet(value = "datasets/users.yml")
   @Transactional
   public void ユーザーを新規登録できること(){
     UserEntity ue = new UserEntity(null,"xxx会社", "瀬川3");
@@ -65,7 +63,6 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @DataSet(value = "datasets/users.yml")
   @Transactional
   public void キーに紐づく1件の更新が出来ること(){
     userRepository.update(new UserEntity(1L, "xxx会社", "瀬川3"));
@@ -74,7 +71,6 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @DataSet(value = "datasets/users.yml")
   @Transactional
   public void 指定したデーターを1件削除できること() {
     userRepository.delete(1L);

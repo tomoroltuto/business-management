@@ -2,9 +2,9 @@ package com.example.businessmanagement2.restcontroller.user;
 
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.service.user.UserService;
+import java.net.URI;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,7 +53,7 @@ public class UserController {
         userService.create(form.getCompanyname(), form.getUsername());
         var urm = new UserResponseMessage();
         urm.setMessage("ユーザーを登録しました");
-        return ResponseEntity.ok(urm);
+        return ResponseEntity.created(URI.create("/users")).body(urm);
     }
 
     @PatchMapping("/users/{id}")
@@ -63,12 +63,9 @@ public class UserController {
         urm.setMessage("ユーザーを更新しました");
         return ResponseEntity.ok(urm);
     }
-
     @DeleteMapping("/users/{id}")
     public ResponseEntity<UserResponseMessage> deleteUser(@PathVariable("id") Long userId) {
         userService.delete(userId);
-        var urm = new UserResponseMessage();
-        urm.setMessage("ユーザーを削除しました");
-        return ResponseEntity.ok(urm);
+        return ResponseEntity.noContent().build();
     }
 }
