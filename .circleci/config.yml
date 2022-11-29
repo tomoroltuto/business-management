@@ -5,3 +5,7 @@ workflows:
   checkout-build-test:
     jobs:
       - gradle/test
+
+dependencies:
+  pre:
+    - chmod +x ./gradlew
