@@ -1,4 +1,4 @@
-name: テスト実行
+name: test
 
 on:
   push:
