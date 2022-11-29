@@ -7,6 +7,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 public class BadRequestErrorCreator {
+
   public static BadRequestError from(MethodArgumentNotValidException ex) {
     var invalidParamList = createInvalidParamList(
         ex.getFieldErrors()
@@ -16,6 +17,7 @@ public class BadRequestErrorCreator {
     error.setInvalidParams(invalidParamList);
     return error;
   }
+
   private static InvalidParam createInvalidParam(FieldError fieldError) {
     var invalidParam = new InvalidParam();
     invalidParam.setName(fieldError.getField());

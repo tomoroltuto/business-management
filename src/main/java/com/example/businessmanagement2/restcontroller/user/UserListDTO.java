@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 public class UserListDTO {
 
-    List<UserDTO> results = new ArrayList<>();
+  List<UserDTO> results = new ArrayList<>();
 
 }

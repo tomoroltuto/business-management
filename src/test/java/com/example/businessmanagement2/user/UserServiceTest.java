@@ -1,23 +1,25 @@
 package com.example.businessmanagement2.user;
 
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.repository.user.UserRepository;
 import com.example.businessmanagement2.service.user.UserEntityNotFoundException;
 import com.example.businessmanagement2.service.user.UserServiceImpl;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.*;
-import static org.mockito.BDDMockito.given;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -64,11 +66,11 @@ public class UserServiceTest {
   }
 
   @Test
-  public void 指定したIDのユーザーを更新できること(){
+  public void 指定したIDのユーザーを更新できること() {
     UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
     given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
-    userServiceImpl.update(Ue.getId(),newUe.getCompanyname(), newUe.getUsername());
+    userServiceImpl.update(Ue.getId(), newUe.getCompanyname(), newUe.getUsername());
     verify(userRepository).update(newUe);
   }
 
@@ -77,7 +79,7 @@ public class UserServiceTest {
     UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
     given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
-    userServiceImpl.update(Ue.getId(),newUe.getCompanyname(), newUe.getUsername());
+    userServiceImpl.update(Ue.getId(), newUe.getCompanyname(), newUe.getUsername());
     assertThatThrownBy(() -> {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);

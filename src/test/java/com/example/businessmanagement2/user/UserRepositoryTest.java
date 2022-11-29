@@ -1,8 +1,7 @@
 package com.example.businessmanagement2.user;
 
 
-import static org.assertj.core.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.repository.user.UserRepository;
@@ -28,35 +27,35 @@ public class UserRepositoryTest {
 
   @Test
   @Transactional
-  void すべてのユーザーが取得できること(){
+  void すべてのユーザーが取得できること() {
     List<UserEntity> users = userRepository.findUserList();
     assertThat(users)
         .hasSize(2)
         .contains(
-            new UserEntity(1L,"○○○会社", "瀬川"),
-            new UserEntity(2L,"△△△会社", "瀬川2")
+            new UserEntity(1L, "○○○会社", "瀬川"),
+            new UserEntity(2L, "△△△会社", "瀬川2")
         );
   }
 
   @Test
-  @DataSet(cleanBefore=true)
+  @DataSet(cleanBefore = true)
   @Transactional
-  void ユーザーが登録いされてないときに空のリストが返ること(){
+  void ユーザーが登録いされてないときに空のリストが返ること() {
     List<UserEntity> users = userRepository.findUserList();
     assertThat(users).isEmpty();
   }
 
   @Test
   @Transactional
-  void 存在するユーザのIDを指定してユーザーが取得できること(){
+  void 存在するユーザのIDを指定してユーザーが取得できること() {
     UserEntity user = userRepository.findById(1).orElseThrow();
-    assertThat(user).isEqualTo(new UserEntity(1L,"○○○会社", "瀬川"));
+    assertThat(user).isEqualTo(new UserEntity(1L, "○○○会社", "瀬川"));
   }
 
   @Test
   @Transactional
-  public void ユーザーを新規登録できること(){
-    UserEntity ue = new UserEntity(null,"xxx会社", "瀬川3");
+  public void ユーザーを新規登録できること() {
+    UserEntity ue = new UserEntity(null, "xxx会社", "瀬川3");
     userRepository.create(ue);
     List<UserEntity> actual = userRepository.findUserList();
     assertThat(actual).hasSize(3);
@@ -64,7 +63,7 @@ public class UserRepositoryTest {
 
   @Test
   @Transactional
-  public void キーに紐づく1件の更新が出来ること(){
+  public void キーに紐づく1件の更新が出来ること() {
     userRepository.update(new UserEntity(1L, "xxx会社", "瀬川3"));
     Optional<UserEntity> user = userRepository.findById(1L);
     assertThat(user).hasValue(new UserEntity(1L, "xxx会社", "瀬川3"));

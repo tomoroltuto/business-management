@@ -21,6 +21,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
   }
+
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
       HttpHeaders headers, HttpStatus status, WebRequest request) {
