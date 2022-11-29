@@ -6,6 +6,3 @@ workflows:
     jobs:
       - gradle/test
 
-dependencies:
-  pre:
-    - chmod +x ./gradlew
