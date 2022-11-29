@@ -1,26 +1,12 @@
-
 version: 2.1
-orbs:
-  thundra: thundra-io/thundra-foresight@1.0.0
-jobs:
-  say-hello:
-  gradle:
-    docker:
-      - image: cimg/base:stable
-      - image: 'cimg/openjdk:11.0'
 
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+orbs:
+  maven: circleci/maven@1.2.0
+
 workflows:
-  say-hello-workflow:
+  maven_test:
     jobs:
-      - say-hello
-      - gradle
+      - maven/test:
+          executor:
+            name: "maven/default"
+            tag: "17.0.0"
