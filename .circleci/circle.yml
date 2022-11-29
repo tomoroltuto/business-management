@@ -1,0 +1,4 @@
+
+dependencies:
+  pre:
+    - chmod +x ./gradlew
