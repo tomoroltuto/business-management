@@ -118,31 +118,6 @@ public class UserRestApiIntegrationTest {
 
   @Test
   @Transactional
-  void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm("xxx会社", null);
-
-    ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
-
-    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Bad Request\"," +
-        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-        "\"invalidParams\": [" +
-        "{" +
-        "\"name\": \"username\"," +
-        "\"reason\": \"must not be blank\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
-  }
-
-  @Test
-  @Transactional
   void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
     UserForm Uf = new UserForm(
         "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
