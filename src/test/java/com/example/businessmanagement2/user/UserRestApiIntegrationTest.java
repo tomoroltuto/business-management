@@ -203,37 +203,37 @@ public class UserRestApiIntegrationTest {
         "}", response, JSONCompareMode.STRICT);
   }
 
-  @Test
-  @Transactional
-  void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
-
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname(null);
-    Uf.setUsername(null);
-
-    ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
-
-    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Bad Request\"," +
-        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-        "\"invalidParams\": [" +
-        "{" +
-        "\"name\": \"companyname\"," +
-        "\"reason\": \"must not be blank\"" +
-        "}," +
-        "{" +
-        "\"name\": \"username\"," +
-        "\"reason\": \"must not be blank\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
-  }
+//  @Test
+//  @Transactional
+//  void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
+//
+//    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
+//    Uf.setCompanyname(null);
+//    Uf.setUsername(null);
+//
+//    ObjectMapper objectMapper = new ObjectMapper();
+//    String json = objectMapper.writeValueAsString(Uf);
+//
+//    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
+//            .contentType(MediaType.APPLICATION_JSON).content(json))
+//        .andExpect(MockMvcResultMatchers.status().isBadRequest())
+//        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+//
+//    JSONAssert.assertEquals("{" +
+//        "\"title\": \"Bad Request\"," +
+//        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
+//        "\"invalidParams\": [" +
+//        "{" +
+//        "\"name\": \"companyname\"," +
+//        "\"reason\": \"must not be blank\"" +
+//        "}," +
+//        "{" +
+//        "\"name\": \"username\"," +
+//        "\"reason\": \"must not be blank\"" +
+//        "}" +
+//        "]" +
+//        "}", response, JSONCompareMode.STRICT);
+//  }
 
   @Test
   @Transactional
