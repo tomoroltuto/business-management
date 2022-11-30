@@ -115,34 +115,34 @@ public class UserRestApiIntegrationTest {
         "\"message\": \"ユーザーを登録しました\"" +
         "}", response, JSONCompareMode.STRICT);
   }
-//  @Test
-//  @Transactional
-//  void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
-//    UserForm Uf = new UserForm(null, null);
-//
-//    ObjectMapper objectMapper = new ObjectMapper();
-//    String json = objectMapper.writeValueAsString(Uf);
-//
-//    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-//                    .contentType(MediaType.APPLICATION_JSON).content(json))
-//            .andExpect(MockMvcResultMatchers.status().isBadRequest())
-//            .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-//
-//    JSONAssert.assertEquals("{" +
-//            "\"title\": \"Bad Request\"," +
-//            "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-//            "\"invalidParams\": [" +
-//            "{" +
-//            "\"name\": \"companyname\"," +
-//            "\"reason\": \"must not be blank\"" +
-//            "}," +
-//            "{" +
-//            "\"name\": \"username\"," +
-//            "\"reason\": \"must not be blank\"" +
-//            "}" +
-//            "]" +
-//            "}", response, JSONCompareMode.STRICT);
-//  }
+  @Test
+  @Transactional
+  void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
+    UserForm Uf = new UserForm(null, null);
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    String json = objectMapper.writeValueAsString(Uf);
+
+    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
+                    .contentType(MediaType.APPLICATION_JSON).content(json))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest())
+            .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+    JSONAssert.assertEquals("{" +
+            "\"title\": \"Bad Request\"," +
+            "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
+            "\"invalidParams\": [" +
+            "{" +
+            "\"name\": \"companyname\"," +
+            "\"reason\": \"must not be blank\"" +
+            "}," +
+            "{" +
+            "\"name\": \"username\"," +
+            "\"reason\": \"must not be blank\"" +
+            "}" +
+            "]" +
+            "}", response, JSONCompareMode.STRICT);
+  }
 //
 //  @Test
 //  @Transactional
@@ -209,28 +209,28 @@ public class UserRestApiIntegrationTest {
         "}", response, JSONCompareMode.STRICT);
   }
 
-//  @Test
-//  @Transactional
-//  void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
-//
-//    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-//    Uf.setCompanyname("XX会社");
-//    Uf.setUsername("瀬川3");
-//
-//    ObjectMapper objectMapper = new ObjectMapper();
-//    String json = objectMapper.writeValueAsString(Uf);
-//
-//    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/99")
-//            .contentType(MediaType.APPLICATION_JSON).content(json))
-//        .andExpect(MockMvcResultMatchers.status().isNotFound())
-//        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-//
-//    JSONAssert.assertEquals("{" +
-//        "\"title\": \"Resource Not Found\"," +
-//        "\"detail\": \"UserEntity (id = 99) is not found.\"" +
-//        "}", response, JSONCompareMode.STRICT);
-//  }
-//
+  @Test
+  @Transactional
+  void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
+
+    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
+    Uf.setCompanyname("XX会社");
+    Uf.setUsername("瀬川3");
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    String json = objectMapper.writeValueAsString(Uf);
+
+    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/99")
+            .contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().isNotFound())
+        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+    JSONAssert.assertEquals("{" +
+        "\"title\": \"Resource Not Found\"," +
+        "\"detail\": \"UserEntity (id = 99) is not found.\"" +
+        "}", response, JSONCompareMode.STRICT);
+  }
+
 //  @Test
 //  @Transactional
 //  void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
