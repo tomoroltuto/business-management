@@ -272,10 +272,6 @@ public class UserRestApiIntegrationTest {
         "{" +
         "\"name\": \"companyname\"," +
         "\"reason\": \"size must be between 1 and 256\"" +
-        "}," +
-        "{" +
-        "\"name\": \"username\"," +
-        "\"reason\": \"size must be between 1 and 256\"" +
         "}" +
         "]" +
         "}", response, JSONCompareMode.STRICT);
