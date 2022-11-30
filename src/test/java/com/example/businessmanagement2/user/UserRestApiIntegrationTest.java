@@ -45,20 +45,22 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"results\": [" +
-        "{" +
-        "\"id\": 1," +
-        "\"companyname\": \"○○○会社\"," +
-        "\"username\": \"瀬川\"" +
-        "}," +
-        "{" +
-        "\"id\": 2," +
-        "\"companyname\": \"△△△会社\"," +
-        "\"username\": \"瀬川2\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+            "results": [
+                {
+                    "id": 1,
+                    "companyname": "○○○会社",
+                    "username": "瀬川"
+                },
+                {
+                    "id": 2,
+                    "companyname": "△△△会社",
+                    "username": "瀬川2"
+                }
+            ]
+        }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -68,13 +70,13 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"id\": 2," +
-        "\"companyname\": \"△△△会社\"," +
-        "\"username\": \"瀬川2\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+            "id": 2,
+            "companyname": "△△△会社",
+            "username": "瀬川2"
+        }     
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -92,10 +94,12 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isNotFound())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Resource Not Found\"," +
-        "\"detail\": \"UserEntity (id = 99) is not found.\"" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+            "title": "Resource Not Found",
+            "detail": "UserEntity (id = 99) is not found."
+        }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -111,9 +115,11 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().is(201))
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"message\": \"ユーザーを登録しました\"" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+          "message": "ユーザーを登録しました"
+        }
+        """, response, JSONCompareMode.STRICT);
   }
   @Test
   @Transactional
@@ -124,34 +130,37 @@ public class UserRestApiIntegrationTest {
     String json = objectMapper.writeValueAsString(Uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-                    .contentType(MediaType.APPLICATION_JSON).content(json))
-            .andExpect(MockMvcResultMatchers.status().isBadRequest())
-            .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+            .contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().isBadRequest())
+        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-            "\"title\": \"Bad Request\"," +
-            "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-            "\"invalidParams\": [" +
-            "{" +
-            "\"name\": \"companyname\"," +
-            "\"reason\": \"must not be blank\"" +
-            "}" +
-            "]" +
-            "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+         {
+           "title": "Bad Request",
+           "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
+           "invalidParams": [
+               {
+                 "name": "companyname",
+                 "reason": "must not be blank"
+               }
+           ]
+         }
+        """, response, JSONCompareMode.STRICT);
   }
-
   @Test
   @Transactional
   void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
     UserForm Uf = new UserForm(
         "xxx会社",
-        "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-            + "あいうえおあいうえおあいうえおあいうえおあい");
+        """
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあい
+            """);
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(Uf);
@@ -161,16 +170,18 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isBadRequest())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Bad Request\"," +
-        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-        "\"invalidParams\": [" +
-        "{" +
-        "\"name\": \"username\"," +
-        "\"reason\": \"size must be between 1 and 256\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+         {
+           "title": "Bad Request",
+           "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
+           "invalidParams": [
+               {
+                 "name": "username",
+                 "reason": "size must be between 1 and 256"
+               }
+           ]
+         }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -189,9 +200,11 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().is(200))
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"message\": \"ユーザーを更新しました\"" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+        "message": "ユーザーを更新しました"
+        }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -210,10 +223,12 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isNotFound())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Resource Not Found\"," +
-        "\"detail\": \"UserEntity (id = 99) is not found.\"" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+        "title": "Resource Not Found",
+        "detail": "UserEntity (id = 99) is not found."
+        }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -232,16 +247,18 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isBadRequest())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Bad Request\"," +
-        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-        "\"invalidParams\": [" +
-        "{" +
-        "\"name\": \"username\"," +
-        "\"reason\": \"must not be blank\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+         {
+           "title": "Bad Request",
+           "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
+           "invalidParams": [
+               {
+                 "name": "username",
+                 "reason": "must not be blank"
+               }
+           ]
+         }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -249,12 +266,15 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
 
     UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-        + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-        + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-        + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-        + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-        + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい");
+    Uf.setCompanyname("""
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            あいうえおあいうえおあいうえおあいうえおあい
+            """);
     Uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
@@ -265,16 +285,18 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isBadRequest())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Bad Request\"," +
-        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-        "\"invalidParams\": [" +
-        "{" +
-        "\"name\": \"companyname\"," +
-        "\"reason\": \"size must be between 1 and 256\"" +
-        "}" +
-        "]" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+         {
+           "title": "Bad Request",
+           "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
+           "invalidParams": [
+               {
+                 "name": "companyname",
+                 "reason": "size must be between 1 and 256"
+               }
+           ]
+         }
+        """, response, JSONCompareMode.STRICT);
   }
 
   @Test
@@ -292,10 +314,12 @@ public class UserRestApiIntegrationTest {
         .andExpect(MockMvcResultMatchers.status().isNotFound())
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-    JSONAssert.assertEquals("{" +
-        "\"title\": \"Resource Not Found\"," +
-        "\"detail\": \"UserEntity (id = 99) is not found.\"" +
-        "}", response, JSONCompareMode.STRICT);
+    JSONAssert.assertEquals("""
+        {
+        "title": "Resource Not Found",
+        "detail": "UserEntity (id = 99) is not found."
+        }
+        """, response, JSONCompareMode.STRICT);
   }
 }
 

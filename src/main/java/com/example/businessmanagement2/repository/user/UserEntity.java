@@ -1,10 +1,8 @@
 package com.example.businessmanagement2.repository.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
-@AllArgsConstructor
+@Value
 public class UserEntity {
 
   Long id;

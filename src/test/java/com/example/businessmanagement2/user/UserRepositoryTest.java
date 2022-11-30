@@ -2,10 +2,12 @@ package com.example.businessmanagement2.user;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.repository.user.UserRepository;
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import java.util.List;
 import java.util.Optional;
@@ -53,10 +55,11 @@ public class UserRepositoryTest {
   }
 
   @Test
+//  @ExpectedDataSet(value = "datasets/createusers.yml")
   @Transactional
   public void ユーザーを新規登録できること() {
-    UserEntity ue = new UserEntity(null, "xxx会社", "瀬川3");
-    userRepository.create(ue);
+    UserEntity Ue = new UserEntity(null, "xxx会社", "瀬川3");
+    userRepository.create(Ue);
     List<UserEntity> actual = userRepository.findUserList();
     assertThat(actual).hasSize(3);
   }
