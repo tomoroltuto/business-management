@@ -119,7 +119,7 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm(null, null);
+    UserForm Uf = new UserForm("xxx会社", null);
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(Uf);
@@ -133,10 +133,6 @@ public class UserRestApiIntegrationTest {
         "\"title\": \"Bad Request\"," +
         "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
         "\"invalidParams\": [" +
-        "{" +
-        "\"name\": \"companyname\"," +
-        "\"reason\": \"must not be blank\"" +
-        "}," +
         "{" +
         "\"name\": \"username\"," +
         "\"reason\": \"must not be blank\"" +
