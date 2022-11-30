@@ -139,50 +139,39 @@ public class UserRestApiIntegrationTest {
             "]" +
             "}", response, JSONCompareMode.STRICT);
   }
-//
-//  @Test
-//  @Transactional
-//  void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
-//    UserForm Uf = new UserForm(
-//        "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあい",
-//        "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
-//            + "あいうえおあいうえおあいうえおあいうえおあい");
-//
-//    ObjectMapper objectMapper = new ObjectMapper();
-//    String json = objectMapper.writeValueAsString(Uf);
-//
-//    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-//            .contentType(MediaType.APPLICATION_JSON).content(json))
-//        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-//        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-//
-//    JSONAssert.assertEquals("{" +
-//        "\"title\": \"Bad Request\"," +
-//        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
-//        "\"invalidParams\": [" +
-//        "{" +
-//        "\"name\": \"companyname\"," +
-//        "\"reason\": \"size must be between 1 and 256\"" +
-//        "}," +
-//        "{" +
-//        "\"name\": \"username\"," +
-//        "\"reason\": \"size must be between 1 and 256\"" +
-//        "}" +
-//        "]" +
-//        "}", response, JSONCompareMode.STRICT);
-//  }
+
+  @Test
+  @Transactional
+  void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
+    UserForm Uf = new UserForm(
+        "xxx会社",
+        "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
+            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
+            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
+            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
+            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
+            + "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお"
+            + "あいうえおあいうえおあいうえおあいうえおあい");
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    String json = objectMapper.writeValueAsString(Uf);
+
+    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
+            .contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().isBadRequest())
+        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+    JSONAssert.assertEquals("{" +
+        "\"title\": \"Bad Request\"," +
+        "\"detail\": \"リクエストが不正です。正しいリクエストでリトライしてください\"," +
+        "\"invalidParams\": [" +
+        "{" +
+        "\"name\": \"username\"," +
+        "\"reason\": \"size must be between 1 and 256\"" +
+        "}" +
+        "]" +
+        "}", response, JSONCompareMode.STRICT);
+  }
 
   @Test
   @Transactional
