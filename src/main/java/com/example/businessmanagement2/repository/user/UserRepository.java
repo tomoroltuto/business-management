@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface UserRepository {
 
-  @Select("SELECT id,company_name, user_name FROM users WHERE id = #{userId}")
+  @Select("SELECT id, company_name, user_name FROM users WHERE id = #{userId}")
   Optional<UserEntity> findById(long userId);
 
   @Select("SELECT * from users")
