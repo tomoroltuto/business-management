@@ -104,7 +104,7 @@ public class UserRestApiIntegrationTest {
 
   @Test
   @Transactional
-  void ユーザー登録に成功すると201とレスポンスメッセージを返すこと() throws Exception {
+  void ユーザー登録に成功すると200とレスポンスメッセージを返すこと() throws Exception {
     UserForm Uf = new UserForm("xxx会社", "瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
@@ -112,7 +112,7 @@ public class UserRestApiIntegrationTest {
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().is(201))
+        .andExpect(MockMvcResultMatchers.status().is(200))
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
@@ -322,6 +322,3 @@ public class UserRestApiIntegrationTest {
         """, response, JSONCompareMode.STRICT);
   }
 }
-
-
-
