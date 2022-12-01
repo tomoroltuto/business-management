@@ -42,7 +42,7 @@ public class UserRepositoryTest {
   @Test
   @DataSet(cleanBefore = true)
   @Transactional
-  void ユーザーが登録いされてないときに空のリストが返ること() {
+  void ユーザーが登録されてないときに空のリストが返ること() {
     List<UserEntity> users = userRepository.findUserList();
     assertThat(users).isEmpty();
   }
