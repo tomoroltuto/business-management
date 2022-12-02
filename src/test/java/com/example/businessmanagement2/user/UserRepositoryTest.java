@@ -2,7 +2,6 @@ package com.example.businessmanagement2.user;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.repository.user.UserRepository;
@@ -55,7 +54,7 @@ public class UserRepositoryTest {
   }
 
   @Test
-//  @ExpectedDataSet(value = "datasets/createusers.yml")
+  @ExpectedDataSet(value = "datasets/createusers.yml")
   @Transactional
   public void ユーザーを新規登録できること() {
     UserEntity Ue = new UserEntity(null, "xxx会社", "瀬川3");
@@ -65,6 +64,7 @@ public class UserRepositoryTest {
   }
 
   @Test
+  @ExpectedDataSet(value = "datasets/updateusers.yml")
   @Transactional
   public void キーに紐づく1件の更新が出来ること() {
     userRepository.update(new UserEntity(1L, "xxx会社", "瀬川3"));
@@ -72,7 +72,9 @@ public class UserRepositoryTest {
     assertThat(user).hasValue(new UserEntity(1L, "xxx会社", "瀬川3"));
   }
 
+
   @Test
+  @ExpectedDataSet(value = "datasets/deleteusers.yml")
   @Transactional
   public void 指定したデーターを1件削除できること() {
     userRepository.delete(1L);

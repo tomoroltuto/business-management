@@ -11,4 +11,5 @@ public class UserEntity {
   String companyname;
 
   String username;
+
 }
