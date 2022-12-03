@@ -1,22 +1,22 @@
 package com.example.businessmanagement2.restcontroller.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 
-@Getter
+@Data
 @AllArgsConstructor
 public class UserForm {
 
+  @NotBlank
+  @Size(min = 1, max = 256)
+  private String companyname;
 
-    @NotBlank
-    @Length(min=1,max=256)
-    String companyname;
+  @NotBlank
+  @Size(min = 1, max = 256)
+  private String username;
 
-    @NotBlank
-    @Length(min=1,max=256)
-    String username;
 }

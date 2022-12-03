@@ -1,15 +1,15 @@
 package com.example.businessmanagement2.repository.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@AllArgsConstructor
+import lombok.Value;
+
+@Value
 public class UserEntity {
 
-    long id;
+  Long id;
 
-    String companyname;
+  String companyname;
 
-    String username;
+  String username;
+
 }
