@@ -9,7 +9,7 @@ public interface UserService {
 
   List<UserEntity> findUserList();
 
-  void create(String companyname, String username);
+  UserEntity create(String companyname, String username);
 
   UserEntity update(Long userId, String companyname, String username);
 

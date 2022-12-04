@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -58,11 +59,16 @@ public class UserController {
   }
 
   @PostMapping("/users")
-  private ResponseEntity<UserResponseMessage> createUser(@RequestBody @Validated UserForm form) {
-    userService.create(form.getCompanyname(), form.getUsername());
+  private ResponseEntity<UserResponseMessage> createUser(@RequestBody @Validated UserForm form,
+      UriComponentsBuilder uriBuilder) {
+    UserEntity Ur = userService.create(form.getCompanyname(), form.getUsername());
+    URI url = uriBuilder
+        .path("users/" + Ur.getId())
+        .build()
+        .toUri();
     var urm = new UserResponseMessage();
     urm.setMessage("ユーザーを登録しました");
-    return ResponseEntity.ok(urm);
+    return ResponseEntity.created(url).body(urm);
   }
 
 
