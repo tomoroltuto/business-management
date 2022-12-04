@@ -1,6 +1,8 @@
 package com.example.businessmanagement2.user;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.example.businessmanagement2.restcontroller.user.UserForm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.database.rider.core.api.dataset.DataSet;
@@ -19,6 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @SpringBootTest
@@ -112,7 +116,7 @@ public class UserRestApiIntegrationTest {
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().is(200))
+        .andExpect(MockMvcResultMatchers.status().is(201))
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
@@ -120,6 +124,13 @@ public class UserRestApiIntegrationTest {
           "message": "ユーザーを登録しました"
         }
         """, response, JSONCompareMode.STRICT);
+  }
+  @Test
+  public void ユーザー登録に成功するとLocationヘッダーの値が返ること() {
+    UriComponents uriComponents = UriComponentsBuilder.newInstance()
+        .scheme("http").host("localhost:8080").path("users/3").build().encode();
+
+    assertEquals("http://localhost%3A8080/users/3", uriComponents.toUriString());
   }
   @Test
   @Transactional
