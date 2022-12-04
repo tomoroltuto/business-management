@@ -109,10 +109,10 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録に成功すると200とレスポンスメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm("xxx会社", "瀬川3");
+    UserForm uf = new UserForm("xxx会社", "瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -135,10 +135,10 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm(null, "瀬川");
+    UserForm uf = new UserForm(null, "瀬川");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -161,7 +161,7 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm(
+    UserForm uf = new UserForm(
         "xxx会社",
         """
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
@@ -174,7 +174,7 @@ public class UserRestApiIntegrationTest {
             """);
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -199,12 +199,12 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新に成功すると200とレスポンスメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("XX会社");
-    Uf.setUsername("瀬川3");
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("XX会社");
+    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -222,12 +222,12 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("XX会社");
-    Uf.setUsername("瀬川3");
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("XX会社");
+    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/99")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -246,12 +246,12 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("XX会社");
-    Uf.setUsername(null);
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("XX会社");
+    uf.setUsername(null);
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -276,8 +276,8 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("""
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("""
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
@@ -286,10 +286,10 @@ public class UserRestApiIntegrationTest {
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
             あいうえおあいうえおあいうえおあいうえおあい
             """);
-    Uf.setUsername("瀬川3");
+    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
             .contentType(MediaType.APPLICATION_JSON).content(json))

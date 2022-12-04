@@ -61,9 +61,9 @@ public class UserController {
   @PostMapping("/users")
   private ResponseEntity<UserResponseMessage> createUser(@RequestBody @Validated UserForm form,
       UriComponentsBuilder uriBuilder) {
-    UserEntity Ur = userService.create(form.getCompanyname(), form.getUsername());
+    UserEntity ur = userService.create(form.getCompanyname(), form.getUsername());
     URI url = uriBuilder
-        .path("users/" + Ur.getId())
+        .path("users/" + ur.getId())
         .build()
         .toUri();
     var urm = new UserResponseMessage();
