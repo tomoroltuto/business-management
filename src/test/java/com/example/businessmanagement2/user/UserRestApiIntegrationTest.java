@@ -1,6 +1,8 @@
 package com.example.businessmanagement2.user;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.example.businessmanagement2.restcontroller.user.UserForm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.database.rider.core.api.dataset.DataSet;
@@ -19,6 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @SpringBootTest
@@ -105,14 +109,14 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録に成功すると200とレスポンスメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm("xxx会社", "瀬川3");
+    UserForm uf = new UserForm("xxx会社", "瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().is(200))
+        .andExpect(MockMvcResultMatchers.status().is(201))
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
@@ -122,12 +126,19 @@ public class UserRestApiIntegrationTest {
         """, response, JSONCompareMode.STRICT);
   }
   @Test
+  public void ユーザー登録に成功するとLocationヘッダーの値が返ること() {
+    UriComponents uriComponents = UriComponentsBuilder.newInstance()
+        .scheme("http").host("localhost:8080").path("users/3").build().encode();
+
+    assertEquals("http://localhost%3A8080/users/3", uriComponents.toUriString());
+  }
+  @Test
   @Transactional
   void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm(null, "瀬川");
+    UserForm uf = new UserForm(null, "瀬川");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -150,7 +161,7 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
-    UserForm Uf = new UserForm(
+    UserForm uf = new UserForm(
         "xxx会社",
         """
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
@@ -163,7 +174,7 @@ public class UserRestApiIntegrationTest {
             """);
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -188,12 +199,12 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新に成功すると200とレスポンスメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("XX会社");
-    Uf.setUsername("瀬川3");
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("XX会社");
+    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -211,12 +222,12 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("XX会社");
-    Uf.setUsername("瀬川3");
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("XX会社");
+    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/99")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -235,12 +246,12 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("XX会社");
-    Uf.setUsername(null);
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("XX会社");
+    uf.setUsername(null);
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
             .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -265,8 +276,8 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm Uf = new UserForm("〇〇会社", "瀬川1");
-    Uf.setCompanyname("""
+    UserForm uf = new UserForm("〇〇会社", "瀬川1");
+    uf.setCompanyname("""
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
@@ -275,10 +286,10 @@ public class UserRestApiIntegrationTest {
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
             あいうえおあいうえおあいうえおあいうえおあい
             """);
-    Uf.setUsername("瀬川3");
+    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(Uf);
+    String json = objectMapper.writeValueAsString(uf);
 
     String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
             .contentType(MediaType.APPLICATION_JSON).content(json))

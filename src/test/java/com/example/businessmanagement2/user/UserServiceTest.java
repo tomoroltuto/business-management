@@ -67,19 +67,19 @@ public class UserServiceTest {
 
   @Test
   public void 指定したIDのユーザーを更新できること() {
-    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
+    UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
-    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
-    userServiceImpl.update(Ue.getId(), newUe.getCompanyname(), newUe.getUsername());
+    given(userRepository.findById(ue.getId())).willReturn(Optional.of(ue));
+    userServiceImpl.update(ue.getId(), newUe.getCompanyname(), newUe.getUsername());
     verify(userRepository).update(newUe);
   }
 
   @Test
   public void 更新時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
-    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
+    UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
-    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
-    userServiceImpl.update(Ue.getId(), newUe.getCompanyname(), newUe.getUsername());
+    given(userRepository.findById(ue.getId())).willReturn(Optional.of(ue));
+    userServiceImpl.update(ue.getId(), newUe.getCompanyname(), newUe.getUsername());
     assertThatThrownBy(() -> {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);
@@ -87,17 +87,17 @@ public class UserServiceTest {
 
   @Test
   public void 指定したデーターを1件削除できること() {
-    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
-    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
-    userServiceImpl.delete(Ue.getId());
-    verify(userRepository).delete(Ue.getId());
+    UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
+    given(userRepository.findById(ue.getId())).willReturn(Optional.of(ue));
+    userServiceImpl.delete(ue.getId());
+    verify(userRepository).delete(ue.getId());
   }
 
   @Test
   public void 削除時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
-    UserEntity Ue = new UserEntity(1L, "○○○会社", "瀬川");
-    given(userRepository.findById(Ue.getId())).willReturn(Optional.of(Ue));
-    userServiceImpl.delete(Ue.getId());
+    UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
+    given(userRepository.findById(ue.getId())).willReturn(Optional.of(ue));
+    userServiceImpl.delete(ue.getId());
     assertThatThrownBy(() -> {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);

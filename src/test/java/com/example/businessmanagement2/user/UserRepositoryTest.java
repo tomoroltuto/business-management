@@ -57,8 +57,8 @@ public class UserRepositoryTest {
   @ExpectedDataSet(value = "datasets/createusers.yml")
   @Transactional
   public void ユーザーを新規登録できること() {
-    UserEntity Ue = new UserEntity(null, "xxx会社", "瀬川3");
-    userRepository.create(Ue);
+    UserEntity ue = new UserEntity(null, "xxx会社", "瀬川3");
+    userRepository.create(ue);
     List<UserEntity> actual = userRepository.findUserList();
     assertThat(actual).hasSize(3);
   }

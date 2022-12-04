@@ -23,9 +23,10 @@ public class UserServiceImpl implements UserService {
     return userRepository.findUserList();
   }
 
-  public void create(String companyname, String username) {
+  public UserEntity create(String companyname, String username) {
     var entity = new UserEntity(null, companyname, username);
     userRepository.create(entity);
+    return new UserEntity(entity.getId(),entity.getCompanyname(),entity.getUsername());
   }
 
   @Override
