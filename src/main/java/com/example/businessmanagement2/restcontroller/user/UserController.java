@@ -28,7 +28,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class UserController {
 
   private final UserService userService;
-  private final UserRepository userRepository;
 
   private static UserDTO toUserDTO(UserEntity userEntity) {
     var userDTO = new UserDTO(userEntity.getId(), userEntity.getCompanyname(),
