@@ -5,9 +5,7 @@ import lombok.Value;
 @Value
 public class ScheduleEntity {
 
-  Long id;
-
-  Long userId;
+  int userId;
 
   String workingDate;
 

@@ -1,10 +1,10 @@
 users:
-  - id: 1
+  - userid: 1
     company_name: "○○○会社"
     user_name: "瀬川"
-  - id: 2
+  - userid: 2
     company_name: "△△△会社"
     user_name: "瀬川2"
-  - id: 3
+  - userid: 3
     company_name: "xxx会社"
     user_name: "瀬川3"
