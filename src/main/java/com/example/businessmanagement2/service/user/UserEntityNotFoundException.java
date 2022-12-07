@@ -1,5 +1,8 @@
 package com.example.businessmanagement2.service.user;
 
+import lombok.Getter;
+
+@Getter
 public class UserEntityNotFoundException extends RuntimeException {
 
   private final long userId;
