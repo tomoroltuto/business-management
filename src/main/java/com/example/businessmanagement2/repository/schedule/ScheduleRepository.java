@@ -15,6 +15,12 @@ import org.apache.ibatis.annotations.Update;
 public interface ScheduleRepository {
 
 
+  @Select("SELECT * FROM schedules WHERE id = #{scheduleId}")
+  Optional<ScheduleEntity> findById(long userId);
+
+  @Select("SELECT * from schedules")
+  List<ScheduleEntity> findScheduleList();
+
   @Options(useGeneratedKeys = true, keyProperty = "id")
   @Insert("""
            INSERT INTO schedules 
@@ -30,13 +36,13 @@ public interface ScheduleRepository {
 
   @Update("""
            UPDATE schedules  SET 
-           user_Id = #{user_Id}, working_date = #{workingDate}, number_of_floors = #{numberOfFloors},
-           place = #{place}, work_content = #{workContent}, number_of_people = #{numberOfPeople},
+           schedule_Id = #{scheduleId}, user_Id = #{userId}, working_date = #{workingDate}, number_of_floors = #{numberOfFloors},
+           place = #{place}, work_content = #{workContent}, number_of_people = #{numberOfPeople}
            WHERE id = #{id}
            """)
   void update(ScheduleEntity entity);
 
-  @Delete("DELETE from schedules WHERE id = #{ScheduleId}")
-  void delete(Long ScheduleId);
+  @Delete("DELETE from schedules WHERE id = #{scheduleId}")
+  void delete(Long scheduleId);
 
 }

@@ -8,7 +8,7 @@ import lombok.Value;
 @Value
 public class ScheduleEntity  {
 
-  Long ScheduleId;
+  Long scheduleId;
 
   int userId;
 
