@@ -1,7 +1,7 @@
 package com.example.businessmanagement2.repository.schedule;
 
 
-import com.example.businessmanagement2.repository.user.UserEntity;
+
 import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;
@@ -14,11 +14,15 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface ScheduleRepository {
 
+  @Select("""
+          SELECT 
+          schedule_id, user_id, working_date, number_of_floors,
+          place, work_content, number_of_people,
+          FROM schedules WHERE schedule_id = #{scheduleId}
+          """)
+  Optional<ScheduleEntity> findById(Long scheduleid);
 
-  @Select("SELECT * FROM schedules WHERE id = #{scheduleId}")
-  Optional<ScheduleEntity> findById(long userId);
-
-  @Select("SELECT * from schedules")
+  @Select("SELECT * FROM schedules")
   List<ScheduleEntity> findScheduleList();
 
   @Options(useGeneratedKeys = true, keyProperty = "id")
@@ -42,7 +46,7 @@ public interface ScheduleRepository {
            """)
   void update(ScheduleEntity entity);
 
-  @Delete("DELETE from schedules WHERE id = #{scheduleId}")
-  void delete(Long scheduleId);
+  @Delete("DELETE from schedules WHERE user_id = #{userId}")
+  void delete(long scheduleid);
 
 }

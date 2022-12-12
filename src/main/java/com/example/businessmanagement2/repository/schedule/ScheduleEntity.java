@@ -1,25 +1,26 @@
 package com.example.businessmanagement2.repository.schedule;
 
+
 import com.example.businessmanagement2.repository.user.UserEntity;
 import java.util.Date;
-import lombok.Data;
+
 import lombok.Value;
 
 @Value
 public class ScheduleEntity  {
 
-  Long scheduleId;
+  Long scheduleid;
 
-  int userId;
+  int userid;
 
-  Date workingDate;
+  Date workingdate;
 
-  String numberOfFloors;
+  String numberoffloors;
 
   String place;
 
-  String workContent;
+  String workcontent;
 
-  String numberOfPeople;
+  String numberofpeople;
 
 }

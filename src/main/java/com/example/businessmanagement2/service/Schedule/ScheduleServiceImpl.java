@@ -4,48 +4,49 @@ import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.repository.schedule.ScheduleRepository;
 import java.util.Date;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService {
 
 
-  private ScheduleRepository scheduleRepository;
+  private final ScheduleRepository scheduleRepository;
 
   @Override
-  public ScheduleEntity findById(Long scheduleId) {
-    return scheduleRepository.findById(scheduleId)
-        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
+  public ScheduleEntity findById(Long scheduleid) {
+    return scheduleRepository.findById(scheduleid)
+        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleid));
   }
-
   @Override
   public List<ScheduleEntity> findScheduleList() {
     return scheduleRepository.findScheduleList();
   }
 
   @Override
-  public ScheduleEntity create(int userId, Date workingDate, String numberOfFloors, String place,
-      String workContent, String numberOfPeople) {
-    var entity = new ScheduleEntity(null, userId, workingDate, numberOfFloors, place,
-        workContent,numberOfPeople);
+  public ScheduleEntity create(int userId, Date workingdate, String numberoffloors, String place,
+      String workcontent, String numberofpeople) {
+    var entity = new ScheduleEntity(null, userId, workingdate, numberoffloors, place,
+        workcontent,numberofpeople);
     scheduleRepository.create(entity);
-    return new ScheduleEntity(entity.getScheduleId(), entity.getUserId(), entity.getWorkingDate(),entity.getNumberOfFloors(),
-    entity.getPlace(), entity.getWorkContent(), entity.getNumberOfPeople());
+    return new ScheduleEntity(entity.getScheduleid(), entity.getUserid(), entity.getWorkingdate(),entity.getNumberoffloors(),
+    entity.getPlace(), entity.getWorkcontent(), entity.getNumberofpeople());
   }
 
   @Override
-  public ScheduleEntity update(Long scheduleId, int userId, Date workingDate, String numberOfFloors, String place,
-      String workContent, String numberOfPeople) {
+  public ScheduleEntity update(Long scheduleId, int userId, Date workingdate, String numberoffloors, String place,
+      String workcontent, String numberofpeople) {
     scheduleRepository.findById(scheduleId)
         .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
-    scheduleRepository.update(new ScheduleEntity(scheduleId, userId, workingDate, numberOfFloors, place,
-        workContent, numberOfPeople));
+    scheduleRepository.update(new ScheduleEntity(scheduleId, userId, workingdate, numberoffloors, place,
+        workcontent, numberofpeople));
     return findById(scheduleId);
   }
   @Override
-  public void delete(Long scheduleId) {
-    scheduleRepository.findById(scheduleId)
-        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
-    scheduleRepository.delete(scheduleId);
+  public void delete(Long scheduleid) {
+    scheduleRepository.findById(scheduleid)
+        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleid));
+    scheduleRepository.delete(scheduleid);
   }
 }

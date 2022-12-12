@@ -23,22 +23,22 @@ public class ScheduleController {
   private final ScheduleService scheduleService;
 
   private static ScheduleDTO toScheduleDTO(ScheduleEntity scheduleEntity) {
-    var scheduleDTO = new ScheduleDTO(scheduleEntity.getScheduleId(), scheduleEntity.getUserId(), scheduleEntity.getWorkingDate(),
-        scheduleEntity.getNumberOfFloors(), scheduleEntity.getPlace(),
-        scheduleEntity.getWorkContent(), scheduleEntity.getNumberOfPeople());
-    scheduleDTO.setId(scheduleEntity.getScheduleId());
-    scheduleDTO.setUserId(scheduleEntity.getUserId());
-    scheduleDTO.setWorkingDate(scheduleEntity.getWorkingDate());
-    scheduleDTO.setNumberOfFloors(scheduleEntity.getNumberOfFloors());
+    var scheduleDTO = new ScheduleDTO(scheduleEntity.getScheduleid(), scheduleEntity.getUserid(), scheduleEntity.getWorkingdate(),
+        scheduleEntity.getNumberoffloors(), scheduleEntity.getPlace(),
+        scheduleEntity.getWorkcontent(), scheduleEntity.getNumberofpeople());
+    scheduleDTO.setId(scheduleEntity.getScheduleid());
+    scheduleDTO.setUserid(scheduleEntity.getUserid());
+    scheduleDTO.setWorkingdate(scheduleEntity.getWorkingdate());
+    scheduleDTO.setNumberoffloors(scheduleEntity.getNumberoffloors());
     scheduleDTO.setPlace(scheduleEntity.getPlace());
-    scheduleDTO.setWorkContent(scheduleDTO.getWorkContent());
-    scheduleDTO.setNumberOfPeople(scheduleDTO.getNumberOfPeople());
+    scheduleDTO.setWorkcontent(scheduleDTO.getWorkcontent());
+    scheduleDTO.setNumberofpeople(scheduleDTO.getNumberofpeople());
     return scheduleDTO;
   }
 
   @GetMapping("/schedules/{id}")
-  private ResponseEntity<ScheduleDTO> showSchedule(@PathVariable("id") Long scheduleId) {
-    var entity = scheduleService.findById(scheduleId);
+  private ResponseEntity<ScheduleDTO> showSchedule(@PathVariable("id") Long ScheduleId) {
+    var entity = scheduleService.findById(ScheduleId);
     var dto = toScheduleDTO(entity);
     return ResponseEntity.ok(dto);
   }
@@ -58,10 +58,10 @@ public class ScheduleController {
   @PostMapping("/schedules")
   private ResponseEntity<ScheduleResponseMassage> createSchedule(@RequestBody @Validated ScheduleForm form,
       UriComponentsBuilder uriBuilder) {
-    ScheduleEntity se = scheduleService.create(form.getUserId(), form.getWorkingDate(),
-        form.getNumberOfFloors(), form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
+    ScheduleEntity se = scheduleService.create(form.getUserid(), form.getWorkingdate(),
+        form.getNumberoffloors(), form.getPlace(), form.getWorkcontent(), form.getNumberofpeople());
     URI uri = uriBuilder
-        .path("schedules/" + se.getScheduleId())
+        .path("schedules/" + se.getScheduleid())
         .build()
         .toUri();
     var srm = new ScheduleResponseMassage();
@@ -72,16 +72,16 @@ public class ScheduleController {
   @PatchMapping("/schedules/{id}")
   private ResponseEntity<ScheduleResponseMassage> updateSchedule(@PathVariable("id") Long scheduleId,
       @RequestBody @Validated ScheduleForm form) {
-    scheduleService.update(scheduleId, form.getUserId(), form.getWorkingDate(),
-        form.getNumberOfFloors(), form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
+    scheduleService.update(scheduleId, form.getUserid(), form.getWorkingdate(),
+        form.getNumberoffloors(), form.getPlace(), form.getWorkcontent(), form.getNumberofpeople());
     var srm = new ScheduleResponseMassage();
     srm.setMessage("作業予定を更新しました");
     return ResponseEntity.ok(srm);
   }
 
   @DeleteMapping("/schedules/{id}")
-  private ResponseEntity<ScheduleResponseMassage> deleteSchedule(@PathVariable("id") Long scheduleId) {
-    scheduleService.delete(scheduleId);
+  private ResponseEntity<ScheduleResponseMassage> deleteSchedule(@PathVariable("id") Long ScheduleId) {
+    scheduleService.delete(ScheduleId);
     return ResponseEntity.noContent().build();
   }
 

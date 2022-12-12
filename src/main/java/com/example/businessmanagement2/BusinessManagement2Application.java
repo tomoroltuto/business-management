@@ -10,3 +10,4 @@ public class BusinessManagement2Application {
 		SpringApplication.run(BusinessManagement2Application.class, args);
 	}
 }
+
