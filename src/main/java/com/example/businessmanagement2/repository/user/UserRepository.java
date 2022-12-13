@@ -24,9 +24,9 @@ public interface UserRepository {
 //  @Insert("INSERT INTO users (company_name, user_name) values (#{companyname}, #{username})")
   void create(UserEntity entity);
 
-  @Update("UPDATE users SET company_name = #{companyname}, user_name = #{username} WHERE id = #{id}")
+//  @Update("UPDATE users SET company_name = #{companyname}, user_name = #{username} WHERE id = #{id}")
   void update(UserEntity entity);
 
-  @Delete("DELETE from users WHERE user_id = #{userId}")
+//  @Delete("DELETE from users WHERE user_id = #{userId}")
   void delete(Long userId);
 }
