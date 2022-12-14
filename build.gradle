@@ -14,6 +14,7 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+
 repositories {
 	mavenCentral()
 }
@@ -31,7 +32,6 @@ dependencies {
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.2'
 	testImplementation 'com.github.database-rider:rider-spring:1.35.0'
 	testImplementation 'org.mockito:mockito-inline:4.8.0'
-
 }
 
 tasks.named('test') {
