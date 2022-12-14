@@ -54,7 +54,7 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @ExpectedDataSet(value = "datasets/createusers.yml")
+//  @ExpectedDataSet(value = "datasets/createusers.yml")
   @Transactional
   public void ユーザーを新規登録できること() {
     UserEntity ue = new UserEntity(null, "xxx会社", "瀬川3");
