@@ -18,9 +18,21 @@
     select * from users
   </select>
 
-  <insert id="create" useGeneratedKeys="true" keyProperty="id">
+  <insert id="create" useGeneratedKeys="true" keyColumn="id">
     insert into users(company_name, user_name)
     values (#{companyname},#{username})
   </insert>
 
+  <update id="update">
+    update users
+    set
+      company_name = #{companyname},
+      user_name = #{username}
+    where user_id = #{userid}
+  </update>
+
+  <delete id="delete" parameterType="long">
+    delete from users
+    where user_id = #{userId}
+  </delete>
 </mapper>
