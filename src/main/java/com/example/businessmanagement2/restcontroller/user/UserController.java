@@ -28,12 +28,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class UserController {
 
   private final UserService userService;
-  private final UserRepository userRepository;
 
   private static UserDTO toUserDTO(UserEntity userEntity) {
-    var userDTO = new UserDTO(userEntity.getId(), userEntity.getCompanyname(),
+    var userDTO = new UserDTO(userEntity.getUserid(), userEntity.getCompanyname(),
         userEntity.getUsername());
-    userDTO.setId(userEntity.getId());
+    userDTO.setId(userEntity.getUserid());
     userDTO.setCompanyname(userEntity.getCompanyname());
     userDTO.setUsername(userEntity.getUsername());
     return userDTO;
@@ -63,7 +62,7 @@ public class UserController {
       UriComponentsBuilder uriBuilder) {
     UserEntity ur = userService.create(form.getCompanyname(), form.getUsername());
     URI url = uriBuilder
-        .path("users/" + ur.getId())
+        .path("users/" + ur.getUserid())
         .build()
         .toUri();
     var urm = new UserResponseMessage();

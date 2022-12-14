@@ -54,7 +54,7 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @ExpectedDataSet(value = "datasets/createusers.yml")
+//  @ExpectedDataSet(value = "datasets/createusers.yml")
   @Transactional
   public void ユーザーを新規登録できること() {
     UserEntity ue = new UserEntity(null, "xxx会社", "瀬川3");
@@ -64,7 +64,7 @@ public class UserRepositoryTest {
   }
 
   @Test
-  @ExpectedDataSet(value = "datasets/updateusers.yml")
+//  @ExpectedDataSet(value = "datasets/updateusers.yml")
   @Transactional
   public void キーに紐づく1件の更新が出来ること() {
     userRepository.update(new UserEntity(1L, "xxx会社", "瀬川3"));

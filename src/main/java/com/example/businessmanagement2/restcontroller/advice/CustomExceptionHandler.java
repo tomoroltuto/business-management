@@ -1,5 +1,6 @@
 package com.example.businessmanagement2.restcontroller.advice;
 
+import com.example.businessmanagement2.service.Schedule.ScheduleEntityNotFoundException;
 import com.example.businessmanagement2.service.user.UserEntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(UserEntityNotFoundException.class)
   public ResponseEntity<ResourceNotFoundError> handleUserEntityNotFoundException(
       UserEntityNotFoundException e) {
+    var error = new ResourceNotFoundError();
+    error.setDetail(e.getMessage());
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+  }
+
+  @ExceptionHandler(ScheduleEntityNotFoundException.class)
+  public ResponseEntity<ResourceNotFoundError> handleScheduleEntityNotFoundException(
+      ScheduleEntityNotFoundException e) {
     var error = new ResourceNotFoundError();
     error.setDetail(e.getMessage());
 

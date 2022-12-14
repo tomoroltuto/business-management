@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
   public UserEntity create(String companyname, String username) {
     var entity = new UserEntity(null, companyname, username);
     userRepository.create(entity);
-    return new UserEntity(entity.getId(),entity.getCompanyname(),entity.getUsername());
+    return new UserEntity(entity.getUserid(),entity.getCompanyname(),entity.getUsername());
   }
 
   @Override

@@ -1,3 +1,12 @@
+
+#
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:businessmanagement
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password:
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3307/user_list
