@@ -26,7 +26,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @SpringBootTest
-@DataSet(value = "datasets/users.yml")
+@DataSet(value = "user/datasets/users.yml")
 @AutoConfigureMockMvc
 @DBRider
 @AutoConfigureTestDatabase(replace = Replace.NONE)

@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @DBRider
 @MybatisTest
-@DataSet(value = "datasets/users.yml")
+@DataSet(value = "user/datasets/users.yml")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
 
@@ -74,7 +74,7 @@ public class UserRepositoryTest {
 
 
   @Test
-  @ExpectedDataSet(value = "datasets/deleteusers.yml")
+  @ExpectedDataSet(value = "user/datasets/deleteusers.yml")
   @Transactional
   public void 指定したデーターを1件削除できること() {
     userRepository.delete(1L);
