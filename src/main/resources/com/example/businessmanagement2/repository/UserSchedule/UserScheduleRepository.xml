@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.businessmanagement2.repository.userschedule.UserScheduleRepository">
 
 
-  <resultMap id="UserScheduleMap" type="com.example.businessmanagement2.repository.userschedule.UserSchedule">
+  <resultMap id="UserScheduleMap"
+    type="com.example.businessmanagement2.repository.userschedule.UserSchedule">
     <id column="user_id" property="userid"/>
     <result column="company_name" property="companyname"/>
     <result column="user_name" property="username"/>
     <association property="scheduleEntitys" resultMap="ScheduleEntityMap"/>
   </resultMap>
 
-    <resultMap id="ScheduleEntityMap" type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
+  <resultMap id="ScheduleEntityMap"
+    type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
     <id column="schedule_id" property="scheduleid"/>
     <id column="user_id" property="userid"/>
     <result column="working_date" property="workingdate"/>
@@ -22,13 +25,13 @@
 
   <select id="findById" resultMap="UserScheduleMap">
     SELECT
-        *
+    *
     FROM
-        users
+    users
     INNER JOIN
-        schedules
+    schedules
     ON
-        users.user_id = schedules.user_id
+    users.user_id = schedules.user_id
     WHERE
     schedules.user_id = #{userid}
   </select>

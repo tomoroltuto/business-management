@@ -2,7 +2,6 @@ package com.example.businessmanagement2.restcontroller.schedule;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
-import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

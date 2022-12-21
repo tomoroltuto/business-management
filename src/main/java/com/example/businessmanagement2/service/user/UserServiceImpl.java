@@ -1,6 +1,5 @@
 package com.example.businessmanagement2.service.user;
 
-import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.repository.user.UserRepository;
 import java.util.List;
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
   public UserEntity create(String companyname, String username) {
     var entity = new UserEntity(null, companyname, username);
     userRepository.create(entity);
-    return new UserEntity(entity.getUserid(),entity.getCompanyname(),entity.getUsername());
+    return new UserEntity(entity.getUserid(), entity.getCompanyname(), entity.getUsername());
   }
 
   @Override
