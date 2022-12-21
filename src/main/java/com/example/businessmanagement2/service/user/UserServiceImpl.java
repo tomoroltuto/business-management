@@ -1,5 +1,6 @@
 package com.example.businessmanagement2.service.user;
 
+import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.repository.user.UserRepository;
 import java.util.List;

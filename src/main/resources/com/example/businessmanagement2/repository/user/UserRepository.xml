@@ -18,7 +18,7 @@
     select * from users
   </select>
 
-  <insert id="create" useGeneratedKeys="true" keyColumn="id">
+  <insert id="create" useGeneratedKeys="true" keyProperty="userid">
     insert into users(company_name, user_name)
     values (#{companyname},#{username})
   </insert>

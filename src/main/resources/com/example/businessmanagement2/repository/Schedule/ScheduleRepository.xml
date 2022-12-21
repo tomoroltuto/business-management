@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.businessmanagement2.repository.schedule.ScheduleRepository">
+
+  <resultMap id="ScheduleEntityMap" type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
+    <id column="schedule_id" property="scheduleid"/>
+    <id column="user_id" property="userid"/>
+    <result column="working_date" property="workingdate"/>
+    <result column="number_of_floors" property="numberoffloors"/>
+    <result column="place" property="place"/>
+    <result column="work_content" property="workcontent"/>
+    <result column="number_of_people" property="numberofpeople"/>
+  </resultMap>
+
+  <select id="findById"  resultMap="ScheduleEntityMap">
+    select schedule_id, user_id, working_date, number_of_floors,
+    place, work_content, number_of_people
+    from schedules
+    where schedule_id = #{scheduleid}
+  </select>
+
+  <select id="findScheduleList" resultMap="ScheduleEntityMap">
+    select * from schedules
+  </select>
+
+  <insert id="create" useGeneratedKeys="true" keyProperty="scheduleid">
+    insert into schedules (
+    user_id, working_date, number_of_floors, place, work_content, number_of_people
+    )
+    values(
+    #{userid}, #{workingdate}, #{numberoffloors}, #{place}, #{workcontent}, #{numberofpeople}
+    )
+  </insert>
+
+  <update id="update">
+    update schedules
+    set
+    schedule_id = #{scheduleid}, user_id = #{userid}, working_date = #{workingdate},
+    number_of_floors = #{numberoffloors}, place = #{place}, work_content = #{workcontent},
+    number_of_people = #{numberofpeople}
+    where schedule_id = #{scheduleid}
+  </update>
+
+  <delete id="delete" parameterType="long">
+    delete from schedules
+    where schedule_id = #{scheduleId}
+  </delete>
+
+</mapper>
