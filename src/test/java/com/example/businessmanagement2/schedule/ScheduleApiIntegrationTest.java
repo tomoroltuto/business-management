@@ -153,7 +153,7 @@ public class ScheduleApiIntegrationTest {
     UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http")
         .host("localhost:8080").path("schedules/5").build().encode();
 
-    assertEquals("http://localhost%3A8080/users/5", uriComponents.toUriString());
+    assertEquals("http://localhost%3A8080/schedules/5", uriComponents.toUriString());
   }
 
   @Test
@@ -390,7 +390,7 @@ public class ScheduleApiIntegrationTest {
 
   @Test
   @Transactional
-  void 指定した作業予定更新を1件削除できること() throws Exception {
+  void 指定した作業予定を1件削除できること() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.delete("/schedules/1"))
         .andExpect(MockMvcResultMatchers.status().isNoContent()).andReturn().getResponse()
         .getContentAsString(StandardCharsets.UTF_8);

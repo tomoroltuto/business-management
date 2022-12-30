@@ -70,11 +70,9 @@ public class ScheduleRepositoryTest {
   @ExpectedDataSet(value = "schedule/datasets/updateschedules.yml")
   @Transactional
   public void キーに紐づく1件の更新が出来ること() {
-    scheduleRepository.update(
-        new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 11), "5階和室", "配線", 6));
+    scheduleRepository.update(new ScheduleEntity(1L, 1, LocalDate.of(2023, 2,2), "6階和室", "配線", 7));
     Optional<ScheduleEntity> schedule = scheduleRepository.findById(1L);
-    assertThat(schedule).hasValue(
-        new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 11), "5階和室", "配線", 6));
+    assertThat(schedule).hasValue(new ScheduleEntity(1L, 1, LocalDate.of(2023, 2,2), "6階和室", "配線", 7));
   }
 
   @Test
