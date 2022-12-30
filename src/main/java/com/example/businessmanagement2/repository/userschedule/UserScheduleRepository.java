@@ -12,5 +12,4 @@ public interface UserScheduleRepository {
 
   List<UserSchedule> findUserScheduleList();
 
-
 }

@@ -1,18 +1,15 @@
-package com.example.businessmanagement2.repository.schedule;
-
+package com.example.businessmanagement2.controller.schedule;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class ScheduleEntity {
+public class ScheduleDTO {
 
-  Long scheduleid;
+  long id;
 
   int userid;
 

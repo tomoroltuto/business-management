@@ -1,23 +1,22 @@
-
 version: '3.8'
 
 services:
 
   db:
     image: mysql:8.0
-    container_name: user_list
+    container_name: date_calculation
     platform: linux/x86_64
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: user_list
+      MYSQL_DATABASE: date_calculation
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
       - "3307:3306"
     volumes:
-      - ./mysql/sql/:/docker-entrypoint-initdb.d
+      - ./mysql/sql/initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/sql/my.cnf:/etc/mysql/conf.d/my.cnf
 volumes:
   mysql-volume:

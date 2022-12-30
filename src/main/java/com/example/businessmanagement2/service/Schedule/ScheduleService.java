@@ -1,7 +1,7 @@
 package com.example.businessmanagement2.service.Schedule;
 
 import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ScheduleService {
@@ -11,12 +11,12 @@ public interface ScheduleService {
   List<ScheduleEntity> findScheduleList();
 
   ScheduleEntity create(
-      int userId, Date workingdate, String numberoffloors, String place,
-      String workcontent, String numberofpeople);
+      int userId, LocalDate workingdate, String place,
+      String workcontent, int numberofpeople);
 
   ScheduleEntity update(
-      Long scheduleId, int userId, Date workingdate, String numberoffloors, String place,
-      String workcontent, String numberofpeople);
+      Long scheduleId, int userId, LocalDate workingdate, String place,
+      String workcontent, int numberofpeople);
 
   void delete(Long scheduleId);
 }

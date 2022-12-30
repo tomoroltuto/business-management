@@ -7,8 +7,6 @@ public interface UserScheduleService {
 
   UserSchedule findById(long userid);
 
-
   List<UserSchedule> findUserScheduleList();
-
 
 }

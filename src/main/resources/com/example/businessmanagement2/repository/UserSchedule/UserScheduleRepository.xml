@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.businessmanagement2.repository.userschedule.UserScheduleRepository">
 
-
-  <resultMap id="UserScheduleMap"
-    type="com.example.businessmanagement2.repository.userschedule.UserSchedule">
+  <resultMap id="UserScheduleMap" type="com.example.businessmanagement2.repository.userschedule.UserSchedule">
     <id column="user_id" property="userid"/>
     <result column="company_name" property="companyname"/>
     <result column="user_name" property="username"/>
-    <association property="scheduleEntitys" resultMap="ScheduleEntityMap"/>
-  </resultMap>
-
-  <resultMap id="ScheduleEntityMap"
-    type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
-    <id column="schedule_id" property="scheduleid"/>
-    <id column="user_id" property="userid"/>
-    <result column="working_date" property="workingdate"/>
-    <result column="number_of_floors" property="numberoffloors"/>
-    <result column="place" property="place"/>
-    <result column="work_content" property="workcontent"/>
-    <result column="number_of_people" property="numberofpeople"/>
+    <collection property="scheduleEntitys" ofType="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
+      <id column="schedule_id" property="scheduleid"/>
+      <id column="user_id" property="userid"/>
+      <result column="working_date" property="workingdate"/>
+      <result column="place" property="place"/>
+      <result column="work_content" property="workcontent"/>
+      <result column="number_of_people" property="numberofpeople"/>
+    </collection>
   </resultMap>
 
   <select id="findById" resultMap="UserScheduleMap">
@@ -33,18 +26,18 @@
     ON
     users.user_id = schedules.user_id
     WHERE
-    schedules.user_id = #{userid}
+    users.user_id = #{userid}
   </select>
 
   <select id="findUserScheduleList" resultMap="UserScheduleMap">
     SELECT
-    *
+        *
     FROM
-    users
+        users
     INNER JOIN
-    schedules
+        schedules
     ON
-    users.user_id = schedules.user_id
+        users.user_id = schedules.user_id
   </select>
 
 </mapper>

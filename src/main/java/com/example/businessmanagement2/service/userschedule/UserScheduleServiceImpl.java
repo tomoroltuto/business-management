@@ -23,5 +23,4 @@ public class UserScheduleServiceImpl implements UserScheduleService {
   public List<UserSchedule> findUserScheduleList() {
     return userScheduleRepository.findUserScheduleList();
   }
-
 }
