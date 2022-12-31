@@ -46,7 +46,7 @@ public class UserScheduleApiIntegrationTest {
                       "userid": 1,
                       "companyName": "○○○会社",
                       "userName": "瀬川",
-                      "scheduleEntitys": [
+                      "scheduleEntities": [
                           {
                               "scheduleid": 1,
                               "userid": 1,
@@ -61,7 +61,7 @@ public class UserScheduleApiIntegrationTest {
                       "userid": 2,
                       "companyName": "△△△会社",
                       "userName": "瀬川2",
-                      "scheduleEntitys": [
+                      "scheduleEntities": [
                           {
                               "scheduleid": 2,
                               "userid": 2,
@@ -84,7 +84,7 @@ public class UserScheduleApiIntegrationTest {
                       "userid": 3,
                       "companyName": "xxx会社",
                       "userName": "瀬川3",
-                      "scheduleEntitys": [
+                      "scheduleEntities": [
                           {
                               "scheduleid": 4,
                               "userid": 3,
@@ -112,7 +112,7 @@ public class UserScheduleApiIntegrationTest {
               "userid": 2,
               "companyName": "△△△会社",
               "userName": "瀬川2",
-              "scheduleEntitys": [
+              "scheduleEntities": [
                   {
                       "scheduleid": 2,
                       "userid": 2,

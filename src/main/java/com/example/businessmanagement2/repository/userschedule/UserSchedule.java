@@ -23,6 +23,6 @@ public class UserSchedule {
 
   String userName;
 
-  List<ScheduleEntity> scheduleEntitys;
+  List<ScheduleEntity> scheduleEntities;
 
 }

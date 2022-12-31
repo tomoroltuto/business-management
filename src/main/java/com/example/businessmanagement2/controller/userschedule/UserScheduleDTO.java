@@ -16,6 +16,6 @@ public class UserScheduleDTO {
 
   String userName;
 
-  List<ScheduleEntity> scheduleEntitys;
+  List<ScheduleEntity> scheduleEntities;
 
 }

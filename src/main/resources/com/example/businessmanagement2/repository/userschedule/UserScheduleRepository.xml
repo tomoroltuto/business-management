@@ -6,7 +6,7 @@
     <id column="user_id" property="userid"/>
     <result column="company_name" property="companyName"/>
     <result column="user_name" property="userName"/>
-    <collection property="scheduleEntitys" ofType="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
+    <collection property="scheduleEntities" ofType="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
       <id column="schedule_id" property="scheduleid"/>
       <id column="user_id" property="userid"/>
       <result column="working_date" property="workingDate"/>
