@@ -1,22 +1,19 @@
-package com.example.businessmanagement2.repository.user;
-
+package com.example.businessmanagement2.controller.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.Value;
+
 
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-@NoArgsConstructor
-public class UserEntity {
+public class UserDTO {
 
-  Long userId;
+  long userId;
 
   String companyName;
 

@@ -3,7 +3,7 @@ package com.example.businessmanagement2.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.example.businessmanagement2.restcontroller.user.UserForm;
+import com.example.businessmanagement2.controller.user.UserForm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.spring.api.DBRider;
@@ -26,7 +26,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @SpringBootTest
-@DataSet(value = "datasets/users.yml")
+@DataSet(value = "user/datasets/users.yml")
 @AutoConfigureMockMvc
 @DBRider
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -46,21 +46,26 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザーが全件取得できること() throws Exception {
     String response = mockMvc.perform(MockMvcRequestBuilders.get("/users"))
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        .andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
             "results": [
                 {
-                    "id": 1,
-                    "companyname": "○○○会社",
-                    "username": "瀬川"
+                    "userId": 1,
+                    "companyName": "○○○会社",
+                    "userName": "瀬川"
                 },
                 {
-                    "id": 2,
-                    "companyname": "△△△会社",
-                    "username": "瀬川2"
+                    "userId": 2,
+                    "companyName": "△△△会社",
+                    "userName": "瀬川2"
+                },
+                {
+                    "userId": 3,
+                    "companyName": "xxx会社",
+                    "userName": "瀬川3"
                 }
             ]
         }
@@ -71,14 +76,14 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void 存在するユーザのIDを指定したとき正常にユーザーが返されること() throws Exception {
     String response = mockMvc.perform(MockMvcRequestBuilders.get("/users/2"))
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        .andExpect(MockMvcResultMatchers.status().isOk()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
-            "id": 2,
-            "companyname": "△△△会社",
-            "username": "瀬川2"
+            "userId": 2,
+            "companyName": "△△△会社",
+            "userName": "瀬川2"
         }     
         """, response, JSONCompareMode.STRICT);
   }
@@ -95,8 +100,8 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void 検索時に該当するIDのユーザーがいないときエラーメッセージが返ること() throws Exception {
     String response = mockMvc.perform(MockMvcRequestBuilders.get("/users/99"))
-        .andExpect(MockMvcResultMatchers.status().isNotFound())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        .andExpect(MockMvcResultMatchers.status().isNotFound()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
@@ -108,16 +113,16 @@ public class UserRestApiIntegrationTest {
 
   @Test
   @Transactional
-  void ユーザー登録に成功すると200とレスポンスメッセージを返すこと() throws Exception {
-    UserForm uf = new UserForm("xxx会社", "瀬川3");
+  void ユーザー登録に成功すると201とレスポンスメッセージを返すこと() throws Exception {
+    UserForm uf = new UserForm("yyy会社", "瀬川4");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().is(201))
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().is(201)).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
@@ -125,13 +130,15 @@ public class UserRestApiIntegrationTest {
         }
         """, response, JSONCompareMode.STRICT);
   }
+
   @Test
   public void ユーザー登録に成功するとLocationヘッダーの値が返ること() {
-    UriComponents uriComponents = UriComponentsBuilder.newInstance()
-        .scheme("http").host("localhost:8080").path("users/3").build().encode();
+    UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http")
+        .host("localhost:8080").path("users/4").build().encode();
 
-    assertEquals("http://localhost%3A8080/users/3", uriComponents.toUriString());
+    assertEquals("http://localhost%3A8080/users/4", uriComponents.toUriString());
   }
+
   @Test
   @Transactional
   void ユーザー登録時空文字nullの場合エラーメッセージを返すこと() throws Exception {
@@ -140,10 +147,10 @@ public class UserRestApiIntegrationTest {
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
          {
@@ -151,35 +158,34 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "companyname",
+                 "name": "companyName",
                  "reason": "must not be blank"
                }
            ]
          }
         """, response, JSONCompareMode.STRICT);
   }
+
   @Test
   @Transactional
   void ユーザー登録時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
-    UserForm uf = new UserForm(
-        "xxx会社",
-        """
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあい
-            """);
+    UserForm uf = new UserForm("xxx会社", """
+        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        あいうえおあいうえおあいうえおあいうえおあい
+        """);
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.post("/users")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
+        .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
          {
@@ -187,7 +193,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "username",
+                 "name": "userName",
                  "reason": "size must be between 1 and 256"
                }
            ]
@@ -200,16 +206,14 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新に成功すると200とレスポンスメッセージを返すこと() throws Exception {
 
     UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("XX会社");
-    uf.setUsername("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().is(200))
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.patch("/users/1").contentType(MediaType.APPLICATION_JSON)
+                .content(json)).andExpect(MockMvcResultMatchers.status().is(200)).andReturn()
+        .getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
@@ -222,17 +226,15 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
 
-    UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("XX会社");
-    uf.setUsername("瀬川3");
+    UserForm uf = new UserForm("XX会社", "瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/99")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isNotFound())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.patch("/users/99").contentType(MediaType.APPLICATION_JSON)
+                .content(json)).andExpect(MockMvcResultMatchers.status().isNotFound()).andReturn()
+        .getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
@@ -246,17 +248,15 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("XX会社");
-    uf.setUsername(null);
+    UserForm uf = new UserForm("XX会社", null);
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.patch("/users/1").contentType(MediaType.APPLICATION_JSON)
+                .content(json)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
+        .getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
          {
@@ -264,7 +264,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "username",
+                 "name": "userName",
                  "reason": "must not be blank"
                }
            ]
@@ -276,25 +276,22 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("""
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-            あいうえおあいうえおあいうえおあいうえおあい
-            """);
-    uf.setUsername("瀬川3");
-
+    UserForm uf = new UserForm("""
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあい                                    
+        """, "瀬川3");
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 
-    String response = mockMvc.perform(MockMvcRequestBuilders.patch("/users/1")
-            .contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().isBadRequest())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    String response = mockMvc.perform(
+            MockMvcRequestBuilders.patch("/users/1").contentType(MediaType.APPLICATION_JSON)
+                .content(json)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
+        .getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
          {
@@ -302,7 +299,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "companyname",
+                 "name": "companyName",
                  "reason": "size must be between 1 and 256"
                }
            ]
@@ -314,16 +311,16 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void 指定したデーターを1件削除できること() throws Exception {
     mockMvc.perform(MockMvcRequestBuilders.delete("/users/1"))
-        .andExpect(MockMvcResultMatchers.status().isNoContent())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        .andExpect(MockMvcResultMatchers.status().isNoContent()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
   }
 
   @Test
   @Transactional
   void 削除時に該当するIDのユーザーがいないときエラーメッセージが返ること() throws Exception {
     String response = mockMvc.perform(MockMvcRequestBuilders.delete("/users/99"))
-        .andExpect(MockMvcResultMatchers.status().isNotFound())
-        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        .andExpect(MockMvcResultMatchers.status().isNotFound()).andReturn().getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {

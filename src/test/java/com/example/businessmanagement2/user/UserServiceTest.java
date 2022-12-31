@@ -61,7 +61,7 @@ public class UserServiceTest {
   @Test
   public void ユーザーを新規登録できること() {
     UserEntity newUe = new UserEntity(null, "xxx会社", "瀬川3");
-    userServiceImpl.create(newUe.getCompanyname(), newUe.getUsername());
+    userServiceImpl.create(newUe.getCompanyName(), newUe.getUserName());
     verify(userRepository).create(newUe);
   }
 
@@ -69,8 +69,8 @@ public class UserServiceTest {
   public void 指定したIDのユーザーを更新できること() {
     UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
-    given(userRepository.findById(ue.getUserid())).willReturn(Optional.of(ue));
-    userServiceImpl.update(ue.getUserid(), newUe.getCompanyname(), newUe.getUsername());
+    given(userRepository.findById(ue.getUserId())).willReturn(Optional.of(ue));
+    userServiceImpl.update(ue.getUserId(), newUe.getCompanyName(), newUe.getUserName());
     verify(userRepository).update(newUe);
   }
 
@@ -78,8 +78,8 @@ public class UserServiceTest {
   public void 更新時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
     UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
-    given(userRepository.findById(ue.getUserid())).willReturn(Optional.of(ue));
-    userServiceImpl.update(ue.getUserid(), newUe.getCompanyname(), newUe.getUsername());
+    given(userRepository.findById(ue.getUserId())).willReturn(Optional.of(ue));
+    userServiceImpl.update(ue.getUserId(), newUe.getCompanyName(), newUe.getUserName());
     assertThatThrownBy(() -> {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);
@@ -88,16 +88,16 @@ public class UserServiceTest {
   @Test
   public void 指定したデーターを1件削除できること() {
     UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
-    given(userRepository.findById(ue.getUserid())).willReturn(Optional.of(ue));
-    userServiceImpl.delete(ue.getUserid());
-    verify(userRepository).delete(ue.getUserid());
+    given(userRepository.findById(ue.getUserId())).willReturn(Optional.of(ue));
+    userServiceImpl.delete(ue.getUserId());
+    verify(userRepository).delete(ue.getUserId());
   }
 
   @Test
   public void 削除時に該当するIDのユーザーがいないときUserEntityNotFoundExceptionとなること() {
     UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
-    given(userRepository.findById(ue.getUserid())).willReturn(Optional.of(ue));
-    userServiceImpl.delete(ue.getUserid());
+    given(userRepository.findById(ue.getUserId())).willReturn(Optional.of(ue));
+    userServiceImpl.delete(ue.getUserId());
     assertThatThrownBy(() -> {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);

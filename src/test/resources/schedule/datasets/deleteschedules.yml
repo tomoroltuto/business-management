@@ -1,0 +1,30 @@
+users:
+  - user_id: 1
+    company_name: "○○○会社"
+    user_name: "瀬川"
+  - user_id: 2
+    company_name: "△△△会社"
+    user_name: "瀬川2"
+  - user_id: 3
+    company_name: "xxx会社"
+    user_name: "瀬川3"
+
+schedules:
+  - schedule_id: 2
+    user_id: 2
+    working_date: "2022-12-07"
+    place: "3階和室"
+    work_content: "配線"
+    number_of_people: 5
+  - schedule_id: 3
+    user_id: 2
+    working_date: "2022-12-10"
+    place: "3階トイレ２"
+    work_content: "BOX取り付け"
+    number_of_people: 2
+  - schedule_id: 4
+    user_id: 3
+    working_date: "2022-12-09"
+    place: "4階洋室"
+    work_content: "配管"
+    number_of_people: 4

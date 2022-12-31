@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.businessmanagement2.repository.user.UserRepository">
 
   <resultMap id="UserEntityMap" type="com.example.businessmanagement2.repository.user.UserEntity">
-    <id column="user_id" property="userid"/>
-    <result column="company_name" property="companyname"/>
-    <result column="user_name" property="username"/>
+    <id column="user_id" property="userId"/>
+    <result column="company_name" property="companyName"/>
+    <result column="user_name" property="userName"/>
   </resultMap>
 
-  <select id="findById"  resultMap="UserEntityMap">
+  <select id="findById" resultMap="UserEntityMap">
     select user_id, company_name, user_name
     from users
     where user_id = #{userId}
@@ -18,17 +19,17 @@
     select * from users
   </select>
 
-  <insert id="create" useGeneratedKeys="true" keyColumn="id">
+  <insert id="create" useGeneratedKeys="true" keyProperty="userId">
     insert into users(company_name, user_name)
-    values (#{companyname},#{username})
+    values (#{companyName},#{userName})
   </insert>
 
   <update id="update">
     update users
     set
-      company_name = #{companyname},
-      user_name = #{username}
-    where user_id = #{userid}
+    company_name = #{companyName},
+    user_name = #{userName}
+    where user_id = #{userId}
   </update>
 
   <delete id="delete" parameterType="long">
