@@ -59,8 +59,7 @@ public class ScheduleRepositoryTest {
   @ExpectedDataSet(value = "schedule/datasets/createschedules.yml")
   @Transactional
   public void 作業予定を新規登録できること() {
-    ScheduleEntity se = new ScheduleEntity(null, 2, LocalDate.of(2022, 12, 30), "5階洋室", "墨出し",
-        5);
+    ScheduleEntity se = new ScheduleEntity(null, 3, LocalDate.of(2022, 12, 30), "5階洋室", "墨出し", 5);
     scheduleRepository.create(se);
     List<ScheduleEntity> actual = scheduleRepository.findScheduleList();
     assertThat(actual).hasSize(5);

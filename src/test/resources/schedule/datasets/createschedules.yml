@@ -35,7 +35,7 @@ schedules:
     work_content: "配管"
     number_of_people: 4
   - schedule_id: 5
-    user_id: 2
+    user_id: 3
     working_date: "2022-12-30"
     place: "5階洋室"
     work_content: "墨出し"
