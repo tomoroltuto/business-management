@@ -31,4 +31,4 @@ jobs:
         if: always()
         with:
           name: test content
-          path: build/reports/tests/test/index.html
+          path: build/reports/
