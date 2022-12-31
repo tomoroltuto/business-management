@@ -54,18 +54,18 @@ public class UserRestApiIntegrationTest {
             "results": [
                 {
                     "id": 1,
-                    "companyname": "○○○会社",
-                    "username": "瀬川"
+                    "companyName": "○○○会社",
+                    "userName": "瀬川"
                 },
                 {
                     "id": 2,
-                    "companyname": "△△△会社",
-                    "username": "瀬川2"
+                    "companyName": "△△△会社",
+                    "userName": "瀬川2"
                 },
                 {
                     "id": 3,
-                    "companyname": "xxx会社",
-                    "username": "瀬川3"
+                    "companyName": "xxx会社",
+                    "userName": "瀬川3"
                 }
             ]
         }
@@ -82,8 +82,8 @@ public class UserRestApiIntegrationTest {
     JSONAssert.assertEquals("""
         {
             "id": 2,
-            "companyname": "△△△会社",
-            "username": "瀬川2"
+            "companyName": "△△△会社",
+            "userName": "瀬川2"
         }     
         """, response, JSONCompareMode.STRICT);
   }
@@ -158,7 +158,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "companyname",
+                 "name": "companyName",
                  "reason": "must not be blank"
                }
            ]
@@ -193,7 +193,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "username",
+                 "name": "userName",
                  "reason": "size must be between 1 and 256"
                }
            ]
@@ -270,7 +270,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "username",
+                 "name": "userName",
                  "reason": "must not be blank"
                }
            ]
@@ -308,7 +308,7 @@ public class UserRestApiIntegrationTest {
            "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
            "invalidParams": [
                {
-                 "name": "companyname",
+                 "name": "companyName",
                  "reason": "size must be between 1 and 256"
                }
            ]

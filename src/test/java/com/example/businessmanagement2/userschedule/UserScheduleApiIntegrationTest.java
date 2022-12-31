@@ -44,54 +44,54 @@ public class UserScheduleApiIntegrationTest {
               "results": [
                   {
                       "userid": 1,
-                      "companyname": "○○○会社",
-                      "username": "瀬川",
+                      "companyName": "○○○会社",
+                      "userName": "瀬川",
                       "scheduleEntitys": [
                           {
                               "scheduleid": 1,
                               "userid": 1,
-                              "workingdate": "2022-12-06",
+                              "workingDate": "2022-12-06",
                               "place": "4階トイレ",
-                              "workcontent": "墨出し",
-                              "numberofpeople": 3
+                              "workContent": "墨出し",
+                              "numberOfPeople": 3
                           }
                       ]
                   },
                   {
                       "userid": 2,
-                      "companyname": "△△△会社",
-                      "username": "瀬川2",
+                      "companyName": "△△△会社",
+                      "userName": "瀬川2",
                       "scheduleEntitys": [
                           {
                               "scheduleid": 2,
                               "userid": 2,
-                              "workingdate": "2022-12-07",
+                              "workingDate": "2022-12-07",
                               "place": "3階和室",
-                              "workcontent": "配線",
-                              "numberofpeople": 5
+                              "workContent": "配線",
+                              "numberOfPeople": 5
                           },
                           {
                               "scheduleid": 3,
                               "userid": 2,
-                              "workingdate": "2022-12-10",
+                              "workingDate": "2022-12-10",
                               "place": "3階トイレ２",
-                              "workcontent": "BOX取り付け",
-                              "numberofpeople": 2
+                              "workContent": "BOX取り付け",
+                              "numberOfPeople": 2
                           }
                       ]
                   },
                   {
                       "userid": 3,
-                      "companyname": "xxx会社",
-                      "username": "瀬川3",
+                      "companyName": "xxx会社",
+                      "userName": "瀬川3",
                       "scheduleEntitys": [
                           {
                               "scheduleid": 4,
                               "userid": 3,
-                              "workingdate": "2022-12-09",
+                              "workingDate": "2022-12-09",
                               "place": "4階洋室",
-                              "workcontent": "配管",
-                              "numberofpeople": 4
+                              "workContent": "配管",
+                              "numberOfPeople": 4
                           }
                       ]
                   }
@@ -110,24 +110,24 @@ public class UserScheduleApiIntegrationTest {
     JSONAssert.assertEquals("""
           {
               "userid": 2,
-              "companyname": "△△△会社",
-              "username": "瀬川2",
+              "companyName": "△△△会社",
+              "userName": "瀬川2",
               "scheduleEntitys": [
                   {
                       "scheduleid": 2,
                       "userid": 2,
-                      "workingdate": "2022-12-07",
+                      "workingDate": "2022-12-07",
                       "place": "3階和室",
-                      "workcontent": "配線",
-                      "numberofpeople": 5
+                      "workContent": "配線",
+                      "numberOfPeople": 5
                   },
                   {
                       "scheduleid": 3,
                       "userid": 2,
-                      "workingdate": "2022-12-10",
+                      "workingDate": "2022-12-10",
                       "place": "3階トイレ２",
-                      "workcontent": "BOX取り付け",
-                      "numberofpeople": 2
+                      "workContent": "BOX取り付け",
+                      "numberOfPeople": 2
                   }
               ]
           }

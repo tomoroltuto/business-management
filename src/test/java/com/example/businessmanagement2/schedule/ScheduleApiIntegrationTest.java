@@ -50,34 +50,34 @@ public class ScheduleApiIntegrationTest {
                 {
                     "id": 1,
                     "userid": 1,
-                    "workingdate": "2022-12-06",
+                    "workingDate": "2022-12-06",
                     "place": "4階トイレ",
-                    "workcontent": "墨出し",
-                    "numberofpeople": 3
+                    "workContent": "墨出し",
+                    "numberOfPeople": 3
                 },
                 {
                     "id": 2,
                     "userid": 2,
-                    "workingdate": "2022-12-07",
+                    "workingDate": "2022-12-07",
                     "place": "3階和室",
-                    "workcontent": "配線",
-                    "numberofpeople": 5
+                    "workContent": "配線",
+                    "numberOfPeople": 5
                 },
                 {
                     "id": 3,
                     "userid": 2,
-                    "workingdate": "2022-12-10",
+                    "workingDate": "2022-12-10",
                     "place": "3階トイレ２",
-                    "workcontent": "BOX取り付け",
-                    "numberofpeople": 2
+                    "workContent": "BOX取り付け",
+                    "numberOfPeople": 2
                 },
                 {
                     "id": 4,
                     "userid": 3,
-                    "workingdate": "2022-12-09",
+                    "workingDate": "2022-12-09",
                     "place": "4階洋室",
-                    "workcontent": "配管",
-                    "numberofpeople": 4
+                    "workContent": "配管",
+                    "numberOfPeople": 4
                 }
             ]
         }
@@ -95,10 +95,10 @@ public class ScheduleApiIntegrationTest {
         {
             "id": 2,
             "userid": 2,
-            "workingdate": "2022-12-07",
+            "workingDate": "2022-12-07",
             "place": "3階和室",
-            "workcontent": "配線",
-            "numberofpeople": 5
+            "workContent": "配線",
+            "numberOfPeople": 5
         }
         """, response, JSONCompareMode.STRICT);
   }
@@ -133,10 +133,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                         {
                             "userid": 3,
-                            "workingdate": "2023-12-30",
+                            "workingDate": "2023-12-30",
                             "place": "トイレ",
-                            "workcontent": "墨出し",
-                            "numberofpeople": "3"
+                            "workContent": "墨出し",
+                            "numberOfPeople": "3"
                         }
                     """)).andExpect(MockMvcResultMatchers.status().is(201)).andReturn().getResponse()
         .getContentAsString(StandardCharsets.UTF_8);
@@ -164,10 +164,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                             {
                                 "userid": 3,
-                                "workingdate": "2022-12-11",
+                                "workingDate": "2022-12-11",
                                 "place": "トイレ",
-                                "workcontent": "墨出し",
-                                "numberofpeople": "3"
+                                "workContent": "墨出し",
+                                "numberOfPeople": "3"
                             }
                     """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -178,7 +178,7 @@ public class ScheduleApiIntegrationTest {
               "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
               "invalidParams": [
                   {
-                      "name": "workingdate",
+                      "name": "workingDate",
                       "reason": "must be a date in the present or in the future"
                   }
               ]
@@ -194,10 +194,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                       {
                           "userid": 3,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
-                          "workcontent": "墨出し",
-                          "numberofpeople": "3"
+                          "workContent": "墨出し",
+                          "numberOfPeople": "3"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -224,10 +224,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                       {
                           "userid": 3,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "4階部屋",
-                          "workcontent": "",
-                          "numberofpeople": "3"
+                          "workContent": "",
+                          "numberOfPeople": "3"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -238,7 +238,7 @@ public class ScheduleApiIntegrationTest {
               "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
               "invalidParams": [
                   {
-                      "name": "workcontent",
+                      "name": "workContent",
                       "reason": "must not be blank"
                   }
               ]
@@ -255,10 +255,10 @@ public class ScheduleApiIntegrationTest {
                       {
                           "id": 1,
                           "userid": 1,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "4階",
-                          "workcontent": "墨出し",
-                          "numberofpeople": "3"
+                          "workContent": "墨出し",
+                          "numberOfPeople": "3"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().is(200)).andReturn().getResponse()
         .getContentAsString(StandardCharsets.UTF_8);
@@ -279,10 +279,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                       {
                           "userid": 1,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "4階",
-                          "workcontent": "墨出し",
-                          "numberofpeople": "3"
+                          "workContent": "墨出し",
+                          "numberOfPeople": "3"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().isNotFound()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -304,10 +304,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                       {
                           "userid": 1,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "4階",
-                          "workcontent": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
-                          "numberofpeople": "4"
+                          "workContent": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
+                          "numberOfPeople": "4"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -318,7 +318,7 @@ public class ScheduleApiIntegrationTest {
               "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
               "invalidParams": [
                   {
-                      "name": "workcontent",
+                      "name": "workContent",
                       "reason": "size must be between 0 and 256"
                   }
               ]
@@ -335,10 +335,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                       {
                           "userid": 1,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "4階",
-                          "workcontent": "墨出し",
-                          "numberofpeople": "0"
+                          "workContent": "墨出し",
+                          "numberOfPeople": "0"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -349,7 +349,7 @@ public class ScheduleApiIntegrationTest {
               "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
               "invalidParams": [
                   {
-                      "name": "numberofpeople",
+                      "name": "numberOfPeople",
                       "reason": "must be greater than or equal to 1"
                   }
               ]
@@ -366,10 +366,10 @@ public class ScheduleApiIntegrationTest {
                 .content("""
                       {
                           "userid": 1,
-                          "workingdate": "2023-12-30",
+                          "workingDate": "2023-12-30",
                           "place": "4階",
-                          "workcontent": "墨出し",
-                          "numberofpeople": "201"
+                          "workContent": "墨出し",
+                          "numberOfPeople": "201"
                       }
                     """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -380,7 +380,7 @@ public class ScheduleApiIntegrationTest {
               "detail": "リクエストが不正です。正しいリクエストでリトライしてください",
               "invalidParams": [
                   {
-                      "name": "numberofpeople",
+                      "name": "numberOfPeople",
                       "reason": "must be less than or equal to 200"
                   }
               ]

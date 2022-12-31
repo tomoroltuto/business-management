@@ -1,7 +1,7 @@
 cacheConnection: false
 cacheTableNames: false
 properties:
-  schema: date_calculation
+  schema: business_management
   caseSensitiveTableNames: false
 caseInsensitiveStrategy: LOWERCASE
 connectionConfig:
