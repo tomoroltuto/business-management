@@ -28,7 +28,7 @@ jobs:
         with:
           arguments: test
       - name: download artifact test content
-        uses: actions/download-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: test content
           path: .github/
