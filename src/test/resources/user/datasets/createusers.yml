@@ -8,3 +8,6 @@ users:
   - user_id: 3
     company_name: "xxx会社"
     user_name: "瀬川3"
+  - user_id: 4
+    company_name: "yyy会社"
+    user_name: "瀬川4"

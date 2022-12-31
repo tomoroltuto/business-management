@@ -3,8 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.businessmanagement2.repository.schedule.ScheduleRepository">
 
-  <resultMap id="ScheduleEntityMap"
-    type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
+  <resultMap id="ScheduleEntityMap" type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
     <id column="schedule_id" property="scheduleid"/>
     <id column="user_id" property="userid"/>
     <result column="working_date" property="workingdate"/>

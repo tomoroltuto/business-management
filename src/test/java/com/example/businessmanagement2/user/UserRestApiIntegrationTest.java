@@ -61,6 +61,11 @@ public class UserRestApiIntegrationTest {
                     "id": 2,
                     "companyname": "△△△会社",
                     "username": "瀬川2"
+                },
+                {
+                    "id": 3,
+                    "companyname": "xxx会社",
+                    "username": "瀬川2"
                 }
             ]
         }
@@ -109,7 +114,7 @@ public class UserRestApiIntegrationTest {
   @Test
   @Transactional
   void ユーザー登録に成功すると201とレスポンスメッセージを返すこと() throws Exception {
-    UserForm uf = new UserForm("xxx会社", "瀬川3");
+    UserForm uf = new UserForm("yyy会社", "瀬川4");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -129,9 +134,9 @@ public class UserRestApiIntegrationTest {
   @Test
   public void ユーザー登録に成功するとLocationヘッダーの値が返ること() {
     UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http")
-        .host("localhost:8080").path("users/3").build().encode();
+        .host("localhost:8080").path("users/4").build().encode();
 
-    assertEquals("http://localhost%3A8080/users/3", uriComponents.toUriString());
+    assertEquals("http://localhost%3A8080/users/4", uriComponents.toUriString());
   }
 
   @Test

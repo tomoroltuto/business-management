@@ -31,7 +31,11 @@ public class UserRepositoryTest {
   void すべてのユーザーが取得できること() {
     List<UserEntity> users = userRepository.findUserList();
     assertThat(users).hasSize(2)
-        .contains(new UserEntity(1L, "○○○会社", "瀬川"), new UserEntity(2L, "△△△会社", "瀬川2"));
+        .contains(
+            new UserEntity(1L, "○○○会社", "瀬川"),
+            new UserEntity(2L, "△△△会社", "瀬川2"),
+            new UserEntity(3L, "xxx会社", "瀬川3")
+        );
   }
 
   @Test
@@ -53,10 +57,10 @@ public class UserRepositoryTest {
   @ExpectedDataSet(value = "user/datasets/createusers.yml")
   @Transactional
   public void ユーザーを新規登録できること() {
-    UserEntity ue = new UserEntity(null, "xxx会社", "瀬川3");
+    UserEntity ue = new UserEntity(null, "yyy会社", "瀬川4");
     userRepository.create(ue);
     List<UserEntity> actual = userRepository.findUserList();
-    assertThat(actual).hasSize(3);
+    assertThat(actual).hasSize(4);
   }
 
   @Test
