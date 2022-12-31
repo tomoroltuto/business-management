@@ -22,8 +22,17 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          name: path/to/gradle.yml
       - name: Build with Gradle
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: test
+      - name: download artifact test content
+        uses: actions/download-artifact@v3
+        with:
+          name: test content
+          path: .github/
+
+
+
 
