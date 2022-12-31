@@ -56,7 +56,7 @@ public class ScheduleRepositoryTest {
   }
 
   @Test
-  @ExpectedDataSet(value = "schedule/datasets/createschedules.yml")
+  @ExpectedDataSet(value = "schedule/datasets/createschedules.yml", ignoreCols = "schedule_id")
   @Transactional
   public void 作業予定を新規登録できること() {
     ScheduleEntity se = new ScheduleEntity(null, 3, LocalDate.of(2022, 12, 30), "5階洋室", "墨出し", 5);
