@@ -20,9 +20,9 @@ import lombok.Value;
 @NoArgsConstructor
 public class ScheduleEntity {
 
-  Long scheduleid;
+  Long scheduleId;
 
-  int userid;
+  int userId;
 
   @JsonFormat(pattern = "yyyy-MM-dd")
   LocalDate workingDate;

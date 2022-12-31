@@ -17,7 +17,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class UserSchedule {
 
-  Long userid;
+  Long userId;
 
   String companyName;
 

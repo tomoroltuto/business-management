@@ -10,7 +10,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserScheduleDTO {
 
-  Long userid;
+  long userId;
 
   String companyName;
 

@@ -18,10 +18,10 @@ public class UserScheduleController {
   private final UserScheduleService userScheduleService;
 
   private static UserScheduleDTO toUserScheduleDTO(UserSchedule userSchedule) {
-    var UserScheduleDTO = new UserScheduleDTO(userSchedule.getUserid(),
+    var UserScheduleDTO = new UserScheduleDTO(userSchedule.getUserId(),
         userSchedule.getCompanyName(), userSchedule.getUserName(),
         userSchedule.getScheduleEntities());
-    UserScheduleDTO.setUserid(userSchedule.getUserid());
+    UserScheduleDTO.setUserId(userSchedule.getUserId());
     UserScheduleDTO.setCompanyName(userSchedule.getCompanyName());
     UserScheduleDTO.setUserName(userSchedule.getUserName());
     UserScheduleDTO.setScheduleEntities(userSchedule.getScheduleEntities());

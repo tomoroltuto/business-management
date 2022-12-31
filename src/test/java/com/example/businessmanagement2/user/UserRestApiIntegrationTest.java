@@ -53,17 +53,17 @@ public class UserRestApiIntegrationTest {
         {
             "results": [
                 {
-                    "id": 1,
+                    "userId": 1,
                     "companyName": "○○○会社",
                     "userName": "瀬川"
                 },
                 {
-                    "id": 2,
+                    "userId": 2,
                     "companyName": "△△△会社",
                     "userName": "瀬川2"
                 },
                 {
-                    "id": 3,
+                    "userId": 3,
                     "companyName": "xxx会社",
                     "userName": "瀬川3"
                 }
@@ -81,7 +81,7 @@ public class UserRestApiIntegrationTest {
 
     JSONAssert.assertEquals("""
         {
-            "id": 2,
+            "userId": 2,
             "companyName": "△△△会社",
             "userName": "瀬川2"
         }     

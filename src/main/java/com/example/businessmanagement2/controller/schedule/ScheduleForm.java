@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 public class ScheduleForm {
 
-  int userid;
+  int userId;
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @JsonFormat(pattern = "yyyy-MM-dd")

@@ -3,12 +3,12 @@
 <mapper namespace="com.example.businessmanagement2.repository.userschedule.UserScheduleRepository">
 
   <resultMap id="UserScheduleMap" type="com.example.businessmanagement2.repository.userschedule.UserSchedule">
-    <id column="user_id" property="userid"/>
+    <id column="user_id" property="userId"/>
     <result column="company_name" property="companyName"/>
     <result column="user_name" property="userName"/>
     <collection property="scheduleEntities" ofType="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
-      <id column="schedule_id" property="scheduleid"/>
-      <id column="user_id" property="userid"/>
+      <id column="schedule_id" property="scheduleId"/>
+      <id column="user_id" property="userId"/>
       <result column="working_date" property="workingDate"/>
       <result column="place" property="place"/>
       <result column="work_content" property="workContent"/>
@@ -26,7 +26,7 @@
     ON
     users.user_id = schedules.user_id
     WHERE
-    users.user_id = #{userid}
+    users.user_id = #{userId}
   </select>
 
   <select id="findUserScheduleList" resultMap="UserScheduleMap">

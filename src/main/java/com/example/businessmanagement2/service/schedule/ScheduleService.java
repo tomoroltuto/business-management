@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ScheduleService {
 
-  ScheduleEntity findById(Long scheduleid);
+  ScheduleEntity findById(Long scheduleId);
 
   List<ScheduleEntity> findScheduleList();
 

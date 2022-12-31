@@ -23,11 +23,11 @@ public class ScheduleController {
   private final ScheduleService scheduleService;
 
   private static ScheduleDTO toScheduleDTO(ScheduleEntity scheduleEntity) {
-    var scheduleDTO = new ScheduleDTO(scheduleEntity.getScheduleid(), scheduleEntity.getUserid(),
+    var scheduleDTO = new ScheduleDTO(scheduleEntity.getScheduleId(), scheduleEntity.getUserId(),
         scheduleEntity.getWorkingDate(), scheduleEntity.getPlace(), scheduleEntity.getWorkContent(),
         scheduleEntity.getNumberOfPeople());
-    scheduleDTO.setId(scheduleEntity.getScheduleid());
-    scheduleDTO.setUserid(scheduleEntity.getUserid());
+    scheduleDTO.setScheduleId(scheduleEntity.getScheduleId());
+    scheduleDTO.setUserId(scheduleEntity.getUserId());
     scheduleDTO.setWorkingDate(scheduleEntity.getWorkingDate());
     scheduleDTO.setPlace(scheduleEntity.getPlace());
     scheduleDTO.setWorkContent(scheduleDTO.getWorkContent());
@@ -55,9 +55,9 @@ public class ScheduleController {
   @PostMapping("/schedules")
   private ResponseEntity<ScheduleResponseMassage> createSchedule(
       @RequestBody @Validated ScheduleForm form, UriComponentsBuilder uriBuilder) {
-    ScheduleEntity se = scheduleService.create(form.getUserid(), form.getWorkingDate(),
+    ScheduleEntity se = scheduleService.create(form.getUserId(), form.getWorkingDate(),
         form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
-    URI uri = uriBuilder.path("schedules/" + se.getScheduleid()).build().toUri();
+    URI uri = uriBuilder.path("schedules/" + se.getScheduleId()).build().toUri();
     var srm = new ScheduleResponseMassage();
     srm.setMessage("作業予定を登録しました");
     return ResponseEntity.created(uri).body(srm);
@@ -66,7 +66,7 @@ public class ScheduleController {
   @PatchMapping("/schedules/{id}")
   private ResponseEntity<ScheduleResponseMassage> updateSchedule(
       @PathVariable("id") Long scheduleId, @RequestBody @Validated ScheduleForm form) {
-    scheduleService.update(scheduleId, form.getUserid(), form.getWorkingDate(),
+    scheduleService.update(scheduleId, form.getUserId(), form.getWorkingDate(),
         form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
     var srm = new ScheduleResponseMassage();
     srm.setMessage("作業予定を更新しました");

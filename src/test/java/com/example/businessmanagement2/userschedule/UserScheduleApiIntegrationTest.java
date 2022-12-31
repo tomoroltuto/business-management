@@ -43,13 +43,13 @@ public class UserScheduleApiIntegrationTest {
           {
               "results": [
                   {
-                      "userid": 1,
+                      "userId": 1,
                       "companyName": "○○○会社",
                       "userName": "瀬川",
                       "scheduleEntities": [
                           {
-                              "scheduleid": 1,
-                              "userid": 1,
+                              "scheduleId": 1,
+                              "userId": 1,
                               "workingDate": "2022-12-06",
                               "place": "4階トイレ",
                               "workContent": "墨出し",
@@ -58,21 +58,21 @@ public class UserScheduleApiIntegrationTest {
                       ]
                   },
                   {
-                      "userid": 2,
+                      "userId": 2,
                       "companyName": "△△△会社",
                       "userName": "瀬川2",
                       "scheduleEntities": [
                           {
-                              "scheduleid": 2,
-                              "userid": 2,
+                              "scheduleId": 2,
+                              "userId": 2,
                               "workingDate": "2022-12-07",
                               "place": "3階和室",
                               "workContent": "配線",
                               "numberOfPeople": 5
                           },
                           {
-                              "scheduleid": 3,
-                              "userid": 2,
+                              "scheduleId": 3,
+                              "userId": 2,
                               "workingDate": "2022-12-10",
                               "place": "3階トイレ２",
                               "workContent": "BOX取り付け",
@@ -81,13 +81,13 @@ public class UserScheduleApiIntegrationTest {
                       ]
                   },
                   {
-                      "userid": 3,
+                      "userId": 3,
                       "companyName": "xxx会社",
                       "userName": "瀬川3",
                       "scheduleEntities": [
                           {
-                              "scheduleid": 4,
-                              "userid": 3,
+                              "scheduleId": 4,
+                              "userId": 3,
                               "workingDate": "2022-12-09",
                               "place": "4階洋室",
                               "workContent": "配管",
@@ -109,21 +109,21 @@ public class UserScheduleApiIntegrationTest {
 
     JSONAssert.assertEquals("""
           {
-              "userid": 2,
+              "userId": 2,
               "companyName": "△△△会社",
               "userName": "瀬川2",
               "scheduleEntities": [
                   {
-                      "scheduleid": 2,
-                      "userid": 2,
+                      "scheduleId": 2,
+                      "userId": 2,
                       "workingDate": "2022-12-07",
                       "place": "3階和室",
                       "workContent": "配線",
                       "numberOfPeople": 5
                   },
                   {
-                      "scheduleid": 3,
-                      "userid": 2,
+                      "scheduleId": 3,
+                      "userId": 2,
                       "workingDate": "2022-12-10",
                       "place": "3階トイレ２",
                       "workContent": "BOX取り付け",

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface UserScheduleService {
 
-  UserSchedule findById(long userid);
+  UserSchedule findById(long userId);
 
   List<UserSchedule> findUserScheduleList();
 

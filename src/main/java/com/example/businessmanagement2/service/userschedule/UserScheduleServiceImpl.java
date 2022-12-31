@@ -14,9 +14,9 @@ public class UserScheduleServiceImpl implements UserScheduleService {
   private final UserScheduleRepository userScheduleRepository;
 
   @Override
-  public UserSchedule findById(long userid) {
-    return userScheduleRepository.findById(userid)
-        .orElseThrow(() -> new UserEntityNotFoundException(userid));
+  public UserSchedule findById(long userId) {
+    return userScheduleRepository.findById(userId)
+        .orElseThrow(() -> new UserEntityNotFoundException(userId));
   }
 
   @Override

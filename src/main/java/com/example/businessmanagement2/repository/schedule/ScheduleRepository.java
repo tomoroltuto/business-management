@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ScheduleRepository {
 
-  Optional<ScheduleEntity> findById(Long scheduleid);
+  Optional<ScheduleEntity> findById(Long scheduleId);
 
   List<ScheduleEntity> findScheduleList();
 
@@ -16,6 +16,6 @@ public interface ScheduleRepository {
 
   void update(ScheduleEntity entity);
 
-  void delete(Long scheduleid);
+  void delete(Long scheduleId);
 
 }

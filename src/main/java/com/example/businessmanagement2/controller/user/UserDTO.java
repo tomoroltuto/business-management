@@ -8,7 +8,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserDTO {
 
-  long id;
+  long userId;
 
   String companyName;
 

@@ -67,7 +67,7 @@ public class ScheduleServiceTest {
   public void 作業予定を新規登録できること() {
     ScheduleEntity newSe = new ScheduleEntity(null, 3, LocalDate.of(2022, 12, 7), "3階和室", "配線",
         6);
-    scheduleServiceImpl.create(newSe.getUserid(), newSe.getWorkingDate(), newSe.getPlace(),
+    scheduleServiceImpl.create(newSe.getUserId(), newSe.getWorkingDate(), newSe.getPlace(),
         newSe.getWorkContent(), newSe.getNumberOfPeople());
     verify(scheduleRepository).create(newSe);
   }
@@ -77,8 +77,8 @@ public class ScheduleServiceTest {
     ScheduleEntity se = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 6), "4階トイレ", "墨出し", 3);
     ScheduleEntity newSe = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 11), "5階和室", "配線",
         6);
-    given(scheduleRepository.findById(se.getScheduleid())).willReturn(Optional.of(se));
-    scheduleServiceImpl.update(se.getScheduleid(), newSe.getUserid(), newSe.getWorkingDate(),
+    given(scheduleRepository.findById(se.getScheduleId())).willReturn(Optional.of(se));
+    scheduleServiceImpl.update(se.getScheduleId(), newSe.getUserId(), newSe.getWorkingDate(),
         newSe.getPlace(), newSe.getWorkContent(), newSe.getNumberOfPeople());
     verify(scheduleRepository).update(newSe);
   }
@@ -88,8 +88,8 @@ public class ScheduleServiceTest {
     ScheduleEntity se = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 7), "4階トイレ", "墨出し", 3);
     ScheduleEntity newSe = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 11), "5階和室", "配線",
         6);
-    given(scheduleRepository.findById(se.getScheduleid())).willReturn(Optional.of(se));
-    scheduleServiceImpl.update(se.getScheduleid(), newSe.getUserid(), newSe.getWorkingDate(),
+    given(scheduleRepository.findById(se.getScheduleId())).willReturn(Optional.of(se));
+    scheduleServiceImpl.update(se.getScheduleId(), newSe.getUserId(), newSe.getWorkingDate(),
         newSe.getPlace(), newSe.getWorkContent(), newSe.getNumberOfPeople());
     assertThatThrownBy(() -> {
       scheduleServiceImpl.findById(99L);
@@ -99,16 +99,16 @@ public class ScheduleServiceTest {
   @Test
   public void 指定した作業予定を1件削除できること() {
     ScheduleEntity se = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 7), "4階トイレ", "墨出し", 3);
-    given(scheduleRepository.findById(se.getScheduleid())).willReturn(Optional.of(se));
-    scheduleServiceImpl.delete(se.getScheduleid());
-    verify(scheduleRepository).delete(se.getScheduleid());
+    given(scheduleRepository.findById(se.getScheduleId())).willReturn(Optional.of(se));
+    scheduleServiceImpl.delete(se.getScheduleId());
+    verify(scheduleRepository).delete(se.getScheduleId());
   }
 
   @Test
   public void 削除時に該当するIDの作業予定がいないときScheduleEntityNotFoundExceptionとなること() {
     ScheduleEntity se = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 7), "4階トイレ", "墨出し", 3);
-    given(scheduleRepository.findById(se.getScheduleid())).willReturn(Optional.of(se));
-    scheduleServiceImpl.delete(se.getScheduleid());
+    given(scheduleRepository.findById(se.getScheduleId())).willReturn(Optional.of(se));
+    scheduleServiceImpl.delete(se.getScheduleId());
     assertThatThrownBy(() -> {
       scheduleServiceImpl.findById(99L);
     }).isInstanceOf(ScheduleEntityNotFoundException.class);

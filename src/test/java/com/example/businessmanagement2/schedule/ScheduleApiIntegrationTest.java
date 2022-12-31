@@ -48,32 +48,32 @@ public class ScheduleApiIntegrationTest {
         {
             "results": [
                 {
-                    "id": 1,
-                    "userid": 1,
+                    "scheduleId": 1,
+                    "userId": 1,
                     "workingDate": "2022-12-06",
                     "place": "4階トイレ",
                     "workContent": "墨出し",
                     "numberOfPeople": 3
                 },
                 {
-                    "id": 2,
-                    "userid": 2,
+                    "scheduleId": 2,
+                    "userId": 2,
                     "workingDate": "2022-12-07",
                     "place": "3階和室",
                     "workContent": "配線",
                     "numberOfPeople": 5
                 },
                 {
-                    "id": 3,
-                    "userid": 2,
+                    "scheduleId": 3,
+                    "userId": 2,
                     "workingDate": "2022-12-10",
                     "place": "3階トイレ２",
                     "workContent": "BOX取り付け",
                     "numberOfPeople": 2
                 },
                 {
-                    "id": 4,
-                    "userid": 3,
+                    "scheduleId": 4,
+                    "userId": 3,
                     "workingDate": "2022-12-09",
                     "place": "4階洋室",
                     "workContent": "配管",
@@ -93,8 +93,8 @@ public class ScheduleApiIntegrationTest {
 
     JSONAssert.assertEquals("""
         {
-            "id": 2,
-            "userid": 2,
+            "scheduleId": 2,
+            "userId": 2,
             "workingDate": "2022-12-07",
             "place": "3階和室",
             "workContent": "配線",
@@ -132,7 +132,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.post("/schedules").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                            "userid": 3,
+                            "userId": 3,
                             "workingDate": "2023-12-30",
                             "place": "トイレ",
                             "workContent": "墨出し",
@@ -163,7 +163,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.post("/schedules").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                             {
-                                "userid": 3,
+                                "userId": 3,
                                 "workingDate": "2022-12-11",
                                 "place": "トイレ",
                                 "workContent": "墨出し",
@@ -193,7 +193,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.post("/schedules").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "userid": 3,
+                          "userId": 3,
                           "workingDate": "2023-12-30",
                           "place": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
                           "workContent": "墨出し",
@@ -223,7 +223,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.post("/schedules").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "userid": 3,
+                          "userId": 3,
                           "workingDate": "2023-12-30",
                           "place": "4階部屋",
                           "workContent": "",
@@ -253,8 +253,8 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.patch("/schedules/1").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "id": 1,
-                          "userid": 1,
+                          "scheduleId": 1,
+                          "userId": 1,
                           "workingDate": "2023-12-30",
                           "place": "4階",
                           "workContent": "墨出し",
@@ -278,7 +278,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.patch("/schedules/99").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "userid": 1,
+                          "userId": 1,
                           "workingDate": "2023-12-30",
                           "place": "4階",
                           "workContent": "墨出し",
@@ -303,7 +303,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.patch("/schedules/1").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "userid": 1,
+                          "userId": 1,
                           "workingDate": "2023-12-30",
                           "place": "4階",
                           "workContent": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
@@ -334,7 +334,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.patch("/schedules/1").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "userid": 1,
+                          "userId": 1,
                           "workingDate": "2023-12-30",
                           "place": "4階",
                           "workContent": "墨出し",
@@ -365,7 +365,7 @@ public class ScheduleApiIntegrationTest {
             MockMvcRequestBuilders.patch("/schedules/1").contentType(MediaType.APPLICATION_JSON)
                 .content("""
                       {
-                          "userid": 1,
+                          "userId": 1,
                           "workingDate": "2023-12-30",
                           "place": "4階",
                           "workContent": "墨出し",

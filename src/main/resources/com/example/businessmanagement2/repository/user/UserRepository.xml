@@ -4,7 +4,7 @@
 <mapper namespace="com.example.businessmanagement2.repository.user.UserRepository">
 
   <resultMap id="UserEntityMap" type="com.example.businessmanagement2.repository.user.UserEntity">
-    <id column="user_id" property="userid"/>
+    <id column="user_id" property="userId"/>
     <result column="company_name" property="companyName"/>
     <result column="user_name" property="userName"/>
   </resultMap>
@@ -19,7 +19,7 @@
     select * from users
   </select>
 
-  <insert id="create" useGeneratedKeys="true" keyProperty="userid">
+  <insert id="create" useGeneratedKeys="true" keyProperty="userId">
     insert into users(company_name, user_name)
     values (#{companyName},#{userName})
   </insert>
@@ -29,7 +29,7 @@
     set
     company_name = #{companyName},
     user_name = #{userName}
-    where user_id = #{userid}
+    where user_id = #{userId}
   </update>
 
   <delete id="delete" parameterType="long">

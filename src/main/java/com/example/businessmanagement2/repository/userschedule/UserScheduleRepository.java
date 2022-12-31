@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserScheduleRepository {
 
-  Optional<UserSchedule> findById(long userid);
+  Optional<UserSchedule> findById(long userId);
 
   List<UserSchedule> findUserScheduleList();
 

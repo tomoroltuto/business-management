@@ -23,9 +23,9 @@ public class UserController {
   private final UserService userService;
 
   private static UserDTO toUserDTO(UserEntity userEntity) {
-    var userDTO = new UserDTO(userEntity.getUserid(), userEntity.getCompanyName(),
+    var userDTO = new UserDTO(userEntity.getUserId(), userEntity.getCompanyName(),
         userEntity.getUserName());
-    userDTO.setId(userEntity.getUserid());
+    userDTO.setUserId(userEntity.getUserId());
     userDTO.setCompanyName(userEntity.getCompanyName());
     userDTO.setUserName(userEntity.getUserName());
     return userDTO;
@@ -55,7 +55,7 @@ public class UserController {
       UriComponentsBuilder uriBuilder) {
     UserEntity ur = userService.create(form.getCompanyName(), form.getUserName());
     URI url = uriBuilder
-        .path("users/" + ur.getUserid())
+        .path("users/" + ur.getUserId())
         .build()
         .toUri();
     var urm = new UserResponseMessage();

@@ -15,9 +15,9 @@ public class ScheduleServiceImpl implements ScheduleService {
   private final ScheduleRepository scheduleRepository;
 
   @Override
-  public ScheduleEntity findById(Long scheduleid) {
-    return scheduleRepository.findById(scheduleid)
-        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleid));
+  public ScheduleEntity findById(Long scheduleId) {
+    return scheduleRepository.findById(scheduleId)
+        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
   }
 
   @Override
@@ -31,7 +31,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     var entity = new ScheduleEntity(null, userId, workingDate, place,
         workContent, numberOfPeople);
     scheduleRepository.create(entity);
-    return new ScheduleEntity(entity.getScheduleid(), entity.getUserid(), entity.getWorkingDate(),
+    return new ScheduleEntity(entity.getScheduleId(), entity.getUserId(), entity.getWorkingDate(),
         entity.getPlace(), entity.getWorkContent(), entity.getNumberOfPeople());
   }
 
@@ -46,9 +46,9 @@ public class ScheduleServiceImpl implements ScheduleService {
   }
 
   @Override
-  public void delete(Long scheduleid) {
-    scheduleRepository.findById(scheduleid)
-        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleid));
-    scheduleRepository.delete(scheduleid);
+  public void delete(Long scheduleId) {
+    scheduleRepository.findById(scheduleId)
+        .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
+    scheduleRepository.delete(scheduleId);
   }
 }

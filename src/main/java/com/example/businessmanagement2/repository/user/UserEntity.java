@@ -16,7 +16,7 @@ import lombok.Value;
 @NoArgsConstructor
 public class UserEntity {
 
-  Long userid;
+  Long userId;
 
   String companyName;
 

@@ -9,9 +9,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class ScheduleDTO {
 
-  long id;
+  long scheduleId;
 
-  int userid;
+  int userId;
 
   @JsonFormat(pattern = "yyyy-MM-dd")
   LocalDate workingDate;
