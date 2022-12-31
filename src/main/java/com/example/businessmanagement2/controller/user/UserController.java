@@ -23,11 +23,11 @@ public class UserController {
   private final UserService userService;
 
   private static UserDTO toUserDTO(UserEntity userEntity) {
-    var userDTO = new UserDTO(userEntity.getUserid(), userEntity.getCompanyname(),
-        userEntity.getUsername());
+    var userDTO = new UserDTO(userEntity.getUserid(), userEntity.getCompanyName(),
+        userEntity.getUserName());
     userDTO.setId(userEntity.getUserid());
-    userDTO.setCompanyname(userEntity.getCompanyname());
-    userDTO.setUsername(userEntity.getUsername());
+    userDTO.setCompanyName(userEntity.getCompanyName());
+    userDTO.setUserName(userEntity.getUserName());
     return userDTO;
   }
 
@@ -53,7 +53,7 @@ public class UserController {
   @PostMapping("/users")
   private ResponseEntity<UserResponseMessage> createUser(@RequestBody @Validated UserForm form,
       UriComponentsBuilder uriBuilder) {
-    UserEntity ur = userService.create(form.getCompanyname(), form.getUsername());
+    UserEntity ur = userService.create(form.getCompanyName(), form.getUserName());
     URI url = uriBuilder
         .path("users/" + ur.getUserid())
         .build()
@@ -67,7 +67,7 @@ public class UserController {
   @PatchMapping("/users/{id}")
   public ResponseEntity<UserResponseMessage> updateUser(@PathVariable("id") Long userId,
       @RequestBody @Validated UserForm form) {
-    userService.update(userId, form.getCompanyname(), form.getUsername());
+    userService.update(userId, form.getCompanyName(), form.getUserName());
     var urm = new UserResponseMessage();
     urm.setMessage("ユーザーを更新しました");
     return ResponseEntity.ok(urm);

@@ -1,6 +1,6 @@
 package com.example.businessmanagement2.controller.advice;
 
-import com.example.businessmanagement2.service.Schedule.ScheduleEntityNotFoundException;
+import com.example.businessmanagement2.service.schedule.ScheduleEntityNotFoundException;
 import com.example.businessmanagement2.service.user.UserEntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

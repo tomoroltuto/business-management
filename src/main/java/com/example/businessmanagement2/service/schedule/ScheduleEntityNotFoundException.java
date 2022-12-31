@@ -1,4 +1,4 @@
-package com.example.businessmanagement2.service.Schedule;
+package com.example.businessmanagement2.service.schedule;
 
 public class ScheduleEntityNotFoundException extends RuntimeException {
 

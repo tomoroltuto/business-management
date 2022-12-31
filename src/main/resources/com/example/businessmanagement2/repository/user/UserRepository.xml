@@ -5,8 +5,8 @@
 
   <resultMap id="UserEntityMap" type="com.example.businessmanagement2.repository.user.UserEntity">
     <id column="user_id" property="userid"/>
-    <result column="company_name" property="companyname"/>
-    <result column="user_name" property="username"/>
+    <result column="company_name" property="companyName"/>
+    <result column="user_name" property="userName"/>
   </resultMap>
 
   <select id="findById" resultMap="UserEntityMap">
@@ -21,14 +21,14 @@
 
   <insert id="create" useGeneratedKeys="true" keyProperty="userid">
     insert into users(company_name, user_name)
-    values (#{companyname},#{username})
+    values (#{companyName},#{userName})
   </insert>
 
   <update id="update">
     update users
     set
-    company_name = #{companyname},
-    user_name = #{username}
+    company_name = #{companyName},
+    user_name = #{userName}
     where user_id = #{userid}
   </update>
 

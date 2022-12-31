@@ -4,15 +4,15 @@
 
   <resultMap id="UserScheduleMap" type="com.example.businessmanagement2.repository.userschedule.UserSchedule">
     <id column="user_id" property="userid"/>
-    <result column="company_name" property="companyname"/>
-    <result column="user_name" property="username"/>
+    <result column="company_name" property="companyName"/>
+    <result column="user_name" property="userName"/>
     <collection property="scheduleEntitys" ofType="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
       <id column="schedule_id" property="scheduleid"/>
       <id column="user_id" property="userid"/>
-      <result column="working_date" property="workingdate"/>
+      <result column="working_date" property="workingDate"/>
       <result column="place" property="place"/>
-      <result column="work_content" property="workcontent"/>
-      <result column="number_of_people" property="numberofpeople"/>
+      <result column="work_content" property="workContent"/>
+      <result column="number_of_people" property="numberOfPeople"/>
     </collection>
   </resultMap>
 

@@ -1,7 +1,7 @@
 package com.example.businessmanagement2.controller.schedule;
 
 import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
-import com.example.businessmanagement2.service.Schedule.ScheduleService;
+import com.example.businessmanagement2.service.schedule.ScheduleService;
 import java.net.URI;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +24,14 @@ public class ScheduleController {
 
   private static ScheduleDTO toScheduleDTO(ScheduleEntity scheduleEntity) {
     var scheduleDTO = new ScheduleDTO(scheduleEntity.getScheduleid(), scheduleEntity.getUserid(),
-        scheduleEntity.getWorkingdate(), scheduleEntity.getPlace(), scheduleEntity.getWorkcontent(),
-        scheduleEntity.getNumberofpeople());
+        scheduleEntity.getWorkingDate(), scheduleEntity.getPlace(), scheduleEntity.getWorkContent(),
+        scheduleEntity.getNumberOfPeople());
     scheduleDTO.setId(scheduleEntity.getScheduleid());
     scheduleDTO.setUserid(scheduleEntity.getUserid());
-    scheduleDTO.setWorkingdate(scheduleEntity.getWorkingdate());
+    scheduleDTO.setWorkingDate(scheduleEntity.getWorkingDate());
     scheduleDTO.setPlace(scheduleEntity.getPlace());
-    scheduleDTO.setWorkcontent(scheduleDTO.getWorkcontent());
-    scheduleDTO.setNumberofpeople(scheduleDTO.getNumberofpeople());
+    scheduleDTO.setWorkContent(scheduleDTO.getWorkContent());
+    scheduleDTO.setNumberOfPeople(scheduleDTO.getNumberOfPeople());
     return scheduleDTO;
   }
 
@@ -55,8 +55,8 @@ public class ScheduleController {
   @PostMapping("/schedules")
   private ResponseEntity<ScheduleResponseMassage> createSchedule(
       @RequestBody @Validated ScheduleForm form, UriComponentsBuilder uriBuilder) {
-    ScheduleEntity se = scheduleService.create(form.getUserid(), form.getWorkingdate(),
-        form.getPlace(), form.getWorkcontent(), form.getNumberofpeople());
+    ScheduleEntity se = scheduleService.create(form.getUserid(), form.getWorkingDate(),
+        form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
     URI uri = uriBuilder.path("schedules/" + se.getScheduleid()).build().toUri();
     var srm = new ScheduleResponseMassage();
     srm.setMessage("作業予定を登録しました");
@@ -66,8 +66,8 @@ public class ScheduleController {
   @PatchMapping("/schedules/{id}")
   private ResponseEntity<ScheduleResponseMassage> updateSchedule(
       @PathVariable("id") Long scheduleId, @RequestBody @Validated ScheduleForm form) {
-    scheduleService.update(scheduleId, form.getUserid(), form.getWorkingdate(),
-        form.getPlace(), form.getWorkcontent(), form.getNumberofpeople());
+    scheduleService.update(scheduleId, form.getUserid(), form.getWorkingDate(),
+        form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
     var srm = new ScheduleResponseMassage();
     srm.setMessage("作業予定を更新しました");
     return ResponseEntity.ok(srm);

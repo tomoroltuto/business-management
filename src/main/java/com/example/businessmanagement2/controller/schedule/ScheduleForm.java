@@ -20,17 +20,17 @@ public class ScheduleForm {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @JsonFormat(pattern = "yyyy-MM-dd")
   @FutureOrPresent
-  LocalDate workingdate;
+  LocalDate workingDate;
 
   @Size(max = 256)
   String place;
 
   @NotBlank
   @Size(max = 256)
-  String workcontent;
+  String workContent;
 
   @Min(1)
   @Max(200)
-  int numberofpeople;
+  int numberOfPeople;
 
 }

@@ -10,8 +10,8 @@ import static org.mockito.Mockito.when;
 
 import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.repository.schedule.ScheduleRepository;
-import com.example.businessmanagement2.service.Schedule.ScheduleEntityNotFoundException;
-import com.example.businessmanagement2.service.Schedule.ScheduleServiceImpl;
+import com.example.businessmanagement2.service.schedule.ScheduleEntityNotFoundException;
+import com.example.businessmanagement2.service.schedule.ScheduleServiceImpl;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +67,8 @@ public class ScheduleServiceTest {
   public void 作業予定を新規登録できること() {
     ScheduleEntity newSe = new ScheduleEntity(null, 3, LocalDate.of(2022, 12, 7), "3階和室", "配線",
         6);
-    scheduleServiceImpl.create(newSe.getUserid(), newSe.getWorkingdate(), newSe.getPlace(),
-        newSe.getWorkcontent(), newSe.getNumberofpeople());
+    scheduleServiceImpl.create(newSe.getUserid(), newSe.getWorkingDate(), newSe.getPlace(),
+        newSe.getWorkContent(), newSe.getNumberOfPeople());
     verify(scheduleRepository).create(newSe);
   }
 
@@ -78,8 +78,8 @@ public class ScheduleServiceTest {
     ScheduleEntity newSe = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 11), "5階和室", "配線",
         6);
     given(scheduleRepository.findById(se.getScheduleid())).willReturn(Optional.of(se));
-    scheduleServiceImpl.update(se.getScheduleid(), newSe.getUserid(), newSe.getWorkingdate(),
-        newSe.getPlace(), newSe.getWorkcontent(), newSe.getNumberofpeople());
+    scheduleServiceImpl.update(se.getScheduleid(), newSe.getUserid(), newSe.getWorkingDate(),
+        newSe.getPlace(), newSe.getWorkContent(), newSe.getNumberOfPeople());
     verify(scheduleRepository).update(newSe);
   }
 
@@ -89,8 +89,8 @@ public class ScheduleServiceTest {
     ScheduleEntity newSe = new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 11), "5階和室", "配線",
         6);
     given(scheduleRepository.findById(se.getScheduleid())).willReturn(Optional.of(se));
-    scheduleServiceImpl.update(se.getScheduleid(), newSe.getUserid(), newSe.getWorkingdate(),
-        newSe.getPlace(), newSe.getWorkcontent(), newSe.getNumberofpeople());
+    scheduleServiceImpl.update(se.getScheduleid(), newSe.getUserid(), newSe.getWorkingDate(),
+        newSe.getPlace(), newSe.getWorkContent(), newSe.getNumberOfPeople());
     assertThatThrownBy(() -> {
       scheduleServiceImpl.findById(99L);
     }).isInstanceOf(ScheduleEntityNotFoundException.class);

@@ -23,17 +23,17 @@ public class UserServiceImpl implements UserService {
     return userRepository.findUserList();
   }
 
-  public UserEntity create(String companyname, String username) {
-    var entity = new UserEntity(null, companyname, username);
+  public UserEntity create(String companyName, String userName) {
+    var entity = new UserEntity(null, companyName, userName);
     userRepository.create(entity);
-    return new UserEntity(entity.getUserid(), entity.getCompanyname(), entity.getUsername());
+    return new UserEntity(entity.getUserid(), entity.getCompanyName(), entity.getUserName());
   }
 
   @Override
-  public UserEntity update(Long userId, String companyname, String username) {
+  public UserEntity update(Long userId, String companyName, String userName) {
     userRepository.findById(userId)
         .orElseThrow(() -> new UserEntityNotFoundException(userId));
-    userRepository.update(new UserEntity(userId, companyname, username));
+    userRepository.update(new UserEntity(userId, companyName, userName));
     return findById(userId);
   }
 

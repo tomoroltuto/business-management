@@ -6,10 +6,10 @@
   <resultMap id="ScheduleEntityMap" type="com.example.businessmanagement2.repository.schedule.ScheduleEntity">
     <id column="schedule_id" property="scheduleid"/>
     <id column="user_id" property="userid"/>
-    <result column="working_date" property="workingdate"/>
+    <result column="working_date" property="workingDate"/>
     <result column="place" property="place"/>
-    <result column="work_content" property="workcontent"/>
-    <result column="number_of_people" property="numberofpeople"/>
+    <result column="work_content" property="workContent"/>
+    <result column="number_of_people" property="numberOfPeople"/>
   </resultMap>
 
   <select id="findById" resultMap="ScheduleEntityMap">
@@ -27,15 +27,15 @@
     user_id, working_date, place, work_content, number_of_people
     )
     values(
-    #{userid}, #{workingdate}, #{place}, #{workcontent}, #{numberofpeople}
+    #{userid}, #{workingDate}, #{place}, #{workContent}, #{numberOfPeople}
     )
   </insert>
 
   <update id="update">
     update schedules
     set
-    schedule_id = #{scheduleid}, user_id = #{userid}, working_date = #{workingdate},
-    place = #{place}, work_content = #{workcontent}, number_of_people = #{numberofpeople}
+    schedule_id = #{scheduleid}, user_id = #{userid}, working_date = #{workingDate},
+    place = #{place}, work_content = #{workContent}, number_of_people = #{numberOfPeople}
     where schedule_id = #{scheduleid}
   </update>
 

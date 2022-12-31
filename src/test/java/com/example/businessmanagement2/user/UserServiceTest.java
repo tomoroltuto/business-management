@@ -61,7 +61,7 @@ public class UserServiceTest {
   @Test
   public void ユーザーを新規登録できること() {
     UserEntity newUe = new UserEntity(null, "xxx会社", "瀬川3");
-    userServiceImpl.create(newUe.getCompanyname(), newUe.getUsername());
+    userServiceImpl.create(newUe.getCompanyName(), newUe.getUserName());
     verify(userRepository).create(newUe);
   }
 
@@ -70,7 +70,7 @@ public class UserServiceTest {
     UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
     given(userRepository.findById(ue.getUserid())).willReturn(Optional.of(ue));
-    userServiceImpl.update(ue.getUserid(), newUe.getCompanyname(), newUe.getUsername());
+    userServiceImpl.update(ue.getUserid(), newUe.getCompanyName(), newUe.getUserName());
     verify(userRepository).update(newUe);
   }
 
@@ -79,7 +79,7 @@ public class UserServiceTest {
     UserEntity ue = new UserEntity(1L, "○○○会社", "瀬川");
     UserEntity newUe = new UserEntity(1L, "xxx会社", "瀬川3");
     given(userRepository.findById(ue.getUserid())).willReturn(Optional.of(ue));
-    userServiceImpl.update(ue.getUserid(), newUe.getCompanyname(), newUe.getUsername());
+    userServiceImpl.update(ue.getUserid(), newUe.getCompanyName(), newUe.getUserName());
     assertThatThrownBy(() -> {
       userServiceImpl.findById(99L);
     }).isInstanceOf(UserEntityNotFoundException.class);

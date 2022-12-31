@@ -17,12 +17,12 @@ public class ScheduleEntity {
   int userid;
 
   @JsonFormat(pattern = "yyyy-MM-dd")
-  LocalDate workingdate;
+  LocalDate workingDate;
 
   String place;
 
-  String workcontent;
+  String workContent;
 
-  int numberofpeople;
+  int numberOfPeople;
 
 }

@@ -1,4 +1,4 @@
-package com.example.businessmanagement2.service.Schedule;
+package com.example.businessmanagement2.service.schedule;
 
 import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.repository.schedule.ScheduleRepository;
@@ -26,22 +26,22 @@ public class ScheduleServiceImpl implements ScheduleService {
   }
 
   @Override
-  public ScheduleEntity create(int userId, LocalDate workingdate, String place,
-      String workcontent, int numberofpeople) {
-    var entity = new ScheduleEntity(null, userId, workingdate, place,
-        workcontent, numberofpeople);
+  public ScheduleEntity create(int userId, LocalDate workingDate, String place,
+      String workContent, int numberOfPeople) {
+    var entity = new ScheduleEntity(null, userId, workingDate, place,
+        workContent, numberOfPeople);
     scheduleRepository.create(entity);
-    return new ScheduleEntity(entity.getScheduleid(), entity.getUserid(), entity.getWorkingdate(),
-        entity.getPlace(), entity.getWorkcontent(), entity.getNumberofpeople());
+    return new ScheduleEntity(entity.getScheduleid(), entity.getUserid(), entity.getWorkingDate(),
+        entity.getPlace(), entity.getWorkContent(), entity.getNumberOfPeople());
   }
 
   @Override
-  public ScheduleEntity update(Long scheduleId, int userId, LocalDate workingdate, String place,
-      String workcontent, int numberofpeople) {
+  public ScheduleEntity update(Long scheduleId, int userId, LocalDate workingDate, String place,
+      String workContent, int numberOfPeople) {
     scheduleRepository.findById(scheduleId)
         .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
-    scheduleRepository.update(new ScheduleEntity(scheduleId, userId, workingdate, place,
-        workcontent, numberofpeople));
+    scheduleRepository.update(new ScheduleEntity(scheduleId, userId, workingDate, place,
+        workContent, numberOfPeople));
     return findById(scheduleId);
   }
 

@@ -9,9 +9,9 @@ public interface UserService {
 
   List<UserEntity> findUserList();
 
-  UserEntity create(String companyname, String username);
+  UserEntity create(String companyName, String userName);
 
-  UserEntity update(Long userId, String companyname, String username);
+  UserEntity update(Long userId, String companyName, String userName);
 
   void delete(Long userId);
 

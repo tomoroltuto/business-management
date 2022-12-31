@@ -13,10 +13,10 @@ public class UserForm {
 
   @NotBlank
   @Size(min = 1, max = 256)
-  private String companyname;
+  private String companyName;
 
   @NotBlank
   @Size(min = 1, max = 256)
-  private String username;
+  private String userName;
 
 }

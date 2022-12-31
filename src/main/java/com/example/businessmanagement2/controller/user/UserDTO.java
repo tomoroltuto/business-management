@@ -10,8 +10,8 @@ public class UserDTO {
 
   long id;
 
-  String companyname;
+  String companyName;
 
-  String username;
+  String userName;
 
 }

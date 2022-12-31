@@ -206,8 +206,8 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新に成功すると200とレスポンスメッセージを返すこと() throws Exception {
 
     UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("XX会社");
-    uf.setUsername("瀬川3");
+    uf.setCompanyName("XX会社");
+    uf.setUserName("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -229,8 +229,8 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
 
     UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("XX会社");
-    uf.setUsername("瀬川3");
+    uf.setCompanyName("XX会社");
+    uf.setUserName("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -253,8 +253,8 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
 
     UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("XX会社");
-    uf.setUsername(null);
+    uf.setCompanyName("XX会社");
+    uf.setUserName(null);
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -283,7 +283,7 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
 
     UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyname("""
+    uf.setCompanyName("""
         あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
         あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
         あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
@@ -292,7 +292,7 @@ public class UserRestApiIntegrationTest {
         あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
         あいうえおあいうえおあいうえおあいうえおあい
         """);
-    uf.setUsername("瀬川3");
+    uf.setUserName("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);

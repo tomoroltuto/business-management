@@ -14,9 +14,9 @@ public class UserSchedule {
 
   Long userid;
 
-  String companyname;
+  String companyName;
 
-  String username;
+  String userName;
 
   List<ScheduleEntity> scheduleEntitys;
 

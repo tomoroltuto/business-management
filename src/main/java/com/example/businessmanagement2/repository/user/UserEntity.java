@@ -10,8 +10,8 @@ public class UserEntity {
 
   Long userid;
 
-  String companyname;
+  String companyName;
 
-  String username;
+  String userName;
 
 }
