@@ -3,6 +3,7 @@ package com.example.businessmanagement2.controller.userschedule;
 
 import com.example.businessmanagement2.repository.userschedule.UserSchedule;
 import com.example.businessmanagement2.service.userschedule.UserScheduleService;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class UserScheduleController {
     var entityList = userScheduleService.findUserScheduleList();
     var dtoList = entityList.stream().map(UserScheduleController::toUserScheduleDTO)
         .collect(Collectors.toList());
-    var dto = new UserScheduleListDTO();
+    var dto = new UserScheduleListDTO(new ArrayList<>());
     dto.setResults(dtoList);
     return ResponseEntity.ok(dto);
   }
