@@ -28,10 +28,7 @@ jobs:
           arguments: test
       - name: upload artifact test content
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: test content
           path: build/reports/tests/test/index.html
-
-
-
-
