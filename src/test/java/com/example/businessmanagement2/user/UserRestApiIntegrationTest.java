@@ -206,8 +206,6 @@ public class UserRestApiIntegrationTest {
   void ユーザー更新に成功すると200とレスポンスメッセージを返すこと() throws Exception {
 
     UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyName("XX会社");
-    uf.setUserName("瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -228,9 +226,7 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時に該当するIDのユーザーがいないときエラーメッセージを返すこと() throws Exception {
 
-    UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyName("XX会社");
-    uf.setUserName("瀬川3");
+    UserForm uf = new UserForm("XX会社", "瀬川3");
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -252,9 +248,7 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時空文字nullの場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyName("XX会社");
-    uf.setUserName(null);
+    UserForm uf = new UserForm("XX会社", null);
 
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
@@ -282,18 +276,15 @@ public class UserRestApiIntegrationTest {
   @Transactional
   void ユーザー更新時文字数が256文字以上の場合エラーメッセージを返すこと() throws Exception {
 
-    UserForm uf = new UserForm("〇〇会社", "瀬川1");
-    uf.setCompanyName("""
-        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-        あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-        あいうえおあいうえおあいうえおあいうえおあい
-        """);
-    uf.setUserName("瀬川3");
-
+    UserForm uf = new UserForm("""
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+          あいうえおあいうえおあいうえおあいうえおあい                                    
+        """, "瀬川3");
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(uf);
 

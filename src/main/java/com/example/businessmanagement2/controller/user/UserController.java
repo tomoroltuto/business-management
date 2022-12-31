@@ -3,6 +3,7 @@ package com.example.businessmanagement2.controller.user;
 import com.example.businessmanagement2.repository.user.UserEntity;
 import com.example.businessmanagement2.service.user.UserService;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +26,6 @@ public class UserController {
   private static UserDTO toUserDTO(UserEntity userEntity) {
     var userDTO = new UserDTO(userEntity.getUserId(), userEntity.getCompanyName(),
         userEntity.getUserName());
-    userDTO.setUserId(userEntity.getUserId());
-    userDTO.setCompanyName(userEntity.getCompanyName());
-    userDTO.setUserName(userEntity.getUserName());
     return userDTO;
   }
 
@@ -45,8 +43,7 @@ public class UserController {
         .stream()
         .map(UserController::toUserDTO)
         .collect(Collectors.toList());
-    var dto = new UserListDTO();
-    dto.setResults(dtoList);
+    var dto = new UserListDTO(new ArrayList<>(dtoList));
     return ResponseEntity.ok(dto);
   }
 
@@ -58,8 +55,7 @@ public class UserController {
         .path("users/" + ur.getUserId())
         .build()
         .toUri();
-    var urm = new UserResponseMessage();
-    urm.setMessage("ユーザーを登録しました");
+    var urm = new UserResponseMessage("ユーザーを登録しました");
     return ResponseEntity.created(url).body(urm);
   }
 
@@ -68,8 +64,7 @@ public class UserController {
   public ResponseEntity<UserResponseMessage> updateUser(@PathVariable("id") Long userId,
       @RequestBody @Validated UserForm form) {
     userService.update(userId, form.getCompanyName(), form.getUserName());
-    var urm = new UserResponseMessage();
-    urm.setMessage("ユーザーを更新しました");
+    var urm = new UserResponseMessage("ユーザーを更新しました");
     return ResponseEntity.ok(urm);
   }
 

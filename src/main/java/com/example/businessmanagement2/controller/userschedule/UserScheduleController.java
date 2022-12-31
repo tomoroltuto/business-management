@@ -22,10 +22,6 @@ public class UserScheduleController {
     var UserScheduleDTO = new UserScheduleDTO(userSchedule.getUserId(),
         userSchedule.getCompanyName(), userSchedule.getUserName(),
         userSchedule.getScheduleEntities());
-    UserScheduleDTO.setUserId(userSchedule.getUserId());
-    UserScheduleDTO.setCompanyName(userSchedule.getCompanyName());
-    UserScheduleDTO.setUserName(userSchedule.getUserName());
-    UserScheduleDTO.setScheduleEntities(userSchedule.getScheduleEntities());
     return UserScheduleDTO;
   }
 
@@ -41,8 +37,7 @@ public class UserScheduleController {
     var entityList = userScheduleService.findUserScheduleList();
     var dtoList = entityList.stream().map(UserScheduleController::toUserScheduleDTO)
         .collect(Collectors.toList());
-    var dto = new UserScheduleListDTO(new ArrayList<>());
-    dto.setResults(dtoList);
+    var dto = new UserScheduleListDTO(new ArrayList<>(dtoList));
     return ResponseEntity.ok(dto);
   }
 }

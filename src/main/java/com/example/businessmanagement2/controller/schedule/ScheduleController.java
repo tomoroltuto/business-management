@@ -3,6 +3,7 @@ package com.example.businessmanagement2.controller.schedule;
 import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.service.schedule.ScheduleService;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +27,6 @@ public class ScheduleController {
     var scheduleDTO = new ScheduleDTO(scheduleEntity.getScheduleId(), scheduleEntity.getUserId(),
         scheduleEntity.getWorkingDate(), scheduleEntity.getPlace(), scheduleEntity.getWorkContent(),
         scheduleEntity.getNumberOfPeople());
-    scheduleDTO.setScheduleId(scheduleEntity.getScheduleId());
-    scheduleDTO.setUserId(scheduleEntity.getUserId());
-    scheduleDTO.setWorkingDate(scheduleEntity.getWorkingDate());
-    scheduleDTO.setPlace(scheduleEntity.getPlace());
-    scheduleDTO.setWorkContent(scheduleDTO.getWorkContent());
-    scheduleDTO.setNumberOfPeople(scheduleDTO.getNumberOfPeople());
     return scheduleDTO;
   }
 
@@ -47,8 +42,7 @@ public class ScheduleController {
     var entityList = scheduleService.findScheduleList();
     var dtoList = entityList.stream().map(ScheduleController::toScheduleDTO)
         .collect(Collectors.toList());
-    var dto = new ScheduleListDTO();
-    dto.setResults(dtoList);
+    var dto = new ScheduleListDTO(new ArrayList<>(dtoList));
     return ResponseEntity.ok(dto);
   }
 
@@ -58,8 +52,7 @@ public class ScheduleController {
     ScheduleEntity se = scheduleService.create(form.getUserId(), form.getWorkingDate(),
         form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
     URI uri = uriBuilder.path("schedules/" + se.getScheduleId()).build().toUri();
-    var srm = new ScheduleResponseMassage();
-    srm.setMessage("作業予定を登録しました");
+    var srm = new ScheduleResponseMassage("作業予定を登録しました");
     return ResponseEntity.created(uri).body(srm);
   }
 
@@ -68,8 +61,7 @@ public class ScheduleController {
       @PathVariable("id") Long scheduleId, @RequestBody @Validated ScheduleForm form) {
     scheduleService.update(scheduleId, form.getUserId(), form.getWorkingDate(),
         form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
-    var srm = new ScheduleResponseMassage();
-    srm.setMessage("作業予定を更新しました");
+    var srm = new ScheduleResponseMassage("作業予定を更新しました");
     return ResponseEntity.ok(srm);
   }
 
