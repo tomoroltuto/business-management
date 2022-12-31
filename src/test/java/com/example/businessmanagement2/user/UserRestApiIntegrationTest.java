@@ -65,7 +65,7 @@ public class UserRestApiIntegrationTest {
                 {
                     "id": 3,
                     "companyname": "xxx会社",
-                    "username": "瀬川2"
+                    "username": "瀬川3"
                 }
             ]
         }

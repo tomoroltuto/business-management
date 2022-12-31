@@ -30,7 +30,7 @@ public class UserRepositoryTest {
   @Transactional
   void すべてのユーザーが取得できること() {
     List<UserEntity> users = userRepository.findUserList();
-    assertThat(users).hasSize(2)
+    assertThat(users).hasSize(3)
         .contains(
             new UserEntity(1L, "○○○会社", "瀬川"),
             new UserEntity(2L, "△△△会社", "瀬川2"),
@@ -79,6 +79,6 @@ public class UserRepositoryTest {
   public void 指定したデーターを1件削除できること() {
     userRepository.delete(1L);
     List<UserEntity> actual = userRepository.findUserList();
-    assertThat(actual).hasSize(1);
+    assertThat(actual).hasSize(2);
   }
 }
