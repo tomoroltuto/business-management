@@ -5,6 +5,6 @@ properties:
   caseSensitiveTableNames: false
 caseInsensitiveStrategy: LOWERCASE
 connectionConfig:
-  url: "jdbc:mysql://localhost:3307/date_calculation"
+  url: "jdbc:mysql://localhost:3307/business_management"
   user: "user"
   password: "password"
