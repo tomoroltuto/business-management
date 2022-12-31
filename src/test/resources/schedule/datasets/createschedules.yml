@@ -7,7 +7,7 @@ users:
     user_name: "瀬川2"
   - user_id: 3
     company_name: "xxx会社"
-    user_name: "瀬川2"
+    user_name: "瀬川3"
 
 schedules:
   - schedule_id: 1

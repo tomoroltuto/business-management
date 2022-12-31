@@ -83,7 +83,7 @@ public class UserScheduleApiIntegrationTest {
                   {
                       "userid": 3,
                       "companyname": "xxx会社",
-                      "username": "瀬川2",
+                      "username": "瀬川3",
                       "scheduleEntitys": [
                           {
                               "scheduleid": 4,
