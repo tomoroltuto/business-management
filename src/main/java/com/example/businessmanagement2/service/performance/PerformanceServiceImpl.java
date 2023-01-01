@@ -30,9 +30,7 @@ public class PerformanceServiceImpl implements PerformanceService {
     var entity = new PerformanceEntity(null, userId, workingDate, place,
         workContent, numberOfPeople);
     performanceRepository.create(entity);
-    return new PerformanceEntity(entity.getPerformanceId(), entity.getUserId(),
-        entity.getWorkingDate(),
-        entity.getPlace(), entity.getWorkContent(), entity.getNumberOfPeople());
+    return entity;
   }
 
   @Override
