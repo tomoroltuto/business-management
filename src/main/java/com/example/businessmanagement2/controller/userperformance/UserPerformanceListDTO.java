@@ -1,5 +1,6 @@
-package com.example.businessmanagement2.controller.advice;
+package com.example.businessmanagement2.controller.userperformance;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,10 +10,8 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class InvalidParam {
+public class UserPerformanceListDTO {
 
-  private String name;
-
-  private String reason;
+  List<UserPerformanceDTO> results;
 
 }

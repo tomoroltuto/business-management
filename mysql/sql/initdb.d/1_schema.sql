@@ -1,4 +1,4 @@
-  DROP TABLE IF EXISTS users, schedules;
+  DROP TABLE IF EXISTS users, schedules, performances;
 
   CREATE TABLE users (
     user_id INT NOT NULL AUTO_INCREMENT,
@@ -15,5 +15,16 @@
     work_content VARCHAR(256) NOT NULL,
     number_of_people INT NOT NULL,
     PRIMARY KEY(schedule_id),
+    FOREIGN KEY (user_id) REFERENCES users (user_id)  ON DELETE CASCADE
+  );
+
+  CREATE TABLE performances(
+    performance_id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    working_date DATE NOT NULL,
+    place VARCHAR(256),
+    work_content VARCHAR(256) NOT NULL,
+    number_of_people INT NOT NULL,
+    PRIMARY KEY(performance_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id)  ON DELETE CASCADE
   );

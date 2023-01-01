@@ -1,4 +1,4 @@
-package com.example.businessmanagement2.controller.advice;
+package com.example.businessmanagement2.controller.performance;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,10 +9,8 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class InvalidParam {
+public class PerformanceResponseMassage {
 
-  private String name;
-
-  private String reason;
+  private String message;
 
 }

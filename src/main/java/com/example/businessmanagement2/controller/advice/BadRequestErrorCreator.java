@@ -1,5 +1,6 @@
 package com.example.businessmanagement2.controller.advice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,15 +14,12 @@ public class BadRequestErrorCreator {
         ex.getFieldErrors()
             .stream()
             .map(BadRequestErrorCreator::createInvalidParam));
-    var error = new BadRequestError();
-    error.setInvalidParams(invalidParamList);
+    var error = new BadRequestError("Bad Request", "リクエストが不正です。正しいリクエストでリトライしてください", new ArrayList<>(invalidParamList));
     return error;
   }
 
   private static InvalidParam createInvalidParam(FieldError fieldError) {
-    var invalidParam = new InvalidParam();
-    invalidParam.setName(fieldError.getField());
-    invalidParam.setReason(fieldError.getDefaultMessage());
+    var invalidParam = new InvalidParam(fieldError.getField(), fieldError.getDefaultMessage());
     return invalidParam;
   }
 

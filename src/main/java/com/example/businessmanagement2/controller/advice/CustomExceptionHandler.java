@@ -1,5 +1,6 @@
 package com.example.businessmanagement2.controller.advice;
 
+import com.example.businessmanagement2.service.performance.PerformanceEntityNotFoundException;
 import com.example.businessmanagement2.service.schedule.ScheduleEntityNotFoundException;
 import com.example.businessmanagement2.service.user.UserEntityNotFoundException;
 import org.springframework.http.HttpHeaders;
@@ -17,8 +18,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(UserEntityNotFoundException.class)
   public ResponseEntity<ResourceNotFoundError> handleUserEntityNotFoundException(
       UserEntityNotFoundException e) {
-    var error = new ResourceNotFoundError();
-    error.setDetail(e.getMessage());
+    var error = new ResourceNotFoundError("Resource Not Found", e.getMessage());
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
   }
@@ -26,8 +26,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(ScheduleEntityNotFoundException.class)
   public ResponseEntity<ResourceNotFoundError> handleScheduleEntityNotFoundException(
       ScheduleEntityNotFoundException e) {
-    var error = new ResourceNotFoundError();
-    error.setDetail(e.getMessage());
+    var error = new ResourceNotFoundError("Resource Not Found", e.getMessage());
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+  }
+
+  @ExceptionHandler(PerformanceEntityNotFoundException.class)
+  public ResponseEntity<ResourceNotFoundError> handlePerformanceEntityNotFoundException(
+      PerformanceEntityNotFoundException e) {
+    var error = new ResourceNotFoundError("Resource Not Found", e.getMessage());
 
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
   }
