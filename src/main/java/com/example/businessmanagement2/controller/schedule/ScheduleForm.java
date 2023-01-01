@@ -8,7 +8,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -24,18 +23,12 @@ public class ScheduleForm {
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @JsonFormat(pattern = "yyyy-MM-dd")
-  @FutureOrPresent
-  LocalDate workingDate;
+  @FutureOrPresent LocalDate workingDate;
 
-  @Size(max = 256)
-  String place;
+  @Size(max = 256) String place;
 
-  @NotBlank
-  @Size(max = 256)
-  String workContent;
+  @NotBlank @Size(max = 256) String workContent;
 
-  @Min(1)
-  @Max(200)
-  int numberOfPeople;
+  @Min(1) @Max(200) int numberOfPeople;
 
 }

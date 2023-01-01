@@ -10,3 +10,4 @@ public interface UserScheduleService {
   List<UserSchedule> findUserScheduleList();
 
 }
+

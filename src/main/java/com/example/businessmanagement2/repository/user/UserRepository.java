@@ -17,3 +17,4 @@ public interface UserRepository {
 
   void delete(Long userId);
 }
+

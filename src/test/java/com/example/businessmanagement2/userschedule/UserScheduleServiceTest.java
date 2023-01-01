@@ -50,12 +50,11 @@ public class UserScheduleServiceTest {
   @Test
   public void 存在するユーザーと作業予定IDを指定したとき正常にユーザーと作業予定が返されること() {
     doReturn(Optional.of(new UserSchedule(2L, "△△△会社", "瀬川２",
-        List.of(new ScheduleEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5)))))
-        .when(userScheduleRepository).findById(2L);
+        List.of(new ScheduleEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5))))).when(
+        userScheduleRepository).findById(2L);
     UserSchedule actual = userScheduleServiceImpl.findById(2L);
-    assertThat(actual).isEqualTo(
-        new UserSchedule(2L, "△△△会社", "瀬川２",
-            List.of(new ScheduleEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5))));
+    assertThat(actual).isEqualTo(new UserSchedule(2L, "△△△会社", "瀬川２",
+        List.of(new ScheduleEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5))));
   }
 
   @Test

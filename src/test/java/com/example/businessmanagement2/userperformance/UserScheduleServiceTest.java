@@ -7,14 +7,10 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 import com.example.businessmanagement2.repository.performance.PerformanceEntity;
-import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.repository.userperformance.UserPerformance;
 import com.example.businessmanagement2.repository.userperformance.UserPerformanceRepository;
-import com.example.businessmanagement2.repository.userschedule.UserSchedule;
-import com.example.businessmanagement2.repository.userschedule.UserScheduleRepository;
 import com.example.businessmanagement2.service.user.UserEntityNotFoundException;
 import com.example.businessmanagement2.service.userperformance.UserPerformanceServiceImpl;
-import com.example.businessmanagement2.service.userschedule.UserScheduleServiceImpl;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +38,8 @@ public class UserScheduleServiceTest {
     UserPerformance.add(new UserPerformance(2L, "△△△会社", "瀬川２",
         List.of(new PerformanceEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5))));
     UserPerformance.add(new UserPerformance(2L, "△△△会社", "瀬川２",
-        List.of(new PerformanceEntity(3L, 2, LocalDate.of(2022, 12, 10), "3階トイレ２", "BOX取り付け", 2))));
+        List.of(
+            new PerformanceEntity(3L, 2, LocalDate.of(2022, 12, 10), "3階トイレ２", "BOX取り付け", 2))));
     UserPerformance.add(new UserPerformance(3L, "xxx会社", "瀬川２",
         List.of(new PerformanceEntity(4L, 3, LocalDate.of(2022, 12, 9), "4階洋室", "配管", 4))));
 
@@ -59,7 +56,8 @@ public class UserScheduleServiceTest {
     UserPerformance actual = userPerformanceServiceImpl.findById(2L);
     assertThat(actual).isEqualTo(
         new UserPerformance(2L, "△△△会社", "瀬川２",
-            List.of(new PerformanceEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5))));
+            List.of(
+                new PerformanceEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5))));
   }
 
   @Test

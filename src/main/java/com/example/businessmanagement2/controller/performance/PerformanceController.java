@@ -1,12 +1,6 @@
 package com.example.businessmanagement2.controller.performance;
 
-import com.example.businessmanagement2.controller.schedule.ScheduleController;
-import com.example.businessmanagement2.controller.schedule.ScheduleDTO;
-import com.example.businessmanagement2.controller.schedule.ScheduleForm;
-import com.example.businessmanagement2.controller.schedule.ScheduleListDTO;
-import com.example.businessmanagement2.controller.schedule.ScheduleResponseMassage;
 import com.example.businessmanagement2.repository.performance.PerformanceEntity;
-import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import com.example.businessmanagement2.service.performance.PerformanceService;
 import java.net.URI;
 import java.util.ArrayList;
@@ -29,9 +23,10 @@ public class PerformanceController {
 
   private final PerformanceService performanceService;
 
-  private static PerformanceDTO toPerformanceDTO(PerformanceEntity performanceEntity){
-    var performanceDTO = new PerformanceDTO(performanceEntity.getPerformanceId(), performanceEntity.getUserId(),
-        performanceEntity.getWorkingDate(), performanceEntity.getPlace(), performanceEntity.getWorkContent(),
+  private static PerformanceDTO toPerformanceDTO(PerformanceEntity performanceEntity) {
+    var performanceDTO = new PerformanceDTO(performanceEntity.getPerformanceId(),
+        performanceEntity.getUserId(), performanceEntity.getWorkingDate(),
+        performanceEntity.getPlace(), performanceEntity.getWorkContent(),
         performanceEntity.getNumberOfPeople());
     return performanceDTO;
   }

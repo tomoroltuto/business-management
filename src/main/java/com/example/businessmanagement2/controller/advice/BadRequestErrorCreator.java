@@ -11,10 +11,9 @@ public class BadRequestErrorCreator {
 
   public static BadRequestError from(MethodArgumentNotValidException ex) {
     var invalidParamList = createInvalidParamList(
-        ex.getFieldErrors()
-            .stream()
-            .map(BadRequestErrorCreator::createInvalidParam));
-    var error = new BadRequestError("Bad Request", "リクエストが不正です。正しいリクエストでリトライしてください", new ArrayList<>(invalidParamList));
+        ex.getFieldErrors().stream().map(BadRequestErrorCreator::createInvalidParam));
+    var error = new BadRequestError("Bad Request", "リクエストが不正です。正しいリクエストでリトライしてください",
+        new ArrayList<>(invalidParamList));
     return error;
   }
 

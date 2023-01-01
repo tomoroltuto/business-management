@@ -31,11 +31,8 @@ public class UserRepositoryTest {
   void すべてのユーザーが取得できること() {
     List<UserEntity> users = userRepository.findUserList();
     assertThat(users).hasSize(3)
-        .contains(
-            new UserEntity(1L, "○○○会社", "瀬川"),
-            new UserEntity(2L, "△△△会社", "瀬川2"),
-            new UserEntity(3L, "xxx会社", "瀬川3")
-        );
+        .contains(new UserEntity(1L, "○○○会社", "瀬川"), new UserEntity(2L, "△△△会社", "瀬川2"),
+            new UserEntity(3L, "xxx会社", "瀬川3"));
   }
 
   @Test

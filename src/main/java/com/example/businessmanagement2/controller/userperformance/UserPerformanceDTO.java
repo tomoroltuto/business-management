@@ -2,7 +2,6 @@ package com.example.businessmanagement2.controller.userperformance;
 
 
 import com.example.businessmanagement2.repository.performance.PerformanceEntity;
-import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

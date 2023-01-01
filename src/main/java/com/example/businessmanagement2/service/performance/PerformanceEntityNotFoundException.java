@@ -1,6 +1,6 @@
 package com.example.businessmanagement2.service.performance;
 
-public class PerformanceEntityNotFoundException extends RuntimeException{
+public class PerformanceEntityNotFoundException extends RuntimeException {
 
   private final long performanceId;
 

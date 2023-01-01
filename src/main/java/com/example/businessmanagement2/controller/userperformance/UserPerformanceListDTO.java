@@ -15,3 +15,4 @@ public class UserPerformanceListDTO {
   List<UserPerformanceDTO> results;
 
 }
+

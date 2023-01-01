@@ -12,3 +12,4 @@ public class UserEntityNotFoundException extends RuntimeException {
     this.userId = userId;
   }
 }
+

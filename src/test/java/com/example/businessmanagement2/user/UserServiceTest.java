@@ -43,8 +43,7 @@ public class UserServiceTest {
 
   @Test
   public void 存在するユーザのIDを指定したとき正常にユーザーが返されること() {
-    doReturn(Optional.of(new UserEntity(1L, "○○○会社", "瀬川")))
-        .when(userRepository).findById(1);
+    doReturn(Optional.of(new UserEntity(1L, "○○○会社", "瀬川"))).when(userRepository).findById(1);
     UserEntity actual = userServiceImpl.findById(1L);
     assertThat(actual).isEqualTo(new UserEntity(1L, "○○○会社", "瀬川"));
   }

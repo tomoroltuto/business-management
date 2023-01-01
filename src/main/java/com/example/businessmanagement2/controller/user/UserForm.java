@@ -4,7 +4,6 @@ package com.example.businessmanagement2.controller.user;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -25,3 +24,4 @@ public class UserForm {
   private String userName;
 
 }
+

@@ -19,3 +19,4 @@ public interface ScheduleRepository {
   void delete(Long scheduleId);
 
 }
+

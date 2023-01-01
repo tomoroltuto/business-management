@@ -22,3 +22,4 @@
   values (3, 2, '2022-12-10', '3階トイレ２', 'BOX取り付け', 2);
   INSERT INTO performances (performance_id, user_id, working_date, place, work_content, number_of_people)
   values (4, 3, '2022-12-09', '4階洋室', '配管', 4);
+

@@ -10,12 +10,10 @@ public interface PerformanceService {
 
   List<PerformanceEntity> findPerformanceList();
 
-  PerformanceEntity create(
-      int userId, LocalDate workingDate, String place,
-      String workContent, int numberOfPeople);
+  PerformanceEntity create(int userId, LocalDate workingDate, String place, String workContent,
+      int numberOfPeople);
 
-  PerformanceEntity update(
-      Long performanceId, int userId, LocalDate workingDate, String place,
+  PerformanceEntity update(Long performanceId, int userId, LocalDate workingDate, String place,
       String workContent, int numberOfPeople);
 
   void delete(Long performanceId);

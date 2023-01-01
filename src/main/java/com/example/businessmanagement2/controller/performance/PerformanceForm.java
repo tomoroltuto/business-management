@@ -22,17 +22,12 @@ public class PerformanceForm {
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @JsonFormat(pattern = "yyyy-MM-dd")
-  @PastOrPresent
-  LocalDate workingDate;
+  @PastOrPresent LocalDate workingDate;
 
-  @Size(max = 256)
-  String place;
+  @Size(max = 256) String place;
 
-  @NotBlank
-  @Size(max = 256)
-  String workContent;
+  @NotBlank @Size(max = 256) String workContent;
 
-  @Max(200)
-  int numberOfPeople;
+  @Max(200) int numberOfPeople;
 
 }

@@ -10,3 +10,4 @@ public class ScheduleEntityNotFoundException extends RuntimeException {
   }
 
 }
+

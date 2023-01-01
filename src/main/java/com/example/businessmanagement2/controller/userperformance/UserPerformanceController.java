@@ -2,9 +2,7 @@ package com.example.businessmanagement2.controller.userperformance;
 
 
 import com.example.businessmanagement2.repository.userperformance.UserPerformance;
-import com.example.businessmanagement2.repository.userschedule.UserSchedule;
 import com.example.businessmanagement2.service.userperformance.UserPerformanceService;
-import com.example.businessmanagement2.service.userschedule.UserScheduleService;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;

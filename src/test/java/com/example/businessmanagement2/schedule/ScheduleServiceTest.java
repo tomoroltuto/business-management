@@ -114,3 +114,4 @@ public class ScheduleServiceTest {
     }).isInstanceOf(ScheduleEntityNotFoundException.class);
   }
 }
+

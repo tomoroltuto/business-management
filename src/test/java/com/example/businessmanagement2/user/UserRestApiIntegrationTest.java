@@ -330,3 +330,4 @@ public class UserRestApiIntegrationTest {
         """, response, JSONCompareMode.STRICT);
   }
 }
+

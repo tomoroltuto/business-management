@@ -59,8 +59,8 @@ public class ScheduleController {
   @PatchMapping("/schedules/{id}")
   private ResponseEntity<ScheduleResponseMassage> updateSchedule(
       @PathVariable("id") Long scheduleId, @RequestBody @Validated ScheduleForm form) {
-    scheduleService.update(scheduleId, form.getUserId(), form.getWorkingDate(),
-        form.getPlace(), form.getWorkContent(), form.getNumberOfPeople());
+    scheduleService.update(scheduleId, form.getUserId(), form.getWorkingDate(), form.getPlace(),
+        form.getWorkContent(), form.getNumberOfPeople());
     var srm = new ScheduleResponseMassage("作業予定を更新しました");
     return ResponseEntity.ok(srm);
   }

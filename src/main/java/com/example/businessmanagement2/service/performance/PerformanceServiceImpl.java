@@ -2,7 +2,6 @@ package com.example.businessmanagement2.service.performance;
 
 import com.example.businessmanagement2.repository.performance.PerformanceEntity;
 import com.example.businessmanagement2.repository.performance.PerformanceRepository;
-import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PerformanceServiceImpl implements PerformanceService{
+public class PerformanceServiceImpl implements PerformanceService {
 
   private final PerformanceRepository performanceRepository;
 
@@ -31,7 +30,8 @@ public class PerformanceServiceImpl implements PerformanceService{
     var entity = new PerformanceEntity(null, userId, workingDate, place,
         workContent, numberOfPeople);
     performanceRepository.create(entity);
-    return new PerformanceEntity(entity.getPerformanceId(), entity.getUserId(), entity.getWorkingDate(),
+    return new PerformanceEntity(entity.getPerformanceId(), entity.getUserId(),
+        entity.getWorkingDate(),
         entity.getPlace(), entity.getWorkContent(), entity.getNumberOfPeople());
   }
 

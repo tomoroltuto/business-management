@@ -39,10 +39,7 @@ public class UserController {
   @GetMapping("/users")
   private ResponseEntity<UserListDTO> findUserList() {
     var entityList = userService.findUserList();
-    var dtoList = entityList
-        .stream()
-        .map(UserController::toUserDTO)
-        .collect(Collectors.toList());
+    var dtoList = entityList.stream().map(UserController::toUserDTO).collect(Collectors.toList());
     var dto = new UserListDTO(new ArrayList<>(dtoList));
     return ResponseEntity.ok(dto);
   }
@@ -51,10 +48,7 @@ public class UserController {
   private ResponseEntity<UserResponseMessage> createUser(@RequestBody @Validated UserForm form,
       UriComponentsBuilder uriBuilder) {
     UserEntity ur = userService.create(form.getCompanyName(), form.getUserName());
-    URI url = uriBuilder
-        .path("users/" + ur.getUserId())
-        .build()
-        .toUri();
+    URI url = uriBuilder.path("users/" + ur.getUserId()).build().toUri();
     var urm = new UserResponseMessage("ユーザーを登録しました");
     return ResponseEntity.created(url).body(urm);
   }
