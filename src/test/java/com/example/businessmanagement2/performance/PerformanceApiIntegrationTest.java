@@ -1,8 +1,10 @@
 package com.example.businessmanagement2.performance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
@@ -17,8 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @SpringBootTest
 @DataSet(value = "performance/datasets/performances.yml")
@@ -127,7 +127,7 @@ public class PerformanceApiIntegrationTest {
 
   @Test
   @Transactional
-  void 作業実績の登録に成功すると201とレスポンスメッセージを返すこと() throws Exception {
+  void 作業実績の登録に成功すると201とLocationヘッダーとレスポンスメッセージを返すこと() throws Exception {
     String response = mockMvc.perform(
             MockMvcRequestBuilders.post("/performances").contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -138,22 +138,16 @@ public class PerformanceApiIntegrationTest {
                             "workContent": "墨出し",
                             "numberOfPeople": "3"
                         }
-                    """)).andExpect(MockMvcResultMatchers.status().is(201)).andReturn().getResponse()
-        .getContentAsString(StandardCharsets.UTF_8);
+                    """))
+        .andExpect(MockMvcResultMatchers.status().is(201))
+        .andExpect(header().string("Location", "http://localhost/performances/5"))
+        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
           "message": "作業実績を登録しました"
         }
         """, response, JSONCompareMode.STRICT);
-  }
-
-  @Test
-  public void 作業実績の登録に成功するとLocationヘッダーの値が返ること() {
-    UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http")
-        .host("localhost:8080").path("performances/5").build().encode();
-
-    assertEquals("http://localhost%3A8080/performances/5", uriComponents.toUriString());
   }
 
   @Test
@@ -195,7 +189,7 @@ public class PerformanceApiIntegrationTest {
                       {
                           "userId": 3,
                           "workingDate": "2022-12-30",
-                          "place": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
+                          "place": repeat,
                           "workContent": "墨出し",
                           "numberOfPeople": "3"
                       }
