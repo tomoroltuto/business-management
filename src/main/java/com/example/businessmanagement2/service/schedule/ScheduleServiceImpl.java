@@ -40,7 +40,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
     scheduleRepository.update(
         new ScheduleEntity(scheduleId, userId, workingDate, place, workContent, numberOfPeople));
-    return findById(scheduleId);
+    return new ScheduleEntity();
   }
 
   @Override

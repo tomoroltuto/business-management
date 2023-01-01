@@ -40,7 +40,7 @@ public class PerformanceServiceImpl implements PerformanceService {
         .orElseThrow(() -> new PerformanceEntityNotFoundException(performanceId));
     performanceRepository.update(new PerformanceEntity(performanceId, userId, workingDate, place,
         workContent, numberOfPeople));
-    return findById(performanceId);
+    return new PerformanceEntity();
   }
 
   @Override

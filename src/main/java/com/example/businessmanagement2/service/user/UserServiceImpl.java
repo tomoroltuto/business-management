@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
   public UserEntity update(Long userId, String companyName, String userName) {
     userRepository.findById(userId).orElseThrow(() -> new UserEntityNotFoundException(userId));
     userRepository.update(new UserEntity(userId, companyName, userName));
-    return findById(userId);
+    return new UserEntity();
   }
 
   @Override
