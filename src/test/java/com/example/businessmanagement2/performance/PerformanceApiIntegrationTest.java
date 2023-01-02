@@ -303,7 +303,7 @@ public class PerformanceApiIntegrationTest {
                           "workContent": "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあい",
                           "numberOfPeople": "4"
                       }
-                    """.formatted(("あいうえお").repeat(52)))).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
+                    """)).andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn()
         .getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
