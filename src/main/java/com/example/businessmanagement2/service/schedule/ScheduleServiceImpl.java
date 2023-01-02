@@ -34,13 +34,12 @@ public class ScheduleServiceImpl implements ScheduleService {
   }
 
   @Override
-  public ScheduleEntity update(Long scheduleId, int userId, LocalDate workingDate, String place,
+  public void update(Long scheduleId, int userId, LocalDate workingDate, String place,
       String workContent, int numberOfPeople) {
     scheduleRepository.findById(scheduleId)
         .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
     scheduleRepository.update(
         new ScheduleEntity(scheduleId, userId, workingDate, place, workContent, numberOfPeople));
-    return new ScheduleEntity();
   }
 
   @Override

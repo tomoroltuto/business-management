@@ -13,7 +13,7 @@ public interface ScheduleService {
   ScheduleEntity create(int userId, LocalDate workingDate, String place, String workContent,
       int numberOfPeople);
 
-  ScheduleEntity update(Long scheduleId, int userId, LocalDate workingDate, String place,
+  void update(Long scheduleId, int userId, LocalDate workingDate, String place,
       String workContent, int numberOfPeople);
 
   void delete(Long scheduleId);

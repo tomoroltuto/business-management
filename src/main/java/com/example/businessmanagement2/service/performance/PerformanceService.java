@@ -13,7 +13,7 @@ public interface PerformanceService {
   PerformanceEntity create(int userId, LocalDate workingDate, String place, String workContent,
       int numberOfPeople);
 
-  PerformanceEntity update(Long performanceId, int userId, LocalDate workingDate, String place,
+  void update(Long performanceId, int userId, LocalDate workingDate, String place,
       String workContent, int numberOfPeople);
 
   void delete(Long performanceId);

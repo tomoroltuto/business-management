@@ -30,10 +30,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserEntity update(Long userId, String companyName, String userName) {
+  public void update(Long userId, String companyName, String userName) {
     userRepository.findById(userId).orElseThrow(() -> new UserEntityNotFoundException(userId));
     userRepository.update(new UserEntity(userId, companyName, userName));
-    return new UserEntity();
   }
 
   @Override

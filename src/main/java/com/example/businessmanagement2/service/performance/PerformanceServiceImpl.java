@@ -34,13 +34,12 @@ public class PerformanceServiceImpl implements PerformanceService {
   }
 
   @Override
-  public PerformanceEntity update(Long performanceId, int userId, LocalDate workingDate,
+  public void update(Long performanceId, int userId, LocalDate workingDate,
       String place, String workContent, int numberOfPeople) {
     performanceRepository.findById(performanceId)
         .orElseThrow(() -> new PerformanceEntityNotFoundException(performanceId));
     performanceRepository.update(new PerformanceEntity(performanceId, userId, workingDate, place,
         workContent, numberOfPeople));
-    return new PerformanceEntity();
   }
 
   @Override
