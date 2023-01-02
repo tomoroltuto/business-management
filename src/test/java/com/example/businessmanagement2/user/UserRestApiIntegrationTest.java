@@ -2,6 +2,7 @@ package com.example.businessmanagement2.user;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
 import com.example.businessmanagement2.controller.user.UserForm;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -113,7 +114,7 @@ public class UserRestApiIntegrationTest {
 
   @Test
   @Transactional
-  void ユーザー登録に成功すると201とレスポンスメッセージを返すこと() throws Exception {
+  void ユーザー登録に成功すると201とLocationヘッダーとレスポンスメッセージを返すこと() throws Exception {
     UserForm uf = new UserForm("yyy会社", "瀬川4");
 
     ObjectMapper objectMapper = new ObjectMapper();
@@ -121,22 +122,15 @@ public class UserRestApiIntegrationTest {
 
     String response = mockMvc.perform(
             MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
-        .andExpect(MockMvcResultMatchers.status().is(201)).andReturn().getResponse()
-        .getContentAsString(StandardCharsets.UTF_8);
+        .andExpect(MockMvcResultMatchers.status().is(201))
+        .andExpect(header().string("Location", "http://localhost/users/4"))
+        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
           "message": "ユーザーを登録しました"
         }
         """, response, JSONCompareMode.STRICT);
-  }
-
-  @Test
-  public void ユーザー登録に成功するとLocationヘッダーの値が返ること() {
-    UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http")
-        .host("localhost:8080").path("users/4").build().encode();
-
-    assertEquals("http://localhost%3A8080/users/4", uriComponents.toUriString());
   }
 
   @Test

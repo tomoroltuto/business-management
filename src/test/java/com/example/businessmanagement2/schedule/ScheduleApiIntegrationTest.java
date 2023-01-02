@@ -1,6 +1,7 @@
 package com.example.businessmanagement2.schedule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.spring.api.DBRider;
@@ -127,7 +128,7 @@ public class ScheduleApiIntegrationTest {
 
   @Test
   @Transactional
-  void 作業予定の登録に成功すると201とレスポンスメッセージを返すこと() throws Exception {
+  void 作業予定の登録に成功すると201とLocationヘッダーtとレスポンスメッセージを返すこと() throws Exception {
     String response = mockMvc.perform(
             MockMvcRequestBuilders.post("/schedules").contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -138,22 +139,16 @@ public class ScheduleApiIntegrationTest {
                             "workContent": "墨出し",
                             "numberOfPeople": "3"
                         }
-                    """)).andExpect(MockMvcResultMatchers.status().is(201)).andReturn().getResponse()
-        .getContentAsString(StandardCharsets.UTF_8);
+                    """))
+        .andExpect(MockMvcResultMatchers.status().is(201))
+        .andExpect(header().string("Location", "http://localhost/schedules/5"))
+        .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         {
           "message": "作業予定を登録しました"
         }
         """, response, JSONCompareMode.STRICT);
-  }
-
-  @Test
-  public void 作業予定の登録に成功するとLocationヘッダーの値が返ること() {
-    UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("http")
-        .host("localhost:8080").path("schedules/5").build().encode();
-
-    assertEquals("http://localhost%3A8080/schedules/5", uriComponents.toUriString());
   }
 
   @Test
