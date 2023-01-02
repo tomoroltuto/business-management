@@ -123,7 +123,7 @@ public class UserRestApiIntegrationTest {
     String response = mockMvc.perform(
             MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
         .andExpect(MockMvcResultMatchers.status().is(201))
-        .andExpect(header().string("Location", "http://localhost/users/4"))
+        .andExpect(header().string("Location", "http://localhost/users/5"))
         .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
