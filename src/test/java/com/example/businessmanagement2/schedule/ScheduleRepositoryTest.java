@@ -29,14 +29,11 @@ public class ScheduleRepositoryTest {
   @Transactional
   void すべての作業予定が取得できること() {
     List<ScheduleEntity> schedules = scheduleRepository.findScheduleList();
-    assertThat(schedules)
-        .hasSize(4)
-        .contains(
-            new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 6), "4階トイレ", "墨出し", 3),
+    assertThat(schedules).hasSize(4)
+        .contains(new ScheduleEntity(1L, 1, LocalDate.of(2022, 12, 6), "4階トイレ", "墨出し", 3),
             new ScheduleEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5),
             new ScheduleEntity(3L, 2, LocalDate.of(2022, 12, 10), "3階トイレ２", "BOX取り付け", 2),
-            new ScheduleEntity(4L, 3, LocalDate.of(2022, 12, 9), "4階洋室", "配管", 4)
-        );
+            new ScheduleEntity(4L, 3, LocalDate.of(2022, 12, 9), "4階洋室", "配管", 4));
   }
 
   @Test
@@ -59,7 +56,8 @@ public class ScheduleRepositoryTest {
   @ExpectedDataSet(value = "schedule/datasets/createschedules.yml", ignoreCols = "schedule_id")
   @Transactional
   public void 作業予定を新規登録できること() {
-    ScheduleEntity se = new ScheduleEntity(null, 3, LocalDate.of(2022, 12, 30), "5階洋室", "墨出し", 5);
+    ScheduleEntity se = new ScheduleEntity(null, 3, LocalDate.of(2022, 12, 30), "5階洋室", "墨出し",
+        5);
     scheduleRepository.create(se);
     List<ScheduleEntity> actual = scheduleRepository.findScheduleList();
     assertThat(actual).hasSize(5);
@@ -69,9 +67,11 @@ public class ScheduleRepositoryTest {
   @ExpectedDataSet(value = "schedule/datasets/updateschedules.yml")
   @Transactional
   public void キーに紐づく1件の更新が出来ること() {
-    scheduleRepository.update(new ScheduleEntity(1L, 1, LocalDate.of(2023, 2,2), "6階和室", "配線", 7));
+    scheduleRepository.update(
+        new ScheduleEntity(1L, 1, LocalDate.of(2023, 2, 2), "6階和室", "配線", 7));
     Optional<ScheduleEntity> schedule = scheduleRepository.findById(1L);
-    assertThat(schedule).hasValue(new ScheduleEntity(1L, 1, LocalDate.of(2023, 2,2), "6階和室", "配線", 7));
+    assertThat(schedule).hasValue(
+        new ScheduleEntity(1L, 1, LocalDate.of(2023, 2, 2), "6階和室", "配線", 7));
   }
 
   @Test

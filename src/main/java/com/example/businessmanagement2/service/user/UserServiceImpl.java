@@ -26,21 +26,18 @@ public class UserServiceImpl implements UserService {
   public UserEntity create(String companyName, String userName) {
     var entity = new UserEntity(null, companyName, userName);
     userRepository.create(entity);
-    return new UserEntity(entity.getUserId(), entity.getCompanyName(), entity.getUserName());
+    return entity;
   }
 
   @Override
-  public UserEntity update(Long userId, String companyName, String userName) {
-    userRepository.findById(userId)
-        .orElseThrow(() -> new UserEntityNotFoundException(userId));
+  public void update(Long userId, String companyName, String userName) {
+    userRepository.findById(userId).orElseThrow(() -> new UserEntityNotFoundException(userId));
     userRepository.update(new UserEntity(userId, companyName, userName));
-    return findById(userId);
   }
 
   @Override
   public void delete(Long userId) {
-    userRepository.findById(userId)
-        .orElseThrow(() -> new UserEntityNotFoundException(userId));
+    userRepository.findById(userId).orElseThrow(() -> new UserEntityNotFoundException(userId));
     userRepository.delete(userId);
   }
 }

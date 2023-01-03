@@ -26,23 +26,20 @@ public class ScheduleServiceImpl implements ScheduleService {
   }
 
   @Override
-  public ScheduleEntity create(int userId, LocalDate workingDate, String place,
-      String workContent, int numberOfPeople) {
-    var entity = new ScheduleEntity(null, userId, workingDate, place,
-        workContent, numberOfPeople);
+  public ScheduleEntity create(int userId, LocalDate workingDate, String place, String workContent,
+      int numberOfPeople) {
+    var entity = new ScheduleEntity(null, userId, workingDate, place, workContent, numberOfPeople);
     scheduleRepository.create(entity);
-    return new ScheduleEntity(entity.getScheduleId(), entity.getUserId(), entity.getWorkingDate(),
-        entity.getPlace(), entity.getWorkContent(), entity.getNumberOfPeople());
+    return entity;
   }
 
   @Override
-  public ScheduleEntity update(Long scheduleId, int userId, LocalDate workingDate, String place,
+  public void update(Long scheduleId, int userId, LocalDate workingDate, String place,
       String workContent, int numberOfPeople) {
     scheduleRepository.findById(scheduleId)
         .orElseThrow(() -> new ScheduleEntityNotFoundException(scheduleId));
-    scheduleRepository.update(new ScheduleEntity(scheduleId, userId, workingDate, place,
-        workContent, numberOfPeople));
-    return findById(scheduleId);
+    scheduleRepository.update(
+        new ScheduleEntity(scheduleId, userId, workingDate, place, workContent, numberOfPeople));
   }
 
   @Override

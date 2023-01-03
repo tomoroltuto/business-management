@@ -1,8 +1,14 @@
 package com.example.businessmanagement2.controller.advice;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+@Getter
+@ToString
+@EqualsAndHashCode
+@AllArgsConstructor
 public class InvalidParam {
 
   private String name;
@@ -10,3 +16,4 @@ public class InvalidParam {
   private String reason;
 
 }
+

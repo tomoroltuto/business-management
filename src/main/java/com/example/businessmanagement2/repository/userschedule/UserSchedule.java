@@ -3,7 +3,6 @@ package com.example.businessmanagement2.repository.userschedule;
 import com.example.businessmanagement2.repository.schedule.ScheduleEntity;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

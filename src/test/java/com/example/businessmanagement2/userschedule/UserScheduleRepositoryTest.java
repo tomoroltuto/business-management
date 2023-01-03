@@ -52,3 +52,4 @@ public class UserScheduleRepositoryTest {
             (new UserSchedule(2L, "△△△会社", "瀬川2", List.of(new ScheduleEntity(2L, 2, LocalDate.of(2022, 12, 7), "3階和室", "配線", 5), (new ScheduleEntity(3L, 2, LocalDate.of(2022, 12, 10), "3階トイレ２", "BOX取り付け", 2)))));
   }
 }
+

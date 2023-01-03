@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.businessmanagement2.repository.performance.PerformanceRepository">
+
+  <resultMap id="PerformanceEntityMap" type="com.example.businessmanagement2.repository.performance.PerformanceEntity">
+    <id column="performance_id" property="performanceId"/>
+    <id column="user_id" property="userId"/>
+    <result column="working_date" property="workingDate"/>
+    <result column="place" property="place"/>
+    <result column="work_content" property="workContent"/>
+    <result column="number_of_people" property="numberOfPeople"/>
+  </resultMap>
+
+  <select id="findById" resultMap="PerformanceEntityMap">
+    select performance_id, user_id, working_date, place, work_content, number_of_people
+    from performances
+    where performance_id = #{performanceId}
+  </select>
+
+  <select id="findPerformanceList" resultMap="PerformanceEntityMap">
+    select * from performances
+  </select>
+
+  <insert id="create" useGeneratedKeys="true" keyProperty="performanceId">
+    insert into performances (
+    user_id, working_date, place, work_content, number_of_people
+    )
+    values(
+    #{userId}, #{workingDate}, #{place}, #{workContent}, #{numberOfPeople}
+    )
+  </insert>
+
+  <update id="update">
+    update performances
+    set
+    performance_id = #{performanceId}, user_id = #{userId}, working_date = #{workingDate},
+    place = #{place}, work_content = #{workContent}, number_of_people = #{numberOfPeople}
+    where performance_id = #{performanceId}
+  </update>
+
+  <delete id="delete" parameterType="long">
+    delete from performances
+    where performance_id = #{performanceId}
+  </delete>
+
+</mapper>

@@ -1,17 +1,22 @@
 package com.example.businessmanagement2.controller.advice;
 
 
-import java.util.ArrayList;
 import java.util.List;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+@Getter
+@ToString
+@EqualsAndHashCode
+@AllArgsConstructor
 public class BadRequestError {
 
-  String title = "Bad Request";
+  String title;
 
-  String detail = "リクエストが不正です。正しいリクエストでリトライしてください";
+  String detail;
 
-  List<InvalidParam> invalidParams = new ArrayList<>();
+  List<InvalidParam> invalidParams;
 
 }

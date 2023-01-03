@@ -11,8 +11,9 @@ public interface UserService {
 
   UserEntity create(String companyName, String userName);
 
-  UserEntity update(Long userId, String companyName, String userName);
+  void update(Long userId, String companyName, String userName);
 
   void delete(Long userId);
 
 }
+

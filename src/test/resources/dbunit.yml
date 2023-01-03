@@ -8,3 +8,4 @@ connectionConfig:
   url: "jdbc:mysql://localhost:3307/business_management"
   user: "user"
   password: "password"
+
