@@ -1,4 +1,4 @@
-# アプリの概要
+# 概要
 
 [API仕様書](https://tomoroltuto.github.io/Business-management-application-document/dist/index.html)を元に業務管理アプリケーション用REST APIを作成しました。下請業者との作業内容を共有し業務改善することを目指し、主な機能は以下のと通りです。
 
@@ -259,3 +259,9 @@
 | GET | 存在するユーザーと作業実績のIDを指定してユーザーと作業実績が取得できること | 404 | 
 
 </details>
+
+#自動テスト
+GitHub Actionsの導入してテストを自動でテストした結果は以下の通りです
+
+<img width="1436" alt="CI状況" src="https://user-images.githubusercontent.com/90845405/210567519-39afb6c4-2178-4173-8c87-4b6bb6576f48.png">
+
