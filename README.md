@@ -260,7 +260,8 @@
 
 </details>
 
-#自動テスト
+#　自動テスト
+
 GitHub Actionsの導入してテストを自動でテストした結果は以下の通りです
 
 <img width="1436" alt="CI状況" src="https://user-images.githubusercontent.com/90845405/210567519-39afb6c4-2178-4173-8c87-4b6bb6576f48.png">
