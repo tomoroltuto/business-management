@@ -15,9 +15,12 @@
 * SpringBoot v2.7.5
 
 ### インフラ・DB
-* docker
+* docker/docker compose 
 * AWS(VPC・EC2)
 * MySQL
+
+### CI
+* GitHub Actions
 
 # 設計書
 
@@ -265,4 +268,21 @@
 GitHub Actionsの導入して自動テストを行いました
 
 <img width="1436" alt="CI状況" src="https://user-images.githubusercontent.com/90845405/210567519-39afb6c4-2178-4173-8c87-4b6bb6576f48.png">
+
+# 工夫した点
+
+* 仕様書や設計関係に時間をかけました。図を多めにして相手にも理解してもらえるように考えて書きました。
+
+# ハマった点
+
+* 最初にAPI仕様書作成しましたがいざ仕様書通りにうまくいかず悩みながら実装しました。
+* SQLのテーブル結合をしたものをどうSpring bootで表示できるように実装するのか悩みました。
+
+# 今後の展開
+
+* ログイン機能に実装
+* 外部連携(Line通知機能)
+* フロント実装
+* 作業予定の承認時、作業実績に反映できるように実装
+
 
