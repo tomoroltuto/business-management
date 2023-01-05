@@ -16,7 +16,7 @@
 
 ### インフラ・DB
 * docker/docker compose 
-* AWS(VPC・EC2)
+* AWS(VPC・EC2・Route53・ALB)
 * MySQL
 
 ### CI
