@@ -26,7 +26,8 @@
 
 <h2>ER図</h2>
 
-![ER図](https://user-images.githubusercontent.com/90845405/201934297-650bcf1c-b119-4502-b55d-a776db4d3c0a.jpg)
+![ポートフォリオ用ER図](https://user-images.githubusercontent.com/90845405/210759693-d409528d-70a9-40da-a19c-5c8b6b60f3b8.jpg)
+
 
 <h2>URL設計</h2>
 
