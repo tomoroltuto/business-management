@@ -34,7 +34,8 @@
 
 <h2>インフラ構成図</h2>
 
-![インフラ構造図](https://user-images.githubusercontent.com/90845405/210718784-cb229ba9-4c8c-464f-9923-bea2e87323d9.jpg)
+![ポートフォイオ用インフラ構成図](https://user-images.githubusercontent.com/90845405/210742372-cd549451-8a4b-44fd-83ce-ec54664bd9d6.jpg)
+
 
 # テスト
 以下にそれぞれの統合テスト・単独テスト・DBテストを記載します。
