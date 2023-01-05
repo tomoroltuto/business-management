@@ -28,7 +28,7 @@
 
 ![ER図](https://user-images.githubusercontent.com/90845405/201934297-650bcf1c-b119-4502-b55d-a776db4d3c0a.jpg)
 
-<h2>URL設計書</h2>
+<h2>URL設計</h2>
 
 ![新URL](https://user-images.githubusercontent.com/90845405/210511788-4b0c780a-8912-40dc-a9f7-78409a2a1579.jpg)
 
