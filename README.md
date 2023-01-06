@@ -35,7 +35,7 @@
 
 <h2>インフラ構成図</h2>
 
-![ポートフォイオ用インフラ構成図](https://user-images.githubusercontent.com/90845405/210742372-cd549451-8a4b-44fd-83ce-ec54664bd9d6.jpg)
+![ポートフォイオ用インフラ構成図 ](https://user-images.githubusercontent.com/90845405/210948932-427e5615-b770-4c98-a6e9-f7dfbee44476.jpg)
 
 
 # テスト
