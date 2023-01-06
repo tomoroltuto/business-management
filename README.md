@@ -31,7 +31,7 @@
 
 <h2>URL設計</h2>
 
-![新URL](https://user-images.githubusercontent.com/90845405/210511788-4b0c780a-8912-40dc-a9f7-78409a2a1579.jpg)
+![新URL](https://user-images.githubusercontent.com/90845405/210941506-09ae8c8b-e7b4-44b9-a1c5-51d7b9b44bc3.jpg)
 
 <h2>インフラ構成図</h2>
 
