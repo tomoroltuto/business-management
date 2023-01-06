@@ -53,6 +53,165 @@
 ### CI
 * GitHub Actions
 
+# ディレクトリ構成
+
+```bash
+
+※　一部省略あり
+...
+├── docker-compose.yaml
+├── mysql
+│   └── sql
+│       ├── initdb.d
+│       │   ├── 1_schema.sql
+│       │   └── 2_data.sql
+│       └── my.cnf
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── example
+    │   │           └── businessmanagement
+    │   │               ├── BusinessManagement2Application.java
+    │   │               ├── controller
+    │   │               │   ├── advice
+    │   │               │   │   ├── BadRequestError.java
+    │   │               │   │   ├── BadRequestErrorCreator.java
+    │   │               │   │   ├── CustomExceptionHandler.java
+    │   │               │   │   ├── InvalidParam.java
+    │   │               │   │   └── ResourceNotFoundError.java
+    │   │               │   ├── performance
+    │   │               │   │   ├── PerformanceController.java
+    │   │               │   │   ├── PerformanceDTO.java
+    │   │               │   │   ├── PerformanceForm.java
+    │   │               │   │   ├── PerformanceListDTO.java
+    │   │               │   │   └── PerformanceResponseMassage.java
+    │   │               │   ├── schedule
+    │   │               │   │   ├── ScheduleController.java
+    │   │               │   │   ├── ScheduleDTO.java
+    │   │               │   │   ├── ScheduleForm.java
+    │   │               │   │   ├── ScheduleListDTO.java
+    │   │               │   │   └── ScheduleResponseMassage.java
+    │   │               │   ├── user
+    │   │               │   │   ├── UserController.java
+    │   │               │   │   ├── UserDTO.java
+    │   │               │   │   ├── UserForm.java
+    │   │               │   │   ├── UserListDTO.java
+    │   │               │   │   └── UserResponseMessage.java
+    │   │               │   ├── userperformance
+    │   │               │   │   ├── UserPerformanceController.java
+    │   │               │   │   ├── UserPerformanceDTO.java
+    │   │               │   │   └── UserPerformanceListDTO.java
+    │   │               │   └── userschedule
+    │   │               │       ├── UserScheduleController.java
+    │   │               │       ├── UserScheduleDTO.java
+    │   │               │       └── UserScheduleListDTO.java
+    │   │               ├── repository
+    │   │               │   ├── performance
+    │   │               │   │   ├── PerformanceEntity.java
+    │   │               │   │   └── PerformanceRepository.java
+    │   │               │   ├── schedule
+    │   │               │   │   ├── ScheduleEntity.java
+    │   │               │   │   └── ScheduleRepository.java
+    │   │               │   ├── user
+    │   │               │   │   ├── UserEntity.java
+    │   │               │   │   └── UserRepository.java
+    │   │               │   ├── userperformance
+    │   │               │   │   ├── UserPerformance.java
+    │   │               │   │   └── UserPerformanceRepository.java
+    │   │               │   └── userschedule
+    │   │               │       ├── UserSchedule.java
+    │   │               │       └── UserScheduleRepository.java
+    │   │               └── service
+    │   │                   ├── performance
+    │   │                   │   ├── PerformanceEntityNotFoundException.java
+    │   │                   │   ├── PerformanceService.java
+    │   │                   │   └── PerformanceServiceImpl.java
+    │   │                   ├── schedule
+    │   │                   │   ├── ScheduleEntityNotFoundException.java
+    │   │                   │   ├── ScheduleService.java
+    │   │                   │   └── ScheduleServiceImpl.java
+    │   │                   ├── user
+    │   │                   │   ├── UserEntityNotFoundException.java
+    │   │                   │   ├── UserService.java
+    │   │                   │   └── UserServiceImpl.java
+    │   │                   ├── userperformance
+    │   │                   │   ├── UserPerformanceService.java
+    │   │                   │   └── UserPerformanceServiceImpl.java
+    │   │                   └── userschedule
+    │   │                       ├── UserScheduleService.java
+    │   │                       └── UserScheduleServiceImpl.java
+    │   └── resources
+    │       ├── application.yml
+    │       └── com
+    │           └── example
+    │               └── businessmanagement
+    │                   └── repository
+    │                       ├── performance
+    │                       │   └── PerformanceRepository.xml
+    │                       ├── schedule
+    │                       │   └── ScheduleRepository.xml
+    │                       ├── user
+    │                       │   └── UserRepository.xml
+    │                       ├── userperformance
+    │                       │   └── UserPerformanceRepository.xml
+    │                       └── userschedule
+    │                           └── UserScheduleRepository.xml
+    └── test
+        ├── java
+        │   └── com
+        │       └── example
+        │           └── businessmanagement
+        │               ├── BusinessManagement2ApplicationTests.java
+        │               ├── performance
+        │               │   ├── PerformanceApiIntegrationTest.java
+        │               │   ├── PerformanceRepositoryTest.java
+        │               │   └── PerformanceServiceTest.java
+        │               ├── schedule
+        │               │   ├── ScheduleApiIntegrationTest.java
+        │               │   ├── ScheduleRepositoryTest.java
+        │               │   └── ScheduleServiceTest.java
+        │               ├── user
+        │               │   ├── UserRepositoryTest.java
+        │               │   ├── UserRestApiIntegrationTest.java
+        │               │   └── UserServiceTest.java
+        │               ├── userperformance
+        │               │   ├── UserScheduleApiIntegrationTest.java
+        │               │   ├── UserScheduleRepositoryTest.java
+        │               │   └── UserScheduleServiceTest.java
+        │               └── userschedule
+        │                   ├── UserScheduleApiIntegrationTest.java
+        │                   ├── UserScheduleRepositoryTest.java
+        │                   └── UserScheduleServiceTest.java
+        └── resources
+            ├── dbunit.yml
+            ├── performance
+            │   └── datasets
+            │       ├── createperformances.yml
+            │       ├── deleteperformances.yml
+            │       ├── performances.yml
+            │       └── updateperformances.yml
+            ├── schedule
+            │   └── datasets
+            │       ├── createschedules.yml
+            │       ├── deleteschedules.yml
+            │       ├── schedules.yml
+            │       └── updateschedules.yml
+            ├── user
+            │   └── datasets
+            │       ├── createusers.yml
+            │       ├── deleteusers.yml
+            │       ├── updateusers.yml
+            │       └── users.yml
+            ├── userperformance
+            │   └── datasets
+            │       └── userperformances.yml
+            └── userschedule
+                └── datasets
+                    └── userschedules.yml
+
+``` 
+
 # 設計書
 
 <h2>ER図</h2>
