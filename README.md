@@ -6,7 +6,38 @@
 * 作業予定・作業実績の一覧表を表示できる
 * 過去の作業予定・作業実績の履歴を検索できる
 
-[作成背景や全体仕様書は別のREADMEにまとめております](https://github.com/tomoroltuto/Business-management-application-document.git)
+[全体仕様書は別のREADMEにまとめております](https://github.com/tomoroltuto/Business-management-application-document.git)
+
+# 作成背景
+現在、電気設備工事の現場監督（サブゼネコン）として働いています。建築（ゼネコン）との業務管理はアプリケーションで管理しておりますが、サブゼネコンとの下請け業者とはアナログ管理でしています。
+
+
+<h2> 組織構成図 </h2>
+  
+![業務管理体制](https://user-images.githubusercontent.com/90845405/197956867-5e2f7fb5-2304-4661-b943-a199945303c8.jpg)
+
+アナログ管理とは、口頭や電話などでメモしたりやペーパー等に記入するという意味で、それによる聞き漏れや聞き忘れ等が発生や何十社と電話で確認をするのに時間がかかります。
+
+
+<h2>アナログ管理イメージ図 </h2>
+
+![analog](https://user-images.githubusercontent.com/90845405/197953637-df706a90-57e0-4cfa-b8be-838ff5170d64.jpg)
+
+そこで、対策としてGoogle Apps Script（GAS）+　Google Forms　＋　Lineを連携したLine自動通知送信システムを開発し運用しています。
+
+
+<h2> Line自動通知送信システム構成図 </h2>
+
+![line](https://user-images.githubusercontent.com/90845405/197954691-cb1dbcda-2167-4ea3-898a-2f76a6a079bd.jpg)
+
+上記のシステムにより、電話をする時間から解放され、どこの会社が何の業務をしているかを共有化できました。
+しかし、運用していて以下のでデメリットがありました。
+
+* 業務内容の更新・削除ができない
+* 下請業者が多くなるとLineをスクロールして確認するのが大変
+* 過去の業務を確認はできるが探すのが大変
+
+これらを解決できるアプリケーションを開発したいと思います。
 
 # 主な技術
 
