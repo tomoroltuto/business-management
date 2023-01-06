@@ -12,10 +12,10 @@
 
 ### バックエンド
 * Java 17
-* SpringBoot v2.7.5
+* Spring Boot v2.7.5
 
 ### インフラ・DB
-* docker/docker compose 
+* Docker/Docker compose 
 * AWS(VPC・EC2)
 * MySQL
 
