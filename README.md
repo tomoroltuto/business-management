@@ -227,6 +227,12 @@
 
 ![ポートフォイオ用インフラ構成図 ](https://user-images.githubusercontent.com/90845405/210948932-427e5615-b770-4c98-a6e9-f7dfbee44476.jpg)
 
+<h2>デプロイ状況</h2>
+
+Postmanで確認
+
+![Postman](https://user-images.githubusercontent.com/90845405/211146092-54cb3536-f470-4a73-bf55-5f2edc27e607.gif)
+
 
 # テスト
 以下にそれぞれの統合テスト・単独テスト・DBテストを記載します。
