@@ -23,7 +23,7 @@
 
 ![analog](https://user-images.githubusercontent.com/90845405/197953637-df706a90-57e0-4cfa-b8be-838ff5170d64.jpg)
 
-そこで、対策としてGoogle Apps Script（GAS）+　Google Forms　＋　LINEを連携したLine自動通知送信システムを開発し運用しています。
+そこで、対策としてGoogle Apps Script（GAS）+　Google Forms　＋　LINEを連携したLINE自動通知送信システムを開発し運用しています。
 
 
 <h2> Line自動通知送信システム構成図 </h2>
