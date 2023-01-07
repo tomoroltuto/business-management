@@ -1,6 +1,6 @@
 # 概要
 
-[API仕様書](https://tomoroltuto.github.io/Business-management-application-document/dist/index.html)を元に業務管理アプリケーション用REST APIを作成しました。下請業者との作業内容を共有し業務改善することを目指し、主な機能は以下のと通りです。
+[API仕様書](https://tomoroltuto.github.io/Business-management-application-document/dist/index.html)を元に業務管理アプリケーション用REST APIを作成しました。下請業者との作業内容を共有し業務改善することを目指し、主な機能は以下の通りです。
 
 * 作業予定・作業実績を登録・編集・削除できる
 * 作業予定・作業実績の一覧表を表示できる
