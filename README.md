@@ -225,7 +225,8 @@
 
 <h2>インフラ構成図</h2>
 
-![ポートフォイオ用インフラ構成図 ](https://user-images.githubusercontent.com/90845405/211147078-8b0be21f-48eb-4c81-872f-45d11512a48c.jpg)
+![インフラ構成図１](https://user-images.githubusercontent.com/90845405/211199427-ee976422-8049-4972-9c04-e8982da09932.jpg)
+
 
 
 <h2>デプロイ状況</h2>
